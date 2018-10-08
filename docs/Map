@@ -7,7 +7,7 @@
 	canvas {
 		display:block; 
 		border:1px solid #d3d3d3; 
-		background: #fff url("map.jpg") no-repeat;
+		background: #fff url("FinishedMap.jpg") no-repeat;
 	} 
 	body {
 		background: #0033A0;
