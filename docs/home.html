@@ -283,6 +283,12 @@ function clear(){
 			ctx.lineWidth = 8;
 			ctx.strokeStyle="#ffff00";
 			ctx.stroke();	// draw the line
+			
+			ctx.beginPath();
+			ctx.lineWidth = 4;
+			ctx.strokeStyle = "#ffff00";
+			ctx.arc(coor.node[dest].x,coor.node[dest].y,2,0,2*Math.PI);
+			ctx.stroke();
 		}
 	}
 
