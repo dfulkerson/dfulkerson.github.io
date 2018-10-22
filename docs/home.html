@@ -7,7 +7,7 @@
 	canvas {
 		display:block; 
 		border:1px solid #d3d3d3; 
-		background: #fff url("FinishedMap.jpg") no-repeat;
+		background: #fff url("map.jpg") no-repeat;
 	} 
 	body {
 		background: #0033A0;
@@ -27,6 +27,12 @@
 		font-family: verdana;
 		color: #FFFFFF;
 		font-size: 24px;
+	}
+
+	p2 {
+		font-family: verdana;
+		font-size: 24px;
+		color: white;
 	}
 
 	nav {
@@ -80,6 +86,10 @@
 			font-size: 16px;
 			margin: 0 px auto;
 		}
+		p2{
+			font-size: 16px;
+			margin: 15 px auto;
+		}
 
 		nav {
 			display: block;
@@ -89,7 +99,69 @@
 			display: block;
 		}
 	}
+	/* The switch - the box around the slider */
 
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
 </style>
 
 </head>
@@ -99,9 +171,9 @@
 	<header>
 		<h1>Lexington Convention Center Interactive Map</h1>
 		<nav>
-			<a href="#">Home</a>
-			<a href="about.html">About</a>
-			<a href="#">Contact</a>
+<!-- 			<a href="#">Home</a>
+			<a href="#">About</a>
+			<a href="#">Contact</a> -->
 		</nav>
 <!-- 	options for current location -->
 	</header>
@@ -184,6 +256,17 @@
 </ul>
 
 </div>
+<div>
+	<p2> Use Elevator Button </p2>
+
+<!-- Elevator Button -->
+<label class="switch" id = "myButton" value = "-1" onchange="goElevator();">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label>
+<!-- <p id="text" style="display:none">It's elevator time!!</p> -->
+
+</div>
 	<canvas id="map" width="3714" height="3714"></canvas>
 
 <script type = "text/javascript">
@@ -200,19 +283,22 @@
  * Initial version: October 21, 2004
  */
 
-
+var elevToggle = -1;
 //ensures code doesn't draw anything whenever current location or destination are selected 
 function dorun(){
+	clear();
 	if ((document.getElementById("current").value != "#") && (document.getElementById("destination").value != "#")){
-		clear();
 		main();
 	}
-	clear();
 }
 function clear(){
 	var can = document.getElementById("map");
 	var ctx = can.getContext("2d");
  		ctx.clearRect(0,0,3714,3714);
+}
+function goElevator(){
+	elevToggle*= -1;
+	dorun();
 }
 
  function main() {
@@ -283,22 +369,15 @@ function clear(){
 			ctx.lineWidth = 8;
 			ctx.strokeStyle="#ffff00";
 			ctx.stroke();	// draw the line
-			
+
 			ctx.beginPath();
-			ctx.lineWidth = 4.0;
+			ctx.lineWidth = 4;
 			ctx.strokeStyle = "#ffff00";
-			ctx.arc(coor.node[dest].x,coor.node[dest].y,2.0,0,2*Math.PI);
+			ctx.arc(coor.node[dest].x,coor.node[dest].y,2,0,2*Math.PI);
 			ctx.stroke();
 		}
 	}
-function nodeInfo(input) {
-	switch (input) {
-		case 0:
-		document.writeln("Office");
-		break;
- 	}
 
-}
 
 //connects two nodes
 function addConnection(a,b) {
@@ -341,6 +420,15 @@ function lineExc(a,b) {
 		return false;
 	}
 	else if (a === 64 && b === 85) {
+		return false;
+	}
+	else if(a == 113 && b == 116){
+		return false;
+	}
+	else if(a == 114 && b == 115){
+		return false;
+	}
+	else if(a == 115 && b == 117){
 		return false;
 	}
 	return true;
@@ -395,6 +483,13 @@ function lineExc(a,b) {
 
 
 // spacing so index is easier to count
+
+
+
+
+
+	 
+
 
 
 
@@ -543,6 +638,7 @@ addConnection(1,7);
 addConnection(2,6);
 addConnection(2,7);
 addConnection(3,4);
+addConnection(3,113);
 addConnection(3,107);
 addConnection(4,6);
 addConnection(4,8);
@@ -552,13 +648,15 @@ addConnection(7,9);
 addConnection(8,10);
 addConnection(9,10);
 addConnection(9,14);
-addConnection(10,11);
-addConnection(10,13);
+addConnection(9,121);
 addConnection(11,12);
-addConnection(11,13);
+addConnection(11,114);
+addConnection(11,121);
+addConnection(12,114);
 addConnection(13,14);
 addConnection(13,16);
 addConnection(14,16);
+addConnection(14,121);
 addConnection(89,17);
 addConnection(16,89);
 addConnection(17,22);
@@ -602,6 +700,12 @@ addConnection(69,87);
 addConnection(59,88);
 addConnection(86,88);
 addConnection(87,88);
+//floor 1 if elevator
+if(elevToggle < 0){
+	addConnection(10,11);
+	addConnection(10,13);
+	addConnection(11,13);
+}
 //second floor
 addConnection(70,71);
 addConnection(70,72);
@@ -634,7 +738,9 @@ addConnection(78,111);
 addConnection(79,80);
 addConnection(79,81);
 addConnection(80,81);
+addConnection(80,115);
 addConnection(81,82);
+addConnection(81,115);
 addConnection(82,83);
 addConnection(83,84);
 addConnection(84,85);
@@ -642,8 +748,10 @@ addConnection(84,85);
 addConnection(35,36);
 addConnection(35,56);
 addConnection(35,57);
+addConnection(35,117);
 addConnection(36,37);
 addConnection(36,57);
+addConnection(36,117);
 addConnection(37,38);
 addConnection(37,39);
 addConnection(37,58);
@@ -672,19 +780,22 @@ addConnection(46,48);
 addConnection(46,98);
 addConnection(47,48);
 addConnection(48,49);
+addConnection(48,119);
+addConnection(48,120);
 addConnection(49,50);
+addConnection(49,119);
 addConnection(50,51);
 addConnection(51,52);
 addConnection(52,53);
 addConnection(53,54);
 addConnection(54,55);
 addConnection(54,60);
-addConnection(54,64);
 addConnection(55,56);
-addConnection(55,64);
 addConnection(56,106);
+addConnection(56,117);
 addConnection(57,61);
 addConnection(57,65);
+addConnection(57,117);
 addConnection(60,62)
 addConnection(60,65);
 addConnection(60,105);
@@ -694,12 +805,23 @@ addConnection(62,103);
 addConnection(62,105);
 addConnection(63,65);
 addConnection(63,104);
-// stairs
-addstairs(6 ,74,1000);
-addstairs(35,77,1000);
-addstairs(50,70,1000);
-addstairs(64,85,1000);
+addConnection(116,118);
+addConnection(116,120);
+addConnection(118,119)
 
+// stairs
+if(elevToggle < 0){
+	addstairs(6 ,74,1000);
+	addstairs(35,77,1000);
+	addstairs(50,70,1000);
+	addstairs(64,85,1000);
+}
+//elevators
+else{
+	addstairs(113,116,1000);
+	addstairs(114,115,1000);
+	addstairs(115,117,1000);
+}
 
 //start node value
 var strt = document.getElementById("current").value;
@@ -766,13 +888,13 @@ var ctx = can.getContext("2d");
 ctx.clearRect(0,0,3714,3714)
 
 ctx.beginPath();
-ctx.lineWidth = 6;
+ctx.lineWidth = 10;
 ctx.strokeStyle="#59f442";
 ctx.arc(coor.node[strt].x,coor.node[strt].y,5,0,2*Math.PI);
 ctx.stroke();
 
 ctx.beginPath();
-ctx.lineWidth = 6;
+ctx.lineWidth = 10;
 ctx.strokeStyle = "#f44141";
 ctx.arc(coor.node[dest].x,coor.node[dest].y,5,0,2*Math.PI);
 ctx.stroke();
