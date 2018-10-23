@@ -15,8 +15,18 @@
 
 	header {
 		text-align: center;
+		padding: 25px;
 	}
-
+	
+	dropdown {
+		position: fixed;
+		backface-visibility: hidden;
+		background: black;
+		top: 0;
+		width: 100%;
+		padding: 10px;
+		text-align: center;
+	}
 	h1 {
 		font-family: verdana;
 		color: #FFFFFF;
@@ -178,7 +188,7 @@ input:checked + .slider:before {
 <!-- 	options for current location -->
 	</header>
 	<div class="header">
-		<p1>Select your current location and your destination:</p1>
+	<dropdown><p1>Select your current location and your destination:</p1>
 	<select name="current" id="current" onchange='dorun();' style="width:200px">
 		<option value="#">Current Location</option>
 	<option disabled>-----Level 1-----</option>
@@ -251,11 +261,9 @@ input:checked + .slider:before {
 		<option value="102">Thoroughbred Room 8</option>
 		<option value="49">Ticket Office</option>
 	</select>
-
-<input id="button" value="SUBMIT" onchange='dorun();' style="padding:7px;font-size:18px;" type="button">
-</ul>
-
+</dropdown>
 </div>
+	
 <div>
 	<p2> Use Elevator Button </p2>
 
