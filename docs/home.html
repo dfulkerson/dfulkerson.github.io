@@ -300,7 +300,42 @@ function goElevator(){
 	elevToggle*= -1;
 	dorun();
 }
+function drawArrow(fromx, fromy,ctx, direction){
+                //variables to be used when creating the arrow
+                var tox = fromx;
+                var toy = fromy + direction * 100
+                //starting path of the arrow from the start square to the end square and drawing the stroke
+                ctx.beginPath();
+                ctx.moveTo(fromx, fromy);
+                ctx.lineTo(tox, toy);
+                ctx.strokeStyle = "#FFFF00";
+                ctx.lineWidth = 10;
+                ctx.stroke();
 
+                toy += direction * 10
+                //starting a new path from the head of the arrow to one of the sides of the point
+                ctx.beginPath();
+                ctx.moveTo(tox, toy);
+                ctx.lineTo(tox-20,toy-direction*20);
+
+                //path from the side point of the arrow, to the other side point
+                ctx.lineTo(tox+20,toy-direction*20);
+
+                //path from the side point back to the tip of the arrow, and then again to the opposite side point
+                ctx.lineTo(tox, toy);
+
+                //draws the paths created above
+                ctx.strokeStyle = "#ffff00";
+                ctx.lineWidth = 3;
+                ctx.stroke();
+                ctx.fillStyle = "#ffff00";
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.moveTo(tox, toy);
+				ctx.lineWidth = 10;
+                ctx.stroke();
+}
  function main() {
  	//Dijkstra's Algorithm
  	function shortestPath(edges, numVertices, startVertex) {
@@ -375,6 +410,11 @@ function goElevator(){
 			ctx.strokeStyle = "#ffff00";
 			ctx.arc(coor.node[dest].x,coor.node[dest].y,2,0,2*Math.PI);
 			ctx.stroke();
+		}
+		else {
+			var stairnode = [6,70,74,77,85,64,35,50];
+			var dir =       [1,-1,-1 ,1,0 , 0, -1,1];
+			drawArrow(cur_x,cur_y, ctx,dir[stairnode.indexOf(cur)]);
 		}
 	}
 
