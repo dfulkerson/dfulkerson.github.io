@@ -952,19 +952,43 @@ var ctx = can.getContext("2d");
 
 ctx.clearRect(0,0,3714,3714)
 
-ctx.beginPath();
-ctx.lineWidth = 10;
-ctx.strokeStyle="#59f442";
-ctx.arc(coor.node[strt].x,coor.node[strt].y,5,0,2*Math.PI);
-ctx.stroke();
-
-ctx.beginPath();
-ctx.lineWidth = 10;
-ctx.strokeStyle = "#f44141";
-ctx.arc(coor.node[dest].x,coor.node[dest].y,5,0,2*Math.PI);
-ctx.stroke();
 
 for (var i = 0; i < finishedPath.length; i++) {
+	if (i == finishedPath.length - 1 ){
+		ctx.beginPath();
+		ctx.lineWidth = 25;
+		ctx.strokeStyle = "#ff0000";
+		ctx.arc(coor.node[dest].x,coor.node[dest].y-35,5,0,2*Math.PI);
+		ctx.stroke();
+		
+		ctx.beginPath();// draw the path	
+		ctx.moveTo(coor.node[dest].x,coor.node[dest].y);	// set the start point
+		ctx.lineTo(coor.node[dest].x-(25/2),coor.node[dest].y-25);	// set the end point
+		ctx.lineWidth = 8;
+		ctx.strokeStyle="#ff0000";
+		// ctx.stroke();
+		
+		// ctx.beginPath();// draw the path	
+		ctx.lineTo(coor.node[dest].x+(25/2),coor.node[dest].y-25);	// set the end point
+		ctx.closePath();
+		ctx.lineWidth = 5;
+		ctx.strokeStyle="#ff0000";
+		ctx.stroke();
+		ctx.fillStyle = "#ff0000";
+		ctx.fill();
+		
+		ctx.beginPath();
+		ctx.lineWidth = 10;
+		ctx.strokeStyle="#59f442";
+		ctx.arc(coor.node[strt].x,coor.node[strt].y,5,0,2*Math.PI);
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = "#ff0000";
+		ctx.arc(coor.node[dest].x,coor.node[dest].y,5,0,2*Math.PI);
+		ctx.stroke();
+	}
 	getPath(finishedPath[i],finishedPath[i+1]);
 }
 
