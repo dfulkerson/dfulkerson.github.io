@@ -1,2 +1,2 @@
 # Map
-Interactive Map of Rupp and Lexington Convention Center
+Interactive Map of Lexington Convention Center
