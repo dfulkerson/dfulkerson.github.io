@@ -333,13 +333,13 @@ function goElevator(){
 function drawArrow(fromx, fromy,ctx, direction){
                 //variables to be used when creating the arrow
                 var tox = fromx;
-                var toy = fromy + direction * 100
+                var toy = fromy + direction * 75
                 //starting path of the arrow from the start square to the end square and drawing the stroke
                 ctx.beginPath();
                 ctx.moveTo(fromx, fromy);
                 ctx.lineTo(tox, toy);
                 ctx.strokeStyle = "#FFFF00";
-                ctx.lineWidth = 10;
+                ctx.lineWidth = 8;
                 ctx.stroke();
 
                 toy += direction * 10
@@ -360,10 +360,10 @@ function drawArrow(fromx, fromy,ctx, direction){
                 ctx.stroke();
                 ctx.fillStyle = "#ffff00";
                 ctx.fill();
-
+                console.log("draw arrow"+"tox"+tox+"toy"+toy);
                 ctx.beginPath();
                 ctx.moveTo(tox, toy);
-		ctx.lineWidth = 10;
+		ctx.lineWidth = 8;
                 ctx.stroke();
 }
  function main() {
@@ -422,12 +422,11 @@ function drawArrow(fromx, fromy,ctx, direction){
  	function getPath(cur,dest) {
 		// get return value
 	    // use the return as the index of the following coor array
+	    var cur_x=coor.node[cur].x;
+		var cur_y=coor.node[cur].y;
+		var des_x=coor.node[dest].x;
+		var des_y=coor.node[dest].y;
 		if(lineExc(cur,dest)) {
-			var cur_x=coor.node[cur].x;
-			var cur_y=coor.node[cur].y;
-			var des_x=coor.node[dest].x;
-			var des_y=coor.node[dest].y;
-
 			ctx.beginPath();// draw the path	
 			ctx.moveTo(cur_x,cur_y);	// set the start point
 			ctx.lineTo(des_x,des_y);	// set the end point
@@ -444,10 +443,11 @@ function drawArrow(fromx, fromy,ctx, direction){
 		else {
 			var stairnode = [6,70,74,77,85,64,35,50];
 			var dir =       [1,-1,-1 ,1,0 , 0, -1,1];
+			var direc = dir[stairnode.indexOf(cur)]
 			drawArrow(cur_x,cur_y, ctx,dir[stairnode.indexOf(cur)]);
+			drawArrow(des_x,des_y-83*direc, ctx,direc);
 		}
 	}
-
 
 //connects two nodes
 function addConnection(a,b) {
