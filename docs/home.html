@@ -31,6 +31,19 @@
 		text-align: center;
 		opacity: 1;
 	}
+		.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black;
+    min-width: 160px;
+    box-shadow: 0px 16px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    width: 180px;
+    size: 100px;
+
+}
+		
 	h1 {
 		font-family: verdana;
 		color: #FFFFFF;
@@ -69,11 +82,14 @@
 		font-family: verdana;
 		font-weight: bold;
 		padding: 5px 60px;
+		font-weight: bold;
 	}
 
 	select {
 		overflow-y: scroll;
 		height: 20px;
+		font-weight: bold;
+		font-size:25px;
 	}
 
 	img {
@@ -223,7 +239,7 @@ input:checked + .slider:before {
 	</header>
 	<div class="header">
 	<dropdown><p1>Select your current location and your destination:</p1>
-	<select name="current" id="current" onchange='dorun();' style="width:200px">
+	<select name="current" id="current" onchange='dorun();' style="width:226px;height:55px">
 		<option value="#">Current Location</option>
 	<option disabled>-----Level 1-----</option>
 		<option value="94">Berea Room</option>
@@ -260,7 +276,7 @@ input:checked + .slider:before {
 	</select>
 
 	<!-- options for destination -->
-	<select name="destination" id="destination" onchange='dorun();'	style="width:200px">
+	<select name="destination" id="destination" onchange='dorun();'	style="width:335px;height:55px">
 	<option value="#">Destination</option>
 	<option value="bathroom">Closest Bathroom</option>
 	<option disabled>-----Level 1-----</option>
