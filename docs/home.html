@@ -51,10 +51,10 @@
 		margin-top: 0px;
 	}
 
-	p1 {
+/* 	p1 {
 		font-family: verdana;
 		color: #FFFFFF;
-	}
+	} */
 
 	p2 {
 		font-family: verdana;
@@ -119,12 +119,12 @@
 			font-size: 30px;
 		}
 
-		p1 {
+/* 		p1 {
 			font-size: 24px;
 			margin: 0 px auto;
-		}
+		} */
 		p2{
-			font-size: 16px;
+			font-size: 22px;
 			margin: 15 px auto;
 		}
 
@@ -233,7 +233,7 @@ input:checked + .slider:before {
 <!-- 	options for current location -->
 	</header>
 	<div class="header">
-	<dropdown><p1></p1>
+	<dropdown data-role="footer" data-position="fixed">
 	<select name="current" id="current" onchange='dorun();' style="width:250px;height:55px">
 		<option value="#">Current Location</option>
 	<option disabled>-----Level 1-----</option>
@@ -322,7 +322,8 @@ input:checked + .slider:before {
 
 </div>
 	<canvas id="map" width="3714" height="3714"></canvas>
-
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type = "text/javascript">
 /*
  * dijkstra.js
