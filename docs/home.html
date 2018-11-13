@@ -390,32 +390,33 @@ function drawArrow(fromx, fromy,ctx, direction){
 		ctx.lineWidth = 8;
                 ctx.stroke();
 }
-	function clipPic(n, ctxp){
+function grayOut(n, ctxp){
 	ctxp.globalAlpha = .5;
 	ctxp.clearRect(0,0,3714,3714);
 	var clip = document.getElementById("map");
 	var ctxp = clip.getContext("2d");
-	if(n==3){
-		
+	if(n==3){	
 		ctxp.beginPath();
-		ctxp.fillStyle= "rgba(200,200,200,.1)";
+		ctxp.fillStyle= "#999999";
 		ctxp.fillRect(0,0,3713,3713);
 		ctxp.clearRect(1356,1915,3713,3713);
 
 	}
 	else if(n==2){
-		ctxp.fillStyle="#999999";
+		ctxp.beginPath();
+		ctxp.fillStyle= "#999999";
 		ctxp.fillRect(0,0,3713,3713);
 		ctxp.clearRect(0,1915,1283,3713);
 	}
 	else{
-		ctxp.fillStyle="#999999";
+		ctxp.beginPath();
+		ctxp.fillStyle= "#999999";
 		ctxp.fillRect(0,0,3713,3713);
 		ctxp.clearRect(0,0,3713,1841);
 	}
 }
-
  function main() {
+	 var goStairs = false;
  	//Dijkstra's Algorithm
  	function shortestPath(edges, numVertices, startVertex) {
  		var done = new Array(numVertices);
@@ -468,10 +469,11 @@ function drawArrow(fromx, fromy,ctx, direction){
  	}
 
 	
- 	function getPath(cur,dest) {
+ function getPath(cur,dest) {
+	ctx.globalAlpha = 1.0;
 		// get return value
 	    // use the return as the index of the following coor array
-	    var cur_x=coor.node[cur].x;
+	   var cur_x=coor.node[cur].x;
 		var cur_y=coor.node[cur].y;
 		var des_x=coor.node[dest].x;
 		var des_y=coor.node[dest].y;
@@ -490,6 +492,7 @@ function drawArrow(fromx, fromy,ctx, direction){
 			ctx.stroke();
 		}
 		else {
+			goStairs = true;
 			var stairnode = [6,70,74,77,85,64,35,50];
 			var dir =       [1,-1,-1 ,1,0 , 0, -1,1];
 			var direc = dir[stairnode.indexOf(cur)]
@@ -1040,22 +1043,17 @@ var ctx = can.getContext("2d");
 
 ctx.clearRect(0,0,3714,3714)
 if(!goStairs){
+	var clip = document.getElementById("map");
+	var ctxp = clip.getContext("2d");
  	if( (((strt>94)&&(strt<105)) || (strt==53) || (strt==49)) && ((dest>94)&&(dest<105)) || (dest==53) || (dest==49) ){
- 		console.log("h3");
- 		clipPic(3, ctx);
- 		
+ 		grayOut(3, ctxp);
  	}
  	else if(((strt==111)||(strt==112)) && ((dest==111)||(dest==112)) ){
- 		console.log("h2");
- 		clipPic(2, ctx);
+ 		grayOut(2, ctxp);
  	}
  	else if((((strt>-1)&&(strt<49)) || ((strt>65)&&(strt<95)) ) && ((dest>-1)&&(dest<49)) || ((dest>65)&&(dest<95))){
- 		console.log("h1");
- 		clipPic(1, ctx);
+ 		grayOut(1, ctxp);
  	}
-
-
-
  }
 
 for (var i = 0; i < finishedPath.length; i++) {
