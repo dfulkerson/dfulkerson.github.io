@@ -363,7 +363,7 @@ function drawArrow(fromx, fromy,ctx, direction){
                 ctx.beginPath();
                 ctx.moveTo(fromx, fromy);
                 ctx.lineTo(tox, toy);
-                ctx.strokeStyle = "#FFFF00";
+                ctx.strokeStyle = "#FAED26";
                 ctx.lineWidth = 8;
                 ctx.stroke();
 
@@ -486,7 +486,7 @@ function grayOut(n, ctxp){
 			ctx.stroke();	// draw the line
 
 			ctx.beginPath();
-			ctx.lineWidth = 6;
+			ctx.lineWidth = 4;
 			ctx.strokeStyle = "#FAED26";
 			ctx.arc(coor.node[dest].x,coor.node[dest].y,2,0,2*Math.PI);
 			ctx.stroke();
