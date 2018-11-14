@@ -364,7 +364,7 @@ function drawArrow(fromx, fromy,ctx, direction){
                 ctx.moveTo(fromx, fromy);
                 ctx.lineTo(tox, toy);
                 ctx.strokeStyle = "#FAED26";
-                ctx.lineWidth = 12;
+                ctx.lineWidth = 8;
                 ctx.stroke();
 
                 toy += direction * 10
@@ -380,41 +380,42 @@ function drawArrow(fromx, fromy,ctx, direction){
                 ctx.lineTo(tox, toy);
 
                 //draws the paths created above
-                ctx.strokeStyle = "#FAED26";
-                ctx.lineWidth = 8;
+                ctx.strokeStyle = "#ffff00";
+                ctx.lineWidth = 3;
                 ctx.stroke();
-                ctx.fillStyle = "#FAED26";
+                ctx.fillStyle = "#ffff00";
                 ctx.fill();
                 ctx.beginPath();
                 ctx.moveTo(tox, toy);
 		ctx.lineWidth = 8;
                 ctx.stroke();
 }
+	
 function grayOut(n, ctxp){
-	ctxp.globalAlpha = .5;
+	ctxp.globalAlpha = .8;
 	ctxp.clearRect(0,0,3714,3714);
 	var clip = document.getElementById("map");
 	var ctxp = clip.getContext("2d");
 	if(n==3){	
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
-		ctxp.fillRect(0,0,3713,3713);
-		ctxp.clearRect(1356,1915,3713,3713);
-
+		ctxp.fillRect(0,0,3713,1841);
+		ctxp.fillRect(0,1915,1283,3713);
 	}
 	else if(n==2){
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
-		ctxp.fillRect(0,0,3713,3713);
-		ctxp.clearRect(0,1915,1283,3713);
+		ctxp.fillRect(0,1915,1283,3713);
+		ctxp.fillRect(0,0,3713,1841);
 	}
 	else{
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
-		ctxp.fillRect(0,0,3713,3713);
-		ctxp.clearRect(0,0,3713,1841);
+		ctxp.fillRect(1356,1915,3713,3713);
+		ctxp.fillRect(0,1915,1283,3713);
 	}
 }
+	
  function main() {
 	 var goStairs = false;
  	//Dijkstra's Algorithm
@@ -1042,16 +1043,17 @@ var can = document.getElementById("map");
 var ctx = can.getContext("2d");
 
 ctx.clearRect(0,0,3714,3714)
+	 
 if(!goStairs){
 	var clip = document.getElementById("map");
 	var ctxp = clip.getContext("2d");
- 	if( (((strt>94)&&(strt<105)) || (strt==53) || (strt==49)) && ((dest>94)&&(dest<105)) || (dest==53) || (dest==49) ){
+ 	if( (((strt>94)&&(strt<105)) || (strt==53) || (strt==49)) && (((dest>94)&&(dest<105)) || (dest==53) || (dest==49)) ){
  		grayOut(3, ctxp);
  	}
  	else if(((strt==111)||(strt==112)) && ((dest==111)||(dest==112)) ){
  		grayOut(2, ctxp);
  	}
- 	else if((((strt>-1)&&(strt<49)) || ((strt>65)&&(strt<95)) ) && ((dest>-1)&&(dest<49)) || ((dest>65)&&(dest<95))){
+ 	else if( (((strt>-1)&&(strt<49)) || ((strt>65)&&(strt<95))) && (((dest>-1)&&(dest<49)) || ((dest>65)&&(dest<95))) ){
  		grayOut(1, ctxp);
  	}
  }
