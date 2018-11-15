@@ -408,11 +408,21 @@ function grayOut(n, ctxp){
 		ctxp.fillRect(0,1915,1283,3713);
 		ctxp.fillRect(0,0,3713,1841);
 	}
-	else{
+	else if(n==1){
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
 		ctxp.fillRect(1356,1915,3713,3713);
 		ctxp.fillRect(0,1915,1283,3713);
+	}
+	else if(n==21){
+		ctxp.beginPath();
+		ctxp.fillStyle= "#999999";
+		ctxp.fillRect(0,0,3713,1841);
+	}
+	else if(n==23){
+		ctxp.beginPath();
+		ctxp.fillStyle= "#999999";
+		ctxp.fillRect(1356,1915,3713,3713);
 	}
 }
 	
@@ -1055,6 +1065,14 @@ if(!goStairs){
  	}
  	else if( (((strt>-1)&&(strt<49)) || ((strt>65)&&(strt<95))) && (((dest>-1)&&(dest<49)) || ((dest>65)&&(dest<95))) ){
  		grayOut(1, ctxp);
+ 	}
+ }
+if((((strt==111)||(strt==112)) || (((dest==111)||(dest==112)))) && !(((strt==111)||(strt==112)) && ((dest==111)||(dest==112)))){
+ 	if((((strt>94)&&(strt<105)) || (strt==53) || (strt==49)) || (((dest>94)&&(dest<105)) || (dest==53) || (dest==49))){
+ 		grayOut(21, ctxp);
+	}
+ 	else{
+ 		grayOut(23, ctxp);
  	}
  }
 
