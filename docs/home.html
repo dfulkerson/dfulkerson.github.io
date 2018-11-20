@@ -363,7 +363,7 @@ function drawArrow(fromx, fromy,ctx, direction){
                 ctx.moveTo(fromx, fromy);
                 ctx.lineTo(tox, toy);
                 ctx.strokeStyle = "#FAED26";
-                ctx.lineWidth = 8;
+                ctx.lineWidth = 12;
                 ctx.stroke();
 
                 toy += direction * 10
@@ -379,10 +379,10 @@ function drawArrow(fromx, fromy,ctx, direction){
                 ctx.lineTo(tox, toy);
 
                 //draws the paths created above
-                ctx.strokeStyle = "#ffff00";
-                ctx.lineWidth = 3;
+                ctx.strokeStyle = "#FAED26";
+                ctx.lineWidth = 8;
                 ctx.stroke();
-                ctx.fillStyle = "#ffff00";
+                ctx.fillStyle = "#FAED26";
                 ctx.fill();
                 ctx.beginPath();
                 ctx.moveTo(tox, toy);
