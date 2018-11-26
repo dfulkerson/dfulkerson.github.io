@@ -6,29 +6,33 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<style type="text/css" media="screen">
 	canvas {
-		display:block; 
-		background: #fff url("map.jpg") no-repeat;
-		margin-bottom: 70px;
+		/*display:block; 
+		background: #fff url() no-repeat;
+		margin-bottom: 70px;*/
+
 	} 
 	body {
 		margin: 0;
 		background: #083C5D;
+	/*	background: radial-gradient(#083C5D 90%,black 5%,white 5%);*/
 	}
 
 	header {
 		text-align: center;
 		padding: 25px;
 	}
+
 	
 	dropdown {
-		position: fixed;
+		position: relative;
 		backface-visibility: hidden;
-		background: ;
-		bottom: 0;
+		bottom: 0px;
 		width: 100%;
 		padding: 15px;
 		text-align: center;
 		opacity: 1;
+
+
 	}
 		.dropdown-content {
 			display: none;
@@ -40,13 +44,11 @@
 			z-index: 1;
 			width: 180px;
 			size: 100px;
-
 }
 		
 	h1 {
 		font-family: verdana;
 		color: #FFFFFF;
-		font-size: 60px;
 		margin-top: 0px;
 	}
 
@@ -62,12 +64,15 @@
 	}
 
 	nav {
-	 	background-image: linear-gradient(black);
-		margin-bottom: 20px;
-		padding: 5px;
-		margin:0px;
-		margin-left: 0px;
-
+	 	/*background-image: linear-gradient(black);*/
+		  position: fixed;
+		backface-visibility: hidden;
+		bottom: 0px;
+		width: 100%;
+		padding: 35px;
+		text-align: center;
+		opacity: 1;
+		background-color: #708090;
 	}
 
 	ul {
@@ -84,18 +89,19 @@
 		font-family: verdana;
 		font-weight: bold;
 		margin: 5px 80px;
-		font-size: 19px;
-		display: inline-block;
+		font-size: 35px;
+		
 	}
 
 	select {
 		overflow-y: scroll;
 		height: 20px;
-		font-size:25px;
+		font-size:45px;
 		font-weight: bold;
 	background-color: white;
 	color: black;
 	opacity: .9;
+	border-radius: 20px;
 	}
 
 	img {
@@ -107,6 +113,7 @@
 		padding: 20px;
 		text-align: center;
 	}
+
   	
 	@media only screen and (max-width: 6000px) {
 		#map {
@@ -115,7 +122,7 @@
 		}
 
 		h1 {
-			font-size: 30px;
+			font-size: 50px;
 		}
 
 /* 		p1 {
@@ -123,26 +130,51 @@
 			margin: 0 px auto;
 		} */
 		p2{
-			font-size: 22px;
+			font-size: 35px;
 			margin: 15 px auto;
-		}
-
-		nav {
-			display: block;
 		}
 
 		li {
 			display: block;
+
+		}
+			p3{
+			font-size: 30px;
+			color: white;
+			font-weight: normal;
+			display: block;
+			text-align: center;
+			font-family: verdana;
+			padding: 15px;
+		/*	background-color: white;*/
+			width: 750px;
+			display: inline-block;
 		}
 	}
+	elevator{
+		position: relative;
+		top: 50px;
+
+	}
+	input[type="button"]{
+		width: 200px;
+		height: 100px;
+		background-color: #ffffff;
+		font-size: 45px;
+		font-weight: bold;
+		border: 0px;
+		border-radius: 25px
+	}
+
+
 		
 /* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 40px;
-  bottom: 13px;
+  width:100px;
+  height: 60px;
+  bottom: 25px;
 
 }
 
@@ -169,13 +201,13 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 28px;
-  width: 28px;
+  height: 45px;
+  width: 45px;
   left: 6px;
-  bottom: 6px;
+  bottom: 7px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
 input:checked + .slider {
@@ -187,8 +219,8 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(18px);
-  -ms-transform: translateX(18px);
+  -webkit-transform: translateX(40px);
+  -ms-transform: translateX(40px);
   transform: translateX(px);
 }
 
@@ -224,16 +256,15 @@ input:checked + .slider:before {
 <body>
 	<header>
 		<h1>Lexington Convention Center Interactive Map</h1>
-		<nav>
-			<a href="#">Home</a>
-			<a href="about.html">About</a>
-			<a href="https://goo.gl/forms/nF6PKPHSmJbqG1W13">Contact</a>
-		</nav>
+		
 <!-- 	options for current location -->
+
 	</header>
 	<div class="header">
+		<center>
 	<dropdown data-role="footer" data-position="fixed">
-	<select name="current" id="current" onchange='dorun();' style="width:250px;height:55px">
+		<p3> Select Your Current Location & Destination</p3> <br>
+	<select name="current" id="current" style="width:450px;height:100px">
 		<option value="#">Current Location</option>
 	<option disabled>-----Level 1-----</option>
 		<option value="94">Berea Room</option>
@@ -270,7 +301,7 @@ input:checked + .slider:before {
 	</select>
 
 	<!-- options for destination -->
-	<select name="destination" id="destination" onchange='dorun();'	style="width:230px;height:55px">
+	<select name="destination" id="destination" style="width:450px;height:100px">
 	<option value="#">Destination</option>
 	<option value="bathroom">Closest Bathroom</option>
 	<option disabled>-----Level 1-----</option>
@@ -306,20 +337,31 @@ input:checked + .slider:before {
 		<option value="49">Ticket Office</option>
 	</select>
 </dropdown>
+</center>
 </div>
 	
-<div>
+<elevator>
 	<center>
 	<p2> Use Elevator? </p2>
 
-<!-- Elevator Button -->
 <label class="switch" id = "myButton" value = "-1" onchange="goElevator();">
   <input type="checkbox">
   <span class="slider round"></span>
 </label>
-<!-- <p id="text" style="display:none">It's elevator time!!</p> -->
 
+</elevator>
+
+<div id="button">
+    <input type="button" value="Submit" onclick="dorun()" />
 </div>
+
+<center>
+<nav>
+			<a href="#">Home</a>
+			<a href="about.html">About</a>
+			<a href="https://goo.gl/forms/nF6PKPHSmJbqG1W13">Contact</a>
+		</nav>
+</center>
 	<canvas id="map" width="3714" height="3714"></canvas>
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
