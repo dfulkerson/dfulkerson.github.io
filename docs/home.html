@@ -1098,28 +1098,26 @@ var finishedPath = constructPath(shortestPathInfo, dest);
 
 var can = document.getElementById("map");
 var ctx = can.getContext("2d");
+var snum = document.getElementById("current").selectedIndex;
+var dnum = document.getElementById("destination").selectedIndex;
 
-ctx.clearRect(0,0,3714,3714)
-	 
 if(!goStairs){
-	var clip = document.getElementById("map");
-	var ctxp = clip.getContext("2d");
- 	if( (((strt>94)&&(strt<105)) || (strt==53) || (strt==49)) && (((dest>94)&&(dest<105)) || (dest==53) || (dest==49)) ){
+ 	if(  (snum>19&&snum<32) &&  ((dnum>20&&dnum<33)||dnum==1) ){
  		grayOut(3, ctxp);
  	}
- 	else if(((strt==111)||(strt==112)) && ((dest==111)||(dest==112)) ){
+ 	else if(((snum==17)||(snum==18)) && ((dnum==18)||(dnum==19)) ){
  		grayOut(2, ctxp);
  	}
- 	else if( (((strt>-1)&&(strt<49)) || ((strt>65)&&(strt<95))) && (((dest>-1)&&(dest<49)) || ((dest>65)&&(dest<95))) ){
+ 	else if( ((snum>1)&&(snum<16)) && ((dnum>0&&dnum<17)||dnum==1) ){
  		grayOut(1, ctxp);
  	}
  }
-if((((strt==111)||(strt==112)) || (((dest==111)||(dest==112)))) && !(((strt==111)||(strt==112)) && ((dest==111)||(dest==112)))){
- 	if((((strt>94)&&(strt<105)) || (strt==53) || (strt==49)) || (((dest>94)&&(dest<105)) || (dest==53) || (dest==49))){
- 		grayOut(21, ctxp);
-	}
- 	else{
+ if((((strt==111)||(strt==112)) ^ ((dest=="bathroom")||((dest==111)||(dest==112))))){
+ 	if((snum>19&&snum<32) || ((dnum>20&&dnum<33)||dnum==1) ){
  		grayOut(23, ctxp);
+ 	}
+ 	else if(((snum>1)&&(snum<16)) && (dnum>0&&dnum<17)){
+ 		grayOut(21, ctxp);
  	}
  }
 
