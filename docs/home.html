@@ -6,33 +6,29 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<style type="text/css" media="screen">
 	canvas {
-		/*display:block; 
-		background: #fff url() no-repeat;
-		margin-bottom: 70px;*/
-
+		display:block; 
+		background: #fff url("map.jpg") no-repeat;
+		margin-bottom: 70px;
 	} 
 	body {
 		margin: 0;
 		background: #083C5D;
-	/*	background: radial-gradient(#083C5D 90%,black 5%,white 5%);*/
 	}
 
 	header {
 		text-align: center;
 		padding: 25px;
 	}
-
 	
 	dropdown {
-		position: relative;
+		position: fixed;
 		backface-visibility: hidden;
-		bottom: 0px;
+		background: ;
+		bottom: 0;
 		width: 100%;
 		padding: 15px;
 		text-align: center;
 		opacity: 1;
-
-
 	}
 		.dropdown-content {
 			display: none;
@@ -44,11 +40,13 @@
 			z-index: 1;
 			width: 180px;
 			size: 100px;
+
 }
 		
 	h1 {
 		font-family: verdana;
 		color: #FFFFFF;
+		font-size: 60px;
 		margin-top: 0px;
 	}
 
@@ -64,20 +62,11 @@
 	}
 
 	nav {
-	 	/*background-image: linear-gradient(black);*/
-		  position: fixed;
-		backface-visibility: hidden;
-		bottom: 0px;
-		width: 100%;
-		padding: 45px;
-		text-align: center;
-		opacity: 1;
-		background-color: #708090;
-
-
-   
-
-		
+	 	background-image: linear-gradient(black);
+		margin-bottom: 20px;
+		padding: 5px;
+		margin:0px;
+		margin-left: 0px;
 
 	}
 
@@ -95,19 +84,18 @@
 		font-family: verdana;
 		font-weight: bold;
 		margin: 5px 80px;
-		font-size: 25px;
-		
+		font-size: 19px;
+		display: inline-block;
 	}
 
 	select {
 		overflow-y: scroll;
 		height: 20px;
-		font-size:45px;
+		font-size:25px;
 		font-weight: bold;
 	background-color: white;
 	color: black;
 	opacity: .9;
-	border-radius: 20px;
 	}
 
 	img {
@@ -119,7 +107,6 @@
 		padding: 20px;
 		text-align: center;
 	}
-
   	
 	@media only screen and (max-width: 6000px) {
 		#map {
@@ -128,7 +115,7 @@
 		}
 
 		h1 {
-			font-size: 50px;
+			font-size: 30px;
 		}
 
 /* 		p1 {
@@ -136,43 +123,18 @@
 			margin: 0 px auto;
 		} */
 		p2{
-			font-size: 35px;
+			font-size: 22px;
 			margin: 15 px auto;
+		}
+
+		nav {
+			display: block;
 		}
 
 		li {
 			display: block;
-
-		}
-			p3{
-			font-size: 30px;
-			color: white;
-			font-weight: normal;
-			display: block;
-			text-align: center;
-			font-family: verdana;
-			padding: 15px;
-		/*	background-color: white;*/
-			width: 750px;
-			display: inline-block;
 		}
 	}
-	elevator{
-		position: relative;
-		top: 50px;
-
-	}
-	input[type="button"]{
-		width: 150px;
-		height: 50px;
-		background-color: #ffffff;
-		font-size: 35px;
-		font-weight: bold;
-		border: 0px;
-		border-radius: 15px
-	}
-
-
 		
 /* The switch - the box around the slider */
 .switch {
@@ -180,7 +142,7 @@
   display: inline-block;
   width: 60px;
   height: 40px;
-  bottom: 17px;
+  bottom: 13px;
 
 }
 
@@ -262,15 +224,16 @@ input:checked + .slider:before {
 <body>
 	<header>
 		<h1>Lexington Convention Center Interactive Map</h1>
-		
+		<nav>
+			<a href="#">Home</a>
+			<a href="about.html">About</a>
+			<a href="https://goo.gl/forms/nF6PKPHSmJbqG1W13">Contact</a>
+		</nav>
 <!-- 	options for current location -->
-
 	</header>
 	<div class="header">
-		<center>
 	<dropdown data-role="footer" data-position="fixed">
-		<p3> Select Your Current Location & Destination</p3> <br>
-	<select name="current" id="current" style="width:450px;height:100px">
+	<select name="current" id="current" onchange='dorun();' style="width:250px;height:55px">
 		<option value="#">Current Location</option>
 	<option disabled>-----Level 1-----</option>
 		<option value="94">Berea Room</option>
@@ -307,7 +270,7 @@ input:checked + .slider:before {
 	</select>
 
 	<!-- options for destination -->
-	<select name="destination" id="destination" style="width:450px;height:100px">
+	<select name="destination" id="destination" onchange='dorun();'	style="width:230px;height:55px">
 	<option value="#">Destination</option>
 	<option value="bathroom">Closest Bathroom</option>
 	<option disabled>-----Level 1-----</option>
@@ -343,31 +306,20 @@ input:checked + .slider:before {
 		<option value="49">Ticket Office</option>
 	</select>
 </dropdown>
-</center>
 </div>
 	
-<elevator>
+<div>
 	<center>
 	<p2> Use Elevator? </p2>
 
+<!-- Elevator Button -->
 <label class="switch" id = "myButton" value = "-1" onchange="goElevator();">
   <input type="checkbox">
   <span class="slider round"></span>
 </label>
+<!-- <p id="text" style="display:none">It's elevator time!!</p> -->
 
-</elevator>
-
-<div id="button">
-    <input type="button" value="Submit" onclick="dorun()" />
 </div>
-
-<center>
-<nav>
-			<a href="#">Home</a>
-			<a href="about.html">About</a>
-			<a href="https://goo.gl/forms/nF6PKPHSmJbqG1W13">Contact</a>
-		</nav>
-</center>
 	<canvas id="map" width="3714" height="3714"></canvas>
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -1098,26 +1050,28 @@ var finishedPath = constructPath(shortestPathInfo, dest);
 
 var can = document.getElementById("map");
 var ctx = can.getContext("2d");
-var snum = document.getElementById("current").selectedIndex;
-var dnum = document.getElementById("destination").selectedIndex;
 
+ctx.clearRect(0,0,3714,3714)
+	 
 if(!goStairs){
- 	if(  (snum>19&&snum<32) &&  ((dnum>20&&dnum<33)||dnum==1) ){
+	var clip = document.getElementById("map");
+	var ctxp = clip.getContext("2d");
+ 	if( (((strt>94)&&(strt<105)) || (strt==53) || (strt==49)) && (((dest>94)&&(dest<105)) || (dest==53) || (dest==49)) ){
  		grayOut(3, ctxp);
  	}
- 	else if(((snum==17)||(snum==18)) && ((dnum==18)||(dnum==19)) ){
+ 	else if(((strt==111)||(strt==112)) && ((dest==111)||(dest==112)) ){
  		grayOut(2, ctxp);
  	}
- 	else if( ((snum>1)&&(snum<16)) && ((dnum>0&&dnum<17)||dnum==1) ){
+ 	else if( (((strt>-1)&&(strt<49)) || ((strt>65)&&(strt<95))) && (((dest>-1)&&(dest<49)) || ((dest>65)&&(dest<95))) ){
  		grayOut(1, ctxp);
  	}
  }
- if((((strt==111)||(strt==112)) ^ ((dest=="bathroom")||((dest==111)||(dest==112))))){
- 	if((snum>19&&snum<32) || ((dnum>20&&dnum<33)||dnum==1) ){
- 		grayOut(23, ctxp);
- 	}
- 	else if(((snum>1)&&(snum<16)) && (dnum>0&&dnum<17)){
+if((((strt==111)||(strt==112)) || (((dest==111)||(dest==112)))) && !(((strt==111)||(strt==112)) && ((dest==111)||(dest==112)))){
+ 	if((((strt>94)&&(strt<105)) || (strt==53) || (strt==49)) || (((dest>94)&&(dest<105)) || (dest==53) || (dest==49))){
  		grayOut(21, ctxp);
+	}
+ 	else{
+ 		grayOut(23, ctxp);
  	}
  }
 
