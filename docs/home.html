@@ -7,7 +7,7 @@
 	<style type="text/css" media="screen">
 	canvas {
 		display:block; 
-		background: #fff url(map.jpg) no-repeat;
+		background: #fff url(Finishedmap.jpg) no-repeat;
 		margin-bottom: 115px;
         margin-top: 75px;
 	} 
@@ -152,7 +152,7 @@
 
 	}
 	input[type="button"]{
-		width: 200px;
+		width: 300px;
 		height: 100px;
 		background-color: #ffffff;
 		font-size: 45px;
@@ -255,7 +255,7 @@ input:checked + .slider:before {
         <center>
 	<dropdown>
 		<p3> Select Your Current Location & Destination</p3> <br>
-       <select name="current" id="current" onchange='dorun();'>
+       <select name="current" id="current" >
             <option value="#">Current Location</option>
         <option disabled>-----Level 1-----</option>
             <option value="94">Berea Room</option>
@@ -291,7 +291,7 @@ input:checked + .slider:before {
 
 	</select>
 
-        <select name="destination" id="destination" onchange='dorun();'>
+        <select name="destination" id="destination">
         <option value="#">Destination</option>
         <option value="bathroom">Closest Bathroom</option>
         <option disabled>-----Level 1-----</option>
@@ -338,7 +338,7 @@ input:checked + .slider:before {
       <span class="slider round"></span>
     </label>
         <div id="button">
-    <input type="button" value="Submit" onclick="showMap()" /></div>
+    <input type="button" value="Draw Map" onclick="showMap()" /></div>
     </center>
 </elevator>
     
@@ -609,97 +609,7 @@ function lineExc(a,b) {
 	
 }
 
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // spacing so index is easier to count
-
-
-
-
-
-	 
-
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-
-
 
 // from now on, we will refer to what Dijkstra calls vertices as nodes
 // node coods
