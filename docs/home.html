@@ -553,6 +553,78 @@ function main() {
 		}
 	}
 
+//have defined a cood
+function customNode(cood){
+	var custx = cood.x;
+	var custy = cood.y;
+	var closeNodes = [];
+	var closestPair = [];
+	var minDist = 9999999;
+	var angle;
+	var d;
+	var startAng;
+	var cNode
+	for(var i=0; i<node.length; i++){
+		if(Math.sqrt( Math.pow((node[i].x - custx),2) + Math.pow((node[i].y - custy),2)) <=500){
+			closeNodes+=node[i]
+		}
+	}
+	for(var i=0; i<closeNode.length-1; i++){
+		for(var j=1; j<closeNode.length; j++){
+			if( e[closeNode[i]][closeNode[j]]!=Infinity ){
+				var a = Math.sqrt( Math.pow((closeNode[i].x - custx),2) + Math.pow((closeNode[i].y - custy),2));
+				var b = Math.sqrt( Math.pow((closeNode[j].x - custx),2) + Math.pow((closeNode[j].y - custy),2));
+				var c = e[closeNode[i]][closeNode[j]];
+				var d2;
+				var angA = Math.acos( (Math.pow(b,2)+Math.pow(c,2)-Math.pow(a,2))/(2*b*c) );
+				var angB = Math.acos( (Math.pow(a,2)+Math.pow(c,2)-Math.pow(b,2))/(2*a*c) );
+				var angC = 90-(angA+angB);
+				d2 = b/Math.sin(angA);
+				var botAng;
+				//var botSide;
+				if(Math.abs(closeNode[i].y)<=Math.abs(closeNode[j].y)){
+					botAng = angA;
+					cNode = closeNode[i]
+					//botSide = b
+				}
+				else{
+					botAng = angB;
+					cNode = closeNode[j];
+					//botSide = a;
+				} 
+				var tempAng = 180-botAng-45;
+				if(d<minDist){
+					minDist = d;
+
+
+
+					if (cNode == closeNode[i])
+						closestPair = [ closeNode[i],closeNode[j] ];
+					else closestPair = [ closeNode[j],closeNode[i] ];
+
+
+
+					d = 0+d2;
+					angle = (90-tempAng) + angC;
+				}
+			}
+		}
+	}
+	if( (closestPair[0].x > custx) && (closestPair[0].y > custy) )
+		startAng = 0;
+	if( (closestPair[0].x < custx) && (closestPair[0].y > custy) )
+		startAng = 90;
+	if( (closestPair[0].x < custx) && (closestPair[0].y < custy) )
+		startAng = 180;
+	if( (closestPair[0].x > custx) && (closestPair[0].y < custy) )
+		startAng = 270;
+
+
+	var dx = d*Math.cos(angle+startAng);
+	var dy = d*Math.sin(angle+startAng);
+
+}
+
 //connects two nodes
 function addConnection(a,b) {
 	var c = Math.hypot(coor.node[a].x-coor.node[b].x, coor.node[a].y-coor.node[b].y)
@@ -1004,6 +1076,12 @@ var can = document.getElementById("map");
 var ctx = can.getContext("2d");
 
 ctx.clearRect(0,0,3714,3714)
+
+var clip = document.getElementById("map");
+var ctxp = clip.getContext("2d");
+var snum = document.getElementById("current").selectedIndex;
+var dnum = document.getElementById("destination").selectedIndex;
+
 	 
 if(!goStairs){
  	if(  (snum>19&&snum<32) &&  ((dnum>20&&dnum<33)||dnum==1) ){
@@ -1078,3 +1156,6 @@ for (var i = 0; i < finishedPath.length; i++) {
 </script>
 </body>
 </html>
+
+
+
