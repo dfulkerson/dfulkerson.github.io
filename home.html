@@ -1,0 +1,1161 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="shortcut icon" href="thumbnail.png" />
+	<title>Lexington Convention Center Interactive Map</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style type="text/css" media="screen">
+	canvas {
+		display:block; 
+		background: #fff url(map.jpg) no-repeat;
+		margin-bottom: 115px;
+        margin-top: 75px;
+	} 
+	body {
+		margin: 0;
+		background: #083C5D;
+	}
+
+	header {
+		text-align: center;
+		padding: 25px;
+	}
+
+	dropdown {
+		position: relative;
+		backface-visibility: hidden;
+		bottom: 0px;
+		width: 100%;
+		padding: 15px;
+		text-align: center;
+		opacity: 1;
+	}
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #0033A0;
+			min-width: 160px;
+			box-shadow: 0px 16px 16px 0px rgba(0,0,0,0.2);
+			padding: 12px 16px;
+			width: 180px;
+			size: 100px;
+}
+		
+	h1 {
+		font-family: verdana;
+		color: #FFFFFF;
+		margin-top: 0px;
+	}
+
+/* 	p1 {
+		font-family: verdana;
+		color: #FFFFFF;
+	} */
+
+	p2 {
+		font-family: verdana;
+		font-size: 24px;
+		color: white;
+	}
+
+	nav {
+        position: fixed;
+		backface-visibility: hidden;
+		bottom: 0px;
+		width: 100%;
+		padding: 35px;
+		text-align: center;
+		opacity: 1;
+		background-color: #708090;
+	}
+
+	ul {
+		list-style: none;
+	}
+
+	li {
+		display: inline;
+		margin: 20px;
+	}
+
+	a {
+		color: white;
+		font-family: verdana;
+		font-weight: bold;
+		margin: 5px 80px;
+		font-size: 35px;
+		
+	}
+
+	select {
+	overflow-y: scroll;
+	font-size:45px;
+	font-weight: bold;
+	background-color: white;
+	color: black;
+	opacity: .9;
+	border-radius: 20px;
+	width: 450px;
+	height:100px;
+	}
+
+	img {
+		display: block;
+		margin: 0px auto;
+	}
+
+	.selection {
+		padding: 20px;
+		text-align: center;
+	}
+
+  	
+	@media only screen and (max-width: 6000px) {
+		#map {
+			width: 100%;
+			background-size: 100% 100%;
+		}
+
+		h1 {
+			font-size: 50px;
+		}
+
+/* 		p1 {
+			font-size: 24px;
+			margin: 0 px auto;
+		} */
+		p2{
+			font-size: 35px;
+			margin: 15 px auto;
+		}
+
+		li {
+			display: block;
+
+		}
+			p3{
+			font-size: 30px;
+			color: white;
+			font-weight: normal;
+			display: block;
+			text-align: center;
+			font-family: verdana;
+			padding: 15px;
+		/*	background-color: white;*/
+			width: 750px;
+			display: inline-block;
+		}
+	}
+	elevator{
+		position: relative;
+		top: 50px;
+
+	}
+	input[type="button"]{
+		width: 300px;
+		height: 100px;
+		background-color: #ffffff;
+		font-size: 45px;
+		font-weight: bold;
+		border: 0px;
+		border-radius: 25px
+	}
+
+
+		
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width:100px;
+  height: 60px;
+  bottom: 25px;
+
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 45px;
+  width: 45px;
+  left: 6px;
+  bottom: 7px;
+  background-color: white;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(40px);
+  -ms-transform: translateX(40px);
+  transform: translateX(px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+*/
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.image1 {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.image2 {
+  position: absolute;
+  top: 30px;
+  left: 70px;
+}
+</style>
+
+</head>
+
+<body>
+	<header>
+		<h1>Lexington Convention Center Interactive Map</h1>
+	</header>
+	<div class="header">
+        <center>
+	<dropdown>
+		<p3> Select Your Current Location & Destination</p3> <br>
+       <select name="current" id="current" >
+            <option value="#">Current Location</option>
+        <option disabled>-----Level 1-----</option>
+            <option value="94">Berea Room</option>
+            <option value="5">Elkhorn A</option>
+            <option value="90">Elkhorn B</option>
+            <option value="0">Elkhorn C</option>
+            <option value="15">Elkhorn D</option>
+            <option value="1">Food Court</option>
+            <option value="91">Heritage Ballroom 1</option>
+            <option value="92">Heritage Ballroom 2</option>
+            <option value="93">Heritage Ballroom 3</option>
+            <option value="68">Heritage Center</option>
+            <option value="67">Heritage East</option>
+            <option value="66">Heritage Rupp Entrance</option>
+            <option value="69">Heritage West </option>
+            <option value="12">Northeast Entrance</option>
+        <option disabled>-----Level 2-----</option>
+            <option value="112">South Stairs</option>
+            <option value="111">North Stairs</option>
+        <option disabled>-----Level 3-----</option>
+            <option value="103">Bluegrass Ballroom 1</option>
+            <option value="104">Bluegrass Ballroom 2</option>
+            <option value="53">Rupp Entrance</option>
+            <option value="95">Thoroughbred Room 1</option>
+            <option value="96">Thoroughbred Room 2</option>
+            <option value="97">Thoroughbred Room 3</option>
+            <option value="98">Thoroughbred Room 4</option>
+            <option value="99">Thoroughbred Room 5</option>
+            <option value="100">Thoroughbred Room 6</option>
+            <option value="101">Thoroughbred Room 7</option>
+            <option value="102">Thoroughbred Room 8</option>
+            <option value="49">Ticket Office</option>
+
+	</select>
+
+        <select name="destination" id="destination">
+        <option value="#">Destination</option>
+        <option value="bathroom">Closest Bathroom</option>
+        <option disabled>-----Level 1-----</option>
+            <option value="94">Berea Room</option>
+            <option value="5">Elkhorn A</option>
+            <option value="90">Elkhorn B</option>
+            <option value="0">Elkhorn C</option>
+            <option value="15">Elkhorn D</option>
+            <option value="1">Food Court</option>
+            <option value="91">Heritage Ballroom 1</option>
+            <option value="92">Heritage Ballroom 2</option>
+            <option value="93">Heritage Ballroom 3</option>
+            <option value="68">Heritage Center</option>
+            <option value="67">Heritage East</option>
+            <option value="66">Heritage Rupp Entrance</option>
+            <option value="69">Heritage West </option>
+            <option value="12">Northeast Entrance</option>
+        <option disabled>-----Level 2-----</option>
+            <option value="112">South Stairs</option>
+            <option value="111">North Stairs</option>
+        <option disabled>-----Level 3-----</option>
+            <option value="103">Bluegrass Ballroom 1</option>
+            <option value="104">Bluegrass Ballroom 2</option>
+            <option value="53">Rupp Entrance</option>
+            <option value="95">Thoroughbred Room 1</option>
+            <option value="96">Thoroughbred Room 2</option>
+            <option value="97">Thoroughbred Room 3</option>
+            <option value="98">Thoroughbred Room 4</option>
+            <option value="99">Thoroughbred Room 5</option>
+            <option value="100">Thoroughbred Room 6</option>
+            <option value="101">Thoroughbred Room 7</option>
+            <option value="102">Thoroughbred Room 8</option>
+            <option value="49">Ticket Office</option>
+    </select>
+</dropdown>
+        </center>
+</div>
+	
+<elevator>
+	<center>
+	<p2> Use Elevator? </p2>
+    <label class="switch" id = "myButton" value = "-1" onchange="goElevator();">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label>
+        <div id="button">
+    <input type="button" value="Draw Map" onclick="showMap()" /></div>
+    </center>
+</elevator>
+    
+
+<center>
+    <nav>
+        <a href="#">Home</a>
+        <a href="about.html">About</a>
+        <a href="https://goo.gl/forms/nF6PKPHSmJbqG1W13">Contact</a>
+    </nav>
+</center>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type = "text/javascript">
+/*
+ * dijkstra.js
+ *
+ * Dijkstra's single source shortest path algorithm in JavaScript.
+ *
+ * Cameron McCormack <cam (at) mcc.id.au>
+ *
+ * Permission is hereby granted to use, copy, modify and distribute this
+ * code for any purpose, without fee.
+ *
+ * Initial version: October 21, 2004
+ */
+var asdf = true;
+function showMap() {
+    if (asdf){
+        var canvas = document.createElement('canvas');
+        canvas.id = "map";
+        canvas.width = 3714;
+        canvas.height = 3714;
+        document.getElementsByTagName("body")[0].append(canvas);
+    }
+    asdf = false;
+    main();
+}
+    
+var elevToggle = -1;
+function dorun(){
+	clear();
+	if ((document.getElementById("current").value != "#") && (document.getElementById("destination").value != "#")){
+		main();
+	}
+}
+    
+function clear(){
+	var can = document.getElementById("map");
+	var ctx = can.getContext("2d");
+ 		ctx.clearRect(0,0,3714,3714);
+}
+    
+function goElevator(){
+	elevToggle*= -1;
+	dorun();
+}
+    
+function drawArrow(fromx, fromy,ctx, direction){
+                //variables to be used when creating the arrow
+                var tox = fromx;
+                var toy = fromy + direction * 75
+                //starting path of the arrow from the start square to the end square and drawing the stroke
+                ctx.beginPath();
+                ctx.moveTo(fromx, fromy);
+                ctx.lineTo(tox, toy);
+                ctx.strokeStyle = "#FAED26";
+                ctx.lineWidth = 12;
+                ctx.stroke();
+
+                toy += direction * 10
+                //starting a new path from the head of the arrow to one of the sides of the point
+                ctx.beginPath();
+                ctx.moveTo(tox, toy);
+                ctx.lineTo(tox-20,toy-direction*20);
+
+                //path from the side point of the arrow, to the other side point
+                ctx.lineTo(tox+20,toy-direction*20);
+
+                //path from the side point back to the tip of the arrow, and then again to the opposite side point
+                ctx.lineTo(tox, toy);
+
+                //draws the paths created above
+                ctx.strokeStyle = "#FAED26";
+                ctx.lineWidth = 8;
+                ctx.stroke();
+                ctx.fillStyle = "#FAED26";
+                ctx.fill();
+                ctx.beginPath();
+                ctx.moveTo(tox, toy);
+		ctx.lineWidth = 8;
+                ctx.stroke();
+}
+	
+function grayOut(n, ctxp){
+	ctxp.globalAlpha = .8;
+	ctxp.clearRect(0,0,3714,3714);
+	var clip = document.getElementById("map");
+	var ctxp = clip.getContext("2d");
+	if(n==3){	
+		ctxp.beginPath();
+		ctxp.fillStyle= "#999999";
+		ctxp.fillRect(0,0,3713,1841);
+		ctxp.fillRect(0,1915,1283,3713);
+	}
+	else if(n==2){
+		ctxp.beginPath();
+		ctxp.fillStyle= "#999999";
+		ctxp.fillRect(0,1915,1283,3713);
+		ctxp.fillRect(0,0,3713,1841);
+	}
+	else if(n==1){
+		ctxp.beginPath();
+		ctxp.fillStyle= "#999999";
+		ctxp.fillRect(1356,1915,3713,3713);
+		ctxp.fillRect(0,1915,1283,3713);
+	}
+	else if(n==21){
+		ctxp.beginPath();
+		ctxp.fillStyle= "#999999";
+		ctxp.fillRect(0,0,3713,1841);
+	}
+	else if(n==23){
+		ctxp.beginPath();
+		ctxp.fillStyle= "#999999";
+		ctxp.fillRect(1356,1915,3713,3713);
+	}
+}
+	
+function main() {
+	 var goStairs = false;
+ 	//Dijkstra's Algorithm
+ 	function shortestPath(edges, numVertices, startVertex) {
+ 		var done = new Array(numVertices);
+ 		done[startVertex] = true;
+ 		var pathLengths = new Array(numVertices);
+ 		var predecessors = new Array(numVertices);
+ 		for (var i = 0; i < numVertices; i++) {
+ 			pathLengths[i] = edges[startVertex][i];
+ 			if (edges[startVertex][i] != Infinity) {
+ 				predecessors[i] = startVertex;
+ 			}
+ 		}
+ 		pathLengths[startVertex] = 0;
+ 		for (var i = 0; i < numVertices - 1; i++) {
+ 			var closest = -1;
+ 			var closestDistance = Infinity;
+ 			for (var j = 0; j < numVertices; j++) {
+ 				if (!done[j] && pathLengths[j] < closestDistance) {
+ 					closestDistance = pathLengths[j];
+ 					closest = j;
+ 				}
+ 			}
+			done[closest] = true;
+			for (var j = 0; j < numVertices; j++) {
+				if (!done[j]) {
+					if (closest < 0){ //javascript negative index function
+						closest += numVertices;
+					}
+					var possiblyCloserDistance = pathLengths[closest] + edges[closest][j];
+					if (possiblyCloserDistance < pathLengths[j]) {
+						pathLengths[j] = possiblyCloserDistance;
+						predecessors[j] = closest;
+					}
+	 			}
+	 		}
+ 		}
+ 		return { "startVertex": startVertex,
+ 		"pathLengths": pathLengths,
+ 		"predecessors": predecessors };
+ 	}
+
+ 	function constructPath(shortestPathInfo, endVertex) {
+ 		var path = [];
+ 		while (endVertex != shortestPathInfo.startVertex) {
+ 			path.unshift(endVertex);
+ 			endVertex = shortestPathInfo.predecessors[endVertex];
+ 		}
+ 		path.unshift(strt);
+ 		return path;
+ 	}
+
+	
+ function getPath(cur,dest) {
+	ctx.globalAlpha = 1.0;
+		// get return value
+	    // use the return as the index of the following coor array
+	   var cur_x=coor.node[cur].x;
+		var cur_y=coor.node[cur].y;
+		var des_x=coor.node[dest].x;
+		var des_y=coor.node[dest].y;
+		if(lineExc(cur,dest)) {
+			ctx.beginPath();// draw the path	
+			ctx.moveTo(cur_x,cur_y);	// set the start point
+			ctx.lineTo(des_x,des_y);	// set the end point
+			ctx.lineWidth = 12;
+			ctx.strokeStyle="#FAED26";
+			ctx.stroke();	// draw the line
+
+			ctx.beginPath();
+			ctx.lineWidth = 4;
+			ctx.strokeStyle = "#FAED26";
+			ctx.arc(coor.node[dest].x,coor.node[dest].y,2,0,2*Math.PI);
+			ctx.stroke();
+		}
+		else {
+			goStairs = true;
+			var stairnode = [6,70,74,77,85,64,35,50];
+			var dir =       [1,-1,-1 ,1,0 , 0, -1,1];
+			var direc = dir[stairnode.indexOf(cur)]
+			drawArrow(cur_x,cur_y, ctx,dir[stairnode.indexOf(cur)]);
+			drawArrow(des_x,des_y-83*direc, ctx,direc);
+		}
+	}
+
+//have defined a cood
+function customNode(cood){
+	var custx = cood.x;
+	var custy = cood.y;
+	var closeNodes = [];
+	var closestPair = [];
+	var minDist = 9999999;
+	var angle;
+	var d;
+	var startAng;
+	var cNode
+	for(var i=0; i<node.length; i++){
+		if(Math.sqrt( Math.pow((node[i].x - custx),2) + Math.pow((node[i].y - custy),2)) <=500){
+			closeNodes+=node[i]
+		}
+	}
+	for(var i=0; i<closeNode.length-1; i++){
+		for(var j=1; j<closeNode.length; j++){
+			if( e[closeNode[i]][closeNode[j]]!=Infinity ){
+				var a = Math.sqrt( Math.pow((closeNode[i].x - custx),2) + Math.pow((closeNode[i].y - custy),2));
+				var b = Math.sqrt( Math.pow((closeNode[j].x - custx),2) + Math.pow((closeNode[j].y - custy),2));
+				var c = e[closeNode[i]][closeNode[j]];
+				var d2;
+				var angA = Math.acos( (Math.pow(b,2)+Math.pow(c,2)-Math.pow(a,2))/(2*b*c) );
+				var angB = Math.acos( (Math.pow(a,2)+Math.pow(c,2)-Math.pow(b,2))/(2*a*c) );
+				var angC = 90-(angA+angB);
+				d2 = b/Math.sin(angA);
+				var botAng;
+				//var botSide;
+				if(Math.abs(closeNode[i].y)<=Math.abs(closeNode[j].y)){
+					botAng = angA;
+					cNode = closeNode[i]
+					//botSide = b
+				}
+				else{
+					botAng = angB;
+					cNode = closeNode[j];
+					//botSide = a;
+				} 
+				var tempAng = 180-botAng-45;
+				if(d<minDist){
+					minDist = d;
+
+
+
+					if (cNode == closeNode[i])
+						closestPair = [ closeNode[i],closeNode[j] ];
+					else closestPair = [ closeNode[j],closeNode[i] ];
+
+
+
+					d = 0+d2;
+					angle = (90-tempAng) + angC;
+				}
+			}
+		}
+	}
+	if( (closestPair[0].x > custx) && (closestPair[0].y > custy) )
+		startAng = 0;
+	if( (closestPair[0].x < custx) && (closestPair[0].y > custy) )
+		startAng = 90;
+	if( (closestPair[0].x < custx) && (closestPair[0].y < custy) )
+		startAng = 180;
+	if( (closestPair[0].x > custx) && (closestPair[0].y < custy) )
+		startAng = 270;
+
+
+	var dx = d*Math.cos(angle+startAng);
+	var dy = d*Math.sin(angle+startAng);
+
+}
+
+//connects two nodes
+function addConnection(a,b) {
+	var c = Math.hypot(coor.node[a].x-coor.node[b].x, coor.node[a].y-coor.node[b].y)
+	e[a][b] = c;
+	e[b][a] = c;
+
+}
+//manually sets a distance between stairs so path length is unaffected by stairs.
+function addstairs(a,b,c){
+	e[a][b] = c;
+	e[b][a] = c;
+}
+
+//line exception
+//don't draw connections between the stairs
+function lineExc(a,b) {
+	if (b < a) {
+		var c = b;
+		b = a;
+		a = c;
+	}
+	// index no. of stairs
+	if (a === 6 && b === 74) {
+		return false;
+	}
+	else if (a === 35 && b === 77) {
+		return false;
+	}
+	else if (a === 50 && b === 70) {
+		return false;
+	}
+	else if (a === 5 && b === 17) {
+		return false;
+	}
+	else if (a === 5 && b === 18) {
+		return false;
+	}
+	else if (a ===5  && b === 18) {
+		return false;
+	}
+	else if (a === 64 && b === 85) {
+		return false;
+	}
+	else if(a == 113 && b == 116){
+		return false;
+	}
+	else if(a == 114 && b == 115){
+		return false;
+	}
+	else if(a == 115 && b == 117){
+		return false;
+	}
+	return true;
+	
+}
+
+// spacing so index is easier to count
+
+// from now on, we will refer to what Dijkstra calls vertices as nodes
+// node coods
+var coor = {
+	"node":[
+	{"x":1588 ,"y":1633},
+	{"x":1046 ,"y":585 },
+	{"x":737  ,"y":839 },
+	{"x":770  ,"y":647 },
+	{"x":792  ,"y":761 },
+	{"x":1427 ,"y":1507},
+	{"x":1038 ,"y":760 },
+	{"x":1115 ,"y":760 },
+	{"x":884  ,"y":884 },
+	{"x":1115 ,"y":1020},
+	{"x":1075 ,"y":1062},
+	{"x":1045 ,"y":1180},
+	{"x":1012 ,"y":1262},
+	{"x":1281 ,"y":1223},
+	{"x":1310 ,"y":1186},
+	{"x":1422 ,"y":1570},
+	{"x":1366 ,"y":1294},
+	{"x":1427 ,"y":1385},
+	{"x":1366 ,"y":1507},
+	{"x":1366 ,"y":1570},
+	{"x":1366 ,"y":1681},
+	{"x":1422 ,"y":1706},
+	{"x":1582 ,"y":1385},
+	{"x":1641 ,"y":1385},
+	{"x":1641 ,"y":1331},
+	{"x":1588 ,"y":1706},
+	{"x":1641 ,"y":1706},
+	{"x":1896 ,"y":1706},
+	{"x":1641 ,"y":1633},
+	{"x":1641 ,"y":1514},
+	{"x":2151 ,"y":1706},
+	{"x":2266 ,"y":1706},
+	{"x":2533 ,"y":1706},
+	{"x":2632 ,"y":1706},
+	{"x":3127 ,"y":1706},
+	{"x":2234 ,"y":3110},
+	{"x":2167 ,"y":3122},
+	{"x":2146 ,"y":3103},
+	{"x":2059 ,"y":2897},
+	{"x":1946 ,"y":2897},
+	{"x":2146 ,"y":2812},
+	{"x":2146 ,"y":2676},
+	{"x":2325 ,"y":2667},
+	{"x":2325 ,"y":2760},
+	{"x":2325 ,"y":2853},
+	{"x":2325 ,"y":2943},
+	{"x":2287 ,"y":2583},
+	{"x":2204 ,"y":2660},
+	{"x":2145 ,"y":2583},
+	{"x":2145 ,"y":2265},
+	{"x":2236 ,"y":2265},
+	{"x":2543 ,"y":2361},
+	{"x":2543 ,"y":2649},
+	{"x":2543 ,"y":2809},
+	{"x":2543 ,"y":3110},
+	{"x":2443 ,"y":3110},
+	{"x":2325 ,"y":3110},
+	{"x":2234 ,"y":3195},
+	{"x":2146 ,"y":2943},
+	{"x":2232 ,"y":1186}, //59
+	{"x":2543 ,"y":3240},
+	{"x":2300 ,"y":2268},
+	{"x":2596 ,"y":3373},
+	{"x":2596 ,"y":3573},
+	{"x":2443 ,"y":3178},
+	{"x":2415 ,"y":3394},
+	{"x":2143 ,"y":1186},
+	{"x":2024 ,"y":1218},
+	{"x":2391 ,"y":1218},
+	{"x":2875 ,"y":1218},
+	{"x":660  ,"y":2436},
+	{"x":570  ,"y":2493},
+	{"x":750  ,"y":2493},
+	{"x":570  ,"y":2872},
+	{"x":660  ,"y":2872},
+	{"x":750  ,"y":2872},
+	{"x":570  ,"y":2980},
+	{"x":660  ,"y":2980},
+	{"x":750  ,"y":2980},
+	{"x":570  ,"y":3070},
+	{"x":750  ,"y":3070},
+	{"x":665  ,"y":3135},
+	{"x":698  ,"y":3175},
+	{"x":687  ,"y":3225},
+	{"x":760  ,"y":3275},
+	{"x":869  ,"y":3166},
+	{"x":2617 ,"y":1186},
+	{"x":2916 ,"y":1186},
+	{"x":2400 ,"y":1032},
+	{"x":1366 ,"y":1385},
+	{"x":1582 ,"y":1514},
+	{"x":1746 ,"y":1331},
+	{"x":1746 ,"y":1514},
+	{"x":1746 ,"y":1633},
+	{"x":732  ,"y":761 },
+	{"x":1987 ,"y":2676},
+	{"x":2059 ,"y":2812},
+	{"x":1946 ,"y":2812},
+	{"x":2325 ,"y":2583},
+	{"x":2397 ,"y":2660},
+	{"x":2397 ,"y":2777},
+	{"x":2397 ,"y":2846},
+	{"x":2397 ,"y":2943},
+	{"x":2825 ,"y":3373},
+	{"x":2825 ,"y":3573},
+	{"x":1607 ,"y":3215},
+	{"x":2325 ,"y":3015},
+	{"x":760  ,"y":470 },
+	{"x":2027 ,"y":1706},
+	{"x":2394 ,"y":1706},
+	{"x":2884 ,"y":1706},
+	{"x":660  ,"y":2926},
+	{"x":660  ,"y":2493},
+	{"x":761  ,"y":540},
+	{"x":1093 ,"y":1245},
+	{"x":710  ,"y":3145},
+	{"x":1948 ,"y":2467},
+	{"x":2296 ,"y":3160},
+	{"x":1948 ,"y":2380},
+	{"x":2145 ,"y":2380},
+	{"x":1948 ,"y":2583},
+	{"x":1213 ,"y":1103}
+	]
+}
+// The adjacency matrix defining the graph.
+var _ = Infinity;
+var e = [];
+var matrixSize = coor.node.length;
+for (var i = 0; i < matrixSize; i++) {
+	e[i] = [];
+	for (var k = 0; k < matrixSize; k++) {
+		e[i][k] = _;
+	}
+}
+//first floor
+addConnection(1,2);
+addConnection(1,6);
+addConnection(1,7);
+addConnection(2,6);
+addConnection(2,7);
+addConnection(3,4);
+addConnection(3,113);
+addConnection(3,107);
+addConnection(4,6);
+addConnection(4,8);
+addConnection(4,94);
+addConnection(6,7);
+addConnection(7,9);
+addConnection(8,10);
+addConnection(9,10);
+addConnection(9,14);
+addConnection(9,121);
+addConnection(11,12);
+addConnection(11,114);
+addConnection(11,121);
+addConnection(12,114);
+addConnection(13,14);
+addConnection(13,16);
+addConnection(14,16);
+addConnection(14,121);
+addConnection(89,17);
+addConnection(16,89);
+addConnection(17,22);
+addConnection(18,19);
+addConnection(18,89);
+addConnection(19,20);
+addConnection(20,21);
+addConnection(21,25);
+addConnection(22,23);
+addConnection(23,24);
+addConnection(23,29);
+addConnection(24,91);
+addConnection(25,26);
+addConnection(26,27);
+addConnection(26,28);
+addConnection(27,108);
+addConnection(27,67);
+addConnection(28,29);
+addConnection(28,93);
+addConnection(29,92);
+addConnection(30,31);
+addConnection(30,66);
+addConnection(30,67);
+addConnection(30,108);
+addConnection(31,109);
+addConnection(31,68);
+addConnection(32,33);
+addConnection(32,68);
+addConnection(32,109);
+addConnection(33,110);
+addConnection(33,69);
+addConnection(34,69);
+addConnection(34,110);
+addConnection(66,67);
+addConnection(66,88);
+addConnection(67,68);
+addConnection(68,69);
+addConnection(68,86);
+addConnection(69,86);
+addConnection(69,87);
+addConnection(59,88);
+addConnection(86,88);
+addConnection(87,88);
+//floor 1 if elevator
+if(elevToggle < 0){
+	addConnection(10,11);
+	addConnection(10,13);
+	addConnection(11,13);
+}
+//second floor
+addConnection(70,71);
+addConnection(70,72);
+addConnection(70,112);
+addConnection(71,72);
+addConnection(71,73);
+addConnection(71,112);
+addConnection(72,75);
+addConnection(72,112);
+addConnection(73,74);
+addConnection(73,76);
+addConnection(73,77);
+addConnection(73,78);
+addConnection(73,111);
+addConnection(74,75);
+addConnection(74,76);
+addConnection(74,77);
+addConnection(74,78);
+addConnection(74,111);
+addConnection(75,76);
+addConnection(75,77);
+addConnection(75,111);
+addConnection(77,78);
+addConnection(76,77);
+addConnection(76,79);
+addConnection(76,111);
+addConnection(77,111);
+addConnection(78,80);
+addConnection(78,111);
+addConnection(79,80);
+addConnection(79,81);
+addConnection(80,81);
+addConnection(80,115);
+addConnection(81,82);
+addConnection(81,115);
+addConnection(82,83);
+addConnection(83,84);
+addConnection(84,85);
+//third floor
+addConnection(35,36);
+addConnection(35,56);
+addConnection(35,57);
+addConnection(35,117);
+addConnection(36,37);
+addConnection(36,57);
+addConnection(36,117);
+addConnection(37,38);
+addConnection(37,39);
+addConnection(37,58);
+addConnection(38,39);
+addConnection(38,58);
+addConnection(39,58);
+addConnection(39,97);
+addConnection(40,41);
+addConnection(40,58);
+addConnection(41,47);
+addConnection(41,95);
+addConnection(42,43);
+addConnection(42,47);
+addConnection(42,46);
+addConnection(42,44);
+addConnection(42,98);
+addConnection(42,99);
+addConnection(43,44);
+addConnection(43,100);
+addConnection(44,45);
+addConnection(44,101);
+addConnection(45,58);
+addConnection(45,102);
+addConnection(45,106);
+addConnection(46,48);
+addConnection(46,98);
+addConnection(47,48);
+addConnection(48,49);
+addConnection(48,119);
+addConnection(48,120);
+addConnection(49,50);
+addConnection(49,119);
+addConnection(50,51);
+addConnection(51,52);
+addConnection(52,53);
+addConnection(53,54);
+addConnection(54,55);
+addConnection(54,60);
+addConnection(55,56);
+addConnection(56,106);
+addConnection(56,117);
+addConnection(57,61);
+addConnection(57,65);
+addConnection(57,117);
+addConnection(60,62)
+addConnection(60,65);
+addConnection(60,105);
+addConnection(62,63);
+addConnection(62,65);
+addConnection(62,103);
+addConnection(62,105);
+addConnection(63,65);
+addConnection(63,104);
+addConnection(116,118);
+addConnection(116,120);
+addConnection(118,119)
+
+// stairs
+if(elevToggle < 0){
+	addstairs(6 ,74,1000);
+	addstairs(35,77,1000);
+	addstairs(50,70,1000);
+	addstairs(64,85,1000);
+}
+//elevators
+else{
+	addstairs(113,116,1000);
+	addstairs(114,115,1000);
+	addstairs(115,117,1000);
+}
+
+//start node value
+var strt = document.getElementById("current").value;
+//destination value
+var dest = document.getElementById("destination").value;
+
+//the shortest path does not run in and then out of a room only when you start or end in said room
+if(dest== 0 || strt== 0){
+	addConnection(0,25);
+	addConnection(0,28);
+ }
+ if(dest== 5 || strt== 5){
+	addConnection(5,17);
+	addConnection(5,18);
+ }
+ if(dest== 15 || strt== 15){
+	addConnection(15,19);
+	addConnection(15,21);
+ }
+ if(dest== 90 || strt== 90){
+	addConnection(22,90);
+	addConnection(29,90);
+ }
+if(dest== 96 || strt== 96){
+	addConnection(38,96);
+ 	addConnection(40,96);
+ }
+if(dest== 99 || strt== 99){
+	addConnection(42,99);
+	addConnection(52,99);
+ }
+ if(dest== 100 || strt== 100){
+	addConnection(43,100);
+	addConnection(53,100);
+ }
+ if(dest== 101 || strt== 101){
+	addConnection(44,101);
+	addConnection(53,101);
+ }
+
+// Compute all shortest paths 
+var shortestPathInfo = shortestPath(e, matrixSize, strt);
+
+//finds the closest bathroom to the starting node
+if(dest == "bathroom"){
+	var bathnodes = ["22", "48", "105", "106", "107", "108", "109", "110"];
+	var min = 99999999;
+	var minindex = -1;
+	for (var i = 0; i < 8; i++){
+		var a = shortestPathInfo.pathLengths[bathnodes[i]];
+		if(min > a ){
+			min = a;
+			minindex = i;
+		}
+	}
+	dest = bathnodes[minindex];
+}
+// Get the shortest path from node strt to node dest.
+var finishedPath = constructPath(shortestPathInfo, dest);
+
+var can = document.getElementById("map");
+var ctx = can.getContext("2d");
+
+ctx.clearRect(0,0,3714,3714)
+
+var clip = document.getElementById("map");
+var ctxp = clip.getContext("2d");
+var snum = document.getElementById("current").selectedIndex;
+var dnum = document.getElementById("destination").selectedIndex;
+
+	 
+if(!goStairs){
+ 	if(  (snum>19&&snum<32) &&  ((dnum>20&&dnum<33)||dnum==1) ){
+ 		grayOut(3, ctxp);
+ 	}
+ 	else if(((snum==17)||(snum==18)) && ((dnum==18)||(dnum==19)) ){
+ 		grayOut(2, ctxp);
+ 	}
+ 	else if( ((snum>1)&&(snum<16)) && ((dnum>0&&dnum<17)||dnum==1) ){
+ 		grayOut(1, ctxp);
+ 	}
+ }
+ if((((strt==111)||(strt==112)) ^ ((dest=="bathroom")||((dest==111)||(dest==112))))){
+ 	if((snum>19&&snum<32) || ((dnum>20&&dnum<33)||dnum==1) ){
+ 		grayOut(23, ctxp);
+ 	}
+ 	else if(((snum>1)&&(snum<16)) && (dnum>0&&dnum<17)){
+ 		grayOut(21, ctxp);
+ 	}
+ }
+
+for (var i = 0; i < finishedPath.length; i++) {
+	if (i == finishedPath.length - 1 ){
+		ctx.beginPath();
+		ctx.lineWidth = 55;
+		ctx.strokeStyle = "#ff0000";
+		ctx.arc(coor.node[dest].x,coor.node[dest].y-73,10,0,2*Math.PI);
+		ctx.stroke();
+		
+		ctx.beginPath();// draw the path	
+		ctx.moveTo(coor.node[dest].x,coor.node[dest].y);	// set the start point
+		ctx.lineTo(coor.node[dest].x-(50/2),coor.node[dest].y-50);	// set the end point
+		ctx.lineWidth = 16;
+		ctx.strokeStyle="#ff0000";
+		// ctx.stroke();
+		
+		// ctx.beginPath();// draw the path	
+		ctx.lineTo(coor.node[dest].x+(50/2),coor.node[dest].y-50);	// set the end point
+		ctx.closePath();
+		ctx.lineWidth = 10;
+		ctx.strokeStyle="#ff0000";
+		ctx.stroke();
+		ctx.fillStyle = "#ff0000";
+		ctx.fill();
+		
+		ctx.beginPath();
+		ctx.lineWidth = 8;
+		ctx.strokeStyle="#59f442";
+		ctx.arc(coor.node[strt].x,coor.node[strt].y,10,0,2*Math.PI);
+		ctx.stroke();
+			ctx.beginPath();
+		ctx.lineWidth = 8;
+		ctx.strokeStyle="#59f442";
+		ctx.arc(coor.node[strt].x,coor.node[strt].y,25,0,2*Math.PI);
+		ctx.stroke();
+			ctx.beginPath();
+		ctx.lineWidth = 8;
+		ctx.strokeStyle="#59f442";
+		ctx.arc(coor.node[strt].x,coor.node[strt].y,40,0,2*Math.PI);
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = "#ff0000";
+		ctx.arc(coor.node[dest].x,coor.node[dest].y,5,0,2*Math.PI);
+		ctx.stroke();
+	}
+	getPath(finishedPath[i],finishedPath[i+1]);
+}
+}
+
+</script>
+</body>
+</html>
+
+
+
