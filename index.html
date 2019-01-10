@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<style type="text/css" media="screen">
 	canvas {
-		display:block; 
+		display:none; 
 		background: #fff url(map.jpg) no-repeat;
 		margin-bottom: 115px;
         margin-top: 75px;
@@ -340,6 +340,7 @@ input:checked + .slider:before {
         <div id="button">
     <input type="button" value="Draw Map" onclick="showMap()" /></div>
     </center>
+<canvas id='map' width='3714' height ='3714'></canvas>
 </elevator>
     
 
@@ -366,15 +367,16 @@ input:checked + .slider:before {
  */
 var asdf = true;
 function showMap() {
-    if (asdf){
-        var canvas = document.createElement('canvas');
-        canvas.id = "map";
-        canvas.width = 3714;
-        canvas.height = 3714;
-        document.getElementsByTagName("body")[0].append(canvas);
-    }
-    asdf = false;
-    main();
+//    if (asdf){
+//        var canvas = document.createElement('canvas');
+//        canvas.id = "map";
+//        canvas.width = 3714;
+//        canvas.height = 3714;
+//        document.getElementsByTagName("body")[0].append(canvas);
+//    }
+//    asdf = false;
+	document.getElementById("map").style.display = "block";
+	main();
 }
     
 var elevToggle = -1;
