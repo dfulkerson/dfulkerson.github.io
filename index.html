@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<style type="text/css" media="screen">
 	canvas {
-		display:none; 
+		display:block; 
 		background: #fff url(map.jpg) no-repeat;
 		margin-bottom: 115px;
         margin-top: 75px;
@@ -56,6 +56,9 @@
 		font-family: verdana;
 		font-size: 24px;
 		color: white;
+		margin-bottom: 30px
+		
+
 	}
 
 	nav {
@@ -126,7 +129,10 @@
 		} */
 		p2{
 			font-size: 35px;
-			margin: 15 px auto;
+			/*margin: 15 px auto;*/
+			position: absolute;
+			left: 620px;
+			top: -30px;
 		}
 
 		li {
@@ -158,7 +164,10 @@
 		font-size: 45px;
 		font-weight: bold;
 		border: 0px;
-		border-radius: 25px
+		border-radius: 25px;
+		position: relative;
+		left: 0px;
+		top: 150px;
 	}
 
 
@@ -169,7 +178,7 @@
   display: inline-block;
   width:100px;
   height: 60px;
-  bottom: 25px;
+  bottom: -25px;
 
 }
 
@@ -243,6 +252,150 @@ input:checked + .slider:before {
   top: 30px;
   left: 70px;
 }
+
+ /* Customize the label (the container) */
+.CustomBox {
+  display: block;
+  position: absolute;
+  padding-left: 35px;
+  padding-top: 30px;
+  padding-right: 30px
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  left: 263px;
+  top: 490px;
+  font-size: 40px;
+  color: white;
+  font-family: verdana;
+
+}
+
+/* Hide the browser's default radio button */
+.CustomBox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.CustomBox:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.CustomBox input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.CustomBox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.CustomBox .checkmark:after {
+  top: 18px;
+  left: 18px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+}
+
+/* Customize the label (the container) */ /* Destination CheckBox  */
+.CustomBox1 {
+  display: block;
+  position: absolute;
+  padding-left: 35px;
+  padding-top: 30px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  left: 730px;
+  top: 490px;
+  font-size: 40px;
+  color: white;
+  font-family: verdana;
+}
+
+/* Hide the browser's default radio button */
+.CustomBox1 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.CustomBox1:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.CustomBox1 input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.CustomBox1 input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.CustomBox1 .checkmark:after {
+  top: 18px;
+  left: 18px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+} 
 </style>
 
 </head>
@@ -254,7 +407,7 @@ input:checked + .slider:before {
 	<div class="header">
         <center>
 	<dropdown>
-		<p3>Select Your Current Location & Destination</p3> <br>
+		<p3> Select Your Current Location & Destination</p3> <br>
        <select name="current" id="current" >
             <option value="#">Current Location</option>
         <option disabled>-----Level 1-----</option>
@@ -333,6 +486,7 @@ input:checked + .slider:before {
 <elevator>
 	<center>
 	<p2> Use Elevator? </p2>
+	<br>
     <label class="switch" id = "myButton" value = "-1" onchange="goElevator();">
       <input type="checkbox">
       <span class="slider round"></span>
@@ -340,7 +494,6 @@ input:checked + .slider:before {
         <div id="button">
     <input type="button" value="Draw Map" onclick="showMap()" /></div>
     </center>
-<canvas id='map' width='3714' height ='3714'></canvas>
 </elevator>
     
 
@@ -351,53 +504,387 @@ input:checked + .slider:before {
         <a href="https://goo.gl/forms/nF6PKPHSmJbqG1W13">Contact</a>
     </nav>
 </center>
+
+<label class="CustomBox"> Current Location
+  <input type="checkbox" checked="checked">
+  <span class="checkmark"></span>
+</label>
+
+<label class="CustomBox1"> Destination
+  <input type="checkbox">
+  <span class="checkmark"></span>
+</label>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type = "text/javascript">
-/*
- * dijkstra.js
- *
- * Dijkstra's single source shortest path algorithm in JavaScript.
- *
- * Cameron McCormack <cam (at) mcc.id.au>
- *
- * Permission is hereby granted to use, copy, modify and distribute this
- * code for any purpose, without fee.
- *
- * Initial version: October 21, 2004
- */
-var asdf = true;
 function showMap() {
-//    if (asdf){
-//        var canvas = document.createElement('canvas');
-//        canvas.id = "map";
-//        canvas.width = 3714;
-//        canvas.height = 3714;
-//        document.getElementsByTagName("body")[0].append(canvas);
-//    }
-//    asdf = false;
-	document.getElementById("map").style.display = "block";
-	main();
+    if (asdf){
+        var canvas = document.createElement('canvas');
+        canvas.id = "map";
+        canvas.width = 3714;
+        canvas.height = 3714;
+        document.getElementsByTagName("body")[0].append(canvas);
+    }
+    asdf = false;
+    main();
 }
-    
+function segdist(x, y, x1, y1, x2, y2) {
+
+  var A = x - x1;
+  var B = y - y1;
+  var C = x2 - x1;
+  var D = y2 - y1;
+
+  var dot = A * C + B * D;
+  var len_sq = C * C + D * D;
+  var param = -1;
+  if (len_sq != 0) //in case of 0 length line
+      param = dot / len_sq;
+
+  var xx, yy;
+
+  if (param < 0) {
+    xx = x1;
+    yy = y1;
+  }
+  else if (param > 1) {
+    xx = x2;
+    yy = y2;
+  }
+  else {
+    xx = x1 + param * C;
+    yy = y1 + param * D;
+  }
+
+  var dx = x - xx;
+  var dy = y - yy;
+  return dx * dx + dy * dy;
+}
+function segdist1(x, y, x1, y1, x2, y2) {
+
+  var A = x - x1;
+  var B = y - y1;
+  var C = x2 - x1;
+  var D = y2 - y1;
+
+  var dot = A * C + B * D;
+  var len_sq = C * C + D * D;
+  var param = -1;
+  if (len_sq != 0) //in case of 0 length line
+      param = dot / len_sq;
+
+  var xx, yy;
+
+  if (param < 0) {
+    xx = x1;
+    yy = y1;
+  }
+  else if (param > 1) {
+    xx = x2;
+    yy = y2;
+  }
+  else {
+    xx = x1 + param * C;
+    yy = y1 + param * D;
+  }
+return [xx,yy];
+}
+
 var elevToggle = -1;
+var goStairs = false;
+var can = document.getElementById("map");
+var ctx = can.getContext("2d");
+var newNodeX = 0;
+var newNodeY = 0;
+var conNodeX = 0;
+var conNodeY = 0;
+var coor = {
+ 	"node":[
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 	{"x":1588 ,"y":1633},
+ 	{"x":1046 ,"y":585 },
+ 	{"x":737  ,"y":839 },
+ 	{"x":770  ,"y":647 },
+ 	{"x":792  ,"y":761 },
+ 	{"x":1427 ,"y":1507},
+ 	{"x":1038 ,"y":760 },
+ 	{"x":1115 ,"y":760 },
+ 	{"x":884  ,"y":884 },
+ 	{"x":1115 ,"y":1020},
+ 	{"x":1075 ,"y":1062},
+ 	{"x":1045 ,"y":1180},
+ 	{"x":1012 ,"y":1262},
+ 	{"x":1281 ,"y":1223},
+ 	{"x":1310 ,"y":1186},
+ 	{"x":1422 ,"y":1570},
+ 	{"x":1366 ,"y":1294},
+ 	{"x":1427 ,"y":1385},
+ 	{"x":1366 ,"y":1507},
+ 	{"x":1366 ,"y":1570},
+ 	{"x":1366 ,"y":1681},
+ 	{"x":1422 ,"y":1706},
+ 	{"x":1582 ,"y":1385},
+ 	{"x":1641 ,"y":1385},
+ 	{"x":1641 ,"y":1331},
+ 	{"x":1588 ,"y":1706},
+ 	{"x":1641 ,"y":1706},
+ 	{"x":1896 ,"y":1706},
+ 	{"x":1641 ,"y":1633},
+ 	{"x":1641 ,"y":1514},
+ 	{"x":2151 ,"y":1706},
+ 	{"x":2266 ,"y":1706},
+ 	{"x":2533 ,"y":1706},
+ 	{"x":2632 ,"y":1706},
+ 	{"x":3127 ,"y":1706},
+ 	{"x":2234 ,"y":3110},
+ 	{"x":2167 ,"y":3122},
+ 	{"x":2146 ,"y":3103},
+ 	{"x":2059 ,"y":2897},
+ 	{"x":1946 ,"y":2897},
+ 	{"x":2146 ,"y":2812},
+ 	{"x":2146 ,"y":2676},
+ 	{"x":2325 ,"y":2667},
+ 	{"x":2325 ,"y":2760},
+ 	{"x":2325 ,"y":2853},
+ 	{"x":2325 ,"y":2943},
+ 	{"x":2287 ,"y":2583},
+ 	{"x":2204 ,"y":2660},
+ 	{"x":2145 ,"y":2583},
+ 	{"x":2145 ,"y":2265},
+ 	{"x":2236 ,"y":2265},
+ 	{"x":2543 ,"y":2361},
+ 	{"x":2543 ,"y":2649},
+ 	{"x":2543 ,"y":2809},
+ 	{"x":2543 ,"y":3110},
+ 	{"x":2443 ,"y":3110},
+ 	{"x":2325 ,"y":3110},
+ 	{"x":2234 ,"y":3195},
+ 	{"x":2146 ,"y":2943},
+ 	{"x":2232 ,"y":1186}, //59
+ 	{"x":2543 ,"y":3240},
+ 	{"x":2300 ,"y":2268},
+ 	{"x":2596 ,"y":3373},
+ 	{"x":2596 ,"y":3573},
+ 	{"x":2443 ,"y":3178},
+ 	{"x":2415 ,"y":3394},
+ 	{"x":2143 ,"y":1186},
+ 	{"x":2024 ,"y":1218},
+ 	{"x":2391 ,"y":1218},
+ 	{"x":2875 ,"y":1218},
+ 	{"x":660  ,"y":2436},
+ 	{"x":570  ,"y":2493},
+ 	{"x":750  ,"y":2493},
+ 	{"x":570  ,"y":2872},
+ 	{"x":660  ,"y":2872},
+ 	{"x":750  ,"y":2872},
+ 	{"x":570  ,"y":2980},
+ 	{"x":660  ,"y":2980},
+ 	{"x":750  ,"y":2980},
+ 	{"x":570  ,"y":3070},
+ 	{"x":750  ,"y":3070},
+ 	{"x":665  ,"y":3135},
+ 	{"x":698  ,"y":3175},
+ 	{"x":687  ,"y":3225},
+ 	{"x":760  ,"y":3275},
+ 	{"x":869  ,"y":3166},
+ 	{"x":2617 ,"y":1186},
+ 	{"x":2916 ,"y":1186},
+ 	{"x":2400 ,"y":1032},
+ 	{"x":1366 ,"y":1385},
+ 	{"x":1582 ,"y":1514},
+ 	{"x":1746 ,"y":1331},
+ 	{"x":1746 ,"y":1514},
+ 	{"x":1746 ,"y":1633},
+ 	{"x":732  ,"y":761 },
+ 	{"x":1987 ,"y":2676},
+ 	{"x":2059 ,"y":2812},
+ 	{"x":1946 ,"y":2812},
+ 	{"x":2325 ,"y":2583},
+ 	{"x":2397 ,"y":2660},
+ 	{"x":2397 ,"y":2777},
+ 	{"x":2397 ,"y":2846},
+ 	{"x":2397 ,"y":2943},
+ 	{"x":2825 ,"y":3373},
+ 	{"x":2825 ,"y":3573},
+ 	{"x":2607 ,"y":3215},
+ 	{"x":2325 ,"y":3015},
+ 	{"x":760  ,"y":470 },
+ 	{"x":2027 ,"y":1706},
+ 	{"x":2394 ,"y":1706},
+ 	{"x":2884 ,"y":1706},
+ 	{"x":660  ,"y":2926},
+ 	{"x":660  ,"y":2493},
+ 	{"x":761  ,"y":540},
+ 	{"x":1093 ,"y":1245},
+ 	{"x":710  ,"y":3145},
+ 	{"x":1948 ,"y":2467},
+ 	{"x":2296 ,"y":3160},
+ 	{"x":1948 ,"y":2380},
+ 	{"x":2145 ,"y":2380},
+ 	{"x":1948 ,"y":2583},
+ 	{"x":1213 ,"y":1103},
+ 	{"x": 0,"y": 0},
+ 	{"x": 0,"y": 0}
+ 	]
+ }
+var e = [];
+function asdf(){
+	coor.node[122].x = newNodeX
+	coor.node[122].y = newNodeY
+	coor.node[122].x = conNodeX
+	coor.node[122].y = conNodeY
+}
+
+
+//ensures code doesn't draw anything whenever current location or destination are selected
+
+function addConnection(a,b) {
+	var c = Math.hypot(coor.node[a].x-coor.node[b].x, coor.node[a].y-coor.node[b].y)
+	e[a][b] = c;
+	e[b][a] = c;
+
+}
+
+function addConnection1(a,b,d){
+	var c = Math.hypot(coor.node[a].x-b[0], b[1]-coor.node[a].y)
+	e[a][d] = c;
+	e[d][a] = c;
+}
+
+function addstairs(a,b,c){
+	e[a][b] = c;
+	e[b][a] = c;
+}
+
+function customNode(){
+	var custx = newNodeX;
+	var custy = newNodeY;
+	var closeNode = [];//
+	var nodeLoc = [];
+	var closestPair = [[1,1],[2,2]];
+	var minDist = 9999999;
+	var angle = 180;
+	var d;
+	var run = false;
+	var one;
+	var two;
+
+	for(var i=0; i<e.length; i++){
+		if(Math.hypot(coor.node[i].x-newNodeX, coor.node[i].y-newNodeY) <250){
+			run = true;
+			closeNode.push(i);
+			nodeLoc.push([coor.node[i].x,coor.node[i].y]);
+		}
+	}
+	if(run){
+		for(var i=0; i<closeNode.length-1; i++){
+			for(var j=1; j<closeNode.length; j++){
+				if( e[closeNode[i]][closeNode[j]]!=Infinity && e[closeNode[i]][closeNode[j]]!=1000){
+					var d = segdist(newNodeX, newNodeY,nodeLoc[i][0], nodeLoc[i][1], nodeLoc[j][0], nodeLoc[j][1] )
+					if(d<minDist){
+						minDist = d;
+						one= i;
+						two= j;
+						var boi = segdist1(custx, custy,nodeLoc[i][0], nodeLoc[i][1], nodeLoc[j][0], nodeLoc[j][1])
+						conNodeX = boi[0];
+						conNodeY = boi[1];
+					}
+ 				}
+ 			}
+		}
+		addConnection(123,122);
+		addConnection1(123,closestPair[0],closeNode[one]);
+		addConnection1(123,closestPair[1],closeNode[two])
+}
+ctx.beginPath();
+ctx.moveTo(nodeLoc[one][0], nodeLoc[one][1]);
+ctx.lineTo(nodeLoc[two][0], nodeLoc[two][1]);
+ctx.strokeStyle = "#ffffff";
+ctx.lineWidth = 10;
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(newNodeX, newNodeY);
+ctx.lineTo(nodeLoc[two][0], nodeLoc[two][1]);
+ctx.strokeStyle = "#ffffff";
+ctx.lineWidth = 10;
+ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(nodeLoc[one][0], nodeLoc[one][1]);
+ctx.lineTo(newNodeX, newNodeY);
+ctx.strokeStyle = "#ffffff";
+ctx.lineWidth = 10;
+ctx.stroke();
+
+ ctx.beginPath();
+ ctx.moveTo(newNodeX, newNodeY);
+ ctx.lineTo(conNodeX, conNodeY);
+ ctx.strokeStyle = "#fff";
+ ctx.lineWidth = 10;
+ ctx.stroke();
+ctx.beginPath();
+ctx.lineWidth = 10;
+ctx.strokeStyle = "#ff0000";
+ctx.arc(conNodeX,conNodeY,5,0,2*Math.PI);
+ctx.stroke();
+}
+
+
+
 function dorun(){
 	clear();
+	ctx.clearRect(0,0,3714,3714);
 	if ((document.getElementById("current").value != "#") && (document.getElementById("destination").value != "#")){
 		main();
 	}
+
 }
-    
 function clear(){
 	var can = document.getElementById("map");
 	var ctx = can.getContext("2d");
  		ctx.clearRect(0,0,3714,3714);
 }
-    
 function goElevator(){
 	elevToggle*= -1;
 	dorun();
 }
-    
 function drawArrow(fromx, fromy,ctx, direction){
                 //variables to be used when creating the arrow
                 var tox = fromx;
@@ -406,8 +893,8 @@ function drawArrow(fromx, fromy,ctx, direction){
                 ctx.beginPath();
                 ctx.moveTo(fromx, fromy);
                 ctx.lineTo(tox, toy);
-                ctx.strokeStyle = "#FAED26";
-                ctx.lineWidth = 12;
+                ctx.strokeStyle = "#FFFF00";
+                ctx.lineWidth = 8;
                 ctx.stroke();
 
                 toy += direction * 10
@@ -423,23 +910,22 @@ function drawArrow(fromx, fromy,ctx, direction){
                 ctx.lineTo(tox, toy);
 
                 //draws the paths created above
-                ctx.strokeStyle = "#FAED26";
-                ctx.lineWidth = 8;
+                ctx.strokeStyle = "#ffff00";
+                ctx.lineWidth = 3;
                 ctx.stroke();
-                ctx.fillStyle = "#FAED26";
+                ctx.fillStyle = "#ffff00";
                 ctx.fill();
                 ctx.beginPath();
                 ctx.moveTo(tox, toy);
-		ctx.lineWidth = 8;
+				ctx.lineWidth = 8;
                 ctx.stroke();
 }
-	
 function grayOut(n, ctxp){
 	ctxp.globalAlpha = .8;
 	ctxp.clearRect(0,0,3714,3714);
 	var clip = document.getElementById("map");
 	var ctxp = clip.getContext("2d");
-	if(n==3){	
+	if(n==3){
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
 		ctxp.fillRect(0,0,3713,1841);
@@ -448,8 +934,8 @@ function grayOut(n, ctxp){
 	else if(n==2){
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
-		ctxp.fillRect(0,1915,1283,3713);
 		ctxp.fillRect(0,0,3713,1841);
+		ctxp.fillRect(1356,1915,3713,3713);
 	}
 	else if(n==1){
 		ctxp.beginPath();
@@ -460,17 +946,46 @@ function grayOut(n, ctxp){
 	else if(n==21){
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
-		ctxp.fillRect(0,0,3713,1841);
+		ctxp.fillRect(1356,1915,3713,3713);
 	}
 	else if(n==23){
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
-		ctxp.fillRect(1356,1915,3713,3713);
+		ctxp.fillRect(0,0,3713,1841);
 	}
 }
-	
-function main() {
-	 var goStairs = false;
+
+function getCursorPosition(event) {
+	canvas = document.getElementById("map");
+	ctx = canvas.getContext('2d');
+
+	var rect = canvas.getBoundingClientRect();
+	newNodeX = event.clientX - rect.left;
+	newNodeY = event.clientY - rect.top;
+
+	newNodeX /=  rect.width;
+	newNodeY /=  rect.height;
+
+
+	newNodeX *= canvas.width;
+	newNodeY *= canvas.height;
+
+
+
+	ctx.beginPath();
+		ctx.lineWidth = 8;
+		ctx.strokeStyle="#59f442";
+		ctx.arc(newNodeX,newNodeY,5,0,2*Math.PI);
+	ctx.stroke();
+	customNode();
+asdf();
+}
+
+
+ function main() {
+
+ 	var goStairs = false;
+
  	//Dijkstra's Algorithm
  	function shortestPath(edges, numVertices, startVertex) {
  		var done = new Array(numVertices);
@@ -522,26 +1037,26 @@ function main() {
  		return path;
  	}
 
-	
- function getPath(cur,dest) {
-	ctx.globalAlpha = 1.0;
+
+ 	function getPath(cur,dest) {
+ 		ctx.globalAlpha = 1.0;
 		// get return value
 	    // use the return as the index of the following coor array
-	   var cur_x=coor.node[cur].x;
+	    var cur_x=coor.node[cur].x;
 		var cur_y=coor.node[cur].y;
 		var des_x=coor.node[dest].x;
 		var des_y=coor.node[dest].y;
 		if(lineExc(cur,dest)) {
-			ctx.beginPath();// draw the path	
+			ctx.beginPath();// draw the path
 			ctx.moveTo(cur_x,cur_y);	// set the start point
 			ctx.lineTo(des_x,des_y);	// set the end point
-			ctx.lineWidth = 12;
-			ctx.strokeStyle="#FAED26";
+			ctx.lineWidth = 8;
+			ctx.strokeStyle="#ffff00";
 			ctx.stroke();	// draw the line
 
 			ctx.beginPath();
 			ctx.lineWidth = 4;
-			ctx.strokeStyle = "#FAED26";
+			ctx.strokeStyle = "#ffff00";
 			ctx.arc(coor.node[dest].x,coor.node[dest].y,2,0,2*Math.PI);
 			ctx.stroke();
 		}
@@ -556,89 +1071,13 @@ function main() {
 	}
 
 //have defined a cood
-function customNode(cood){
-	var custx = cood.x;
-	var custy = cood.y;
-	var closeNodes = [];
-	var closestPair = [];
-	var minDist = 9999999;
-	var angle;
-	var d;
-	var startAng;
-	var cNode
-	for(var i=0; i<node.length; i++){
-		if(Math.sqrt( Math.pow((node[i].x - custx),2) + Math.pow((node[i].y - custy),2)) <=500){
-			closeNodes+=node[i]
-		}
-	}
-	for(var i=0; i<closeNode.length-1; i++){
-		for(var j=1; j<closeNode.length; j++){
-			if( e[closeNode[i]][closeNode[j]]!=Infinity ){
-				var a = Math.sqrt( Math.pow((closeNode[i].x - custx),2) + Math.pow((closeNode[i].y - custy),2));
-				var b = Math.sqrt( Math.pow((closeNode[j].x - custx),2) + Math.pow((closeNode[j].y - custy),2));
-				var c = e[closeNode[i]][closeNode[j]];
-				var d2;
-				var angA = Math.acos( (Math.pow(b,2)+Math.pow(c,2)-Math.pow(a,2))/(2*b*c) );
-				var angB = Math.acos( (Math.pow(a,2)+Math.pow(c,2)-Math.pow(b,2))/(2*a*c) );
-				var angC = 90-(angA+angB);
-				d2 = b/Math.sin(angA);
-				var botAng;
-				//var botSide;
-				if(Math.abs(closeNode[i].y)<=Math.abs(closeNode[j].y)){
-					botAng = angA;
-					cNode = closeNode[i]
-					//botSide = b
-				}
-				else{
-					botAng = angB;
-					cNode = closeNode[j];
-					//botSide = a;
-				} 
-				var tempAng = 180-botAng-45;
-				if(d<minDist){
-					minDist = d;
+//takes custom node position & sends it to nearest path
 
-
-
-					if (cNode == closeNode[i])
-						closestPair = [ closeNode[i],closeNode[j] ];
-					else closestPair = [ closeNode[j],closeNode[i] ];
-
-
-
-					d = 0+d2;
-					angle = (90-tempAng) + angC;
-				}
-			}
-		}
-	}
-	if( (closestPair[0].x > custx) && (closestPair[0].y > custy) )
-		startAng = 0;
-	if( (closestPair[0].x < custx) && (closestPair[0].y > custy) )
-		startAng = 90;
-	if( (closestPair[0].x < custx) && (closestPair[0].y < custy) )
-		startAng = 180;
-	if( (closestPair[0].x > custx) && (closestPair[0].y < custy) )
-		startAng = 270;
-
-
-	var dx = d*Math.cos(angle+startAng);
-	var dy = d*Math.sin(angle+startAng);
-
-}
 
 //connects two nodes
-function addConnection(a,b) {
-	var c = Math.hypot(coor.node[a].x-coor.node[b].x, coor.node[a].y-coor.node[b].y)
-	e[a][b] = c;
-	e[b][a] = c;
 
-}
 //manually sets a distance between stairs so path length is unaffected by stairs.
-function addstairs(a,b,c){
-	e[a][b] = c;
-	e[b][a] = c;
-}
+
 
 //line exception
 //don't draw connections between the stairs
@@ -680,142 +1119,49 @@ function lineExc(a,b) {
 		return false;
 	}
 	return true;
-	
+
 }
 
-// spacing so index is easier to count
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // from now on, we will refer to what Dijkstra calls vertices as nodes
 // node coods
-var coor = {
-	"node":[
-	{"x":1588 ,"y":1633},
-	{"x":1046 ,"y":585 },
-	{"x":737  ,"y":839 },
-	{"x":770  ,"y":647 },
-	{"x":792  ,"y":761 },
-	{"x":1427 ,"y":1507},
-	{"x":1038 ,"y":760 },
-	{"x":1115 ,"y":760 },
-	{"x":884  ,"y":884 },
-	{"x":1115 ,"y":1020},
-	{"x":1075 ,"y":1062},
-	{"x":1045 ,"y":1180},
-	{"x":1012 ,"y":1262},
-	{"x":1281 ,"y":1223},
-	{"x":1310 ,"y":1186},
-	{"x":1422 ,"y":1570},
-	{"x":1366 ,"y":1294},
-	{"x":1427 ,"y":1385},
-	{"x":1366 ,"y":1507},
-	{"x":1366 ,"y":1570},
-	{"x":1366 ,"y":1681},
-	{"x":1422 ,"y":1706},
-	{"x":1582 ,"y":1385},
-	{"x":1641 ,"y":1385},
-	{"x":1641 ,"y":1331},
-	{"x":1588 ,"y":1706},
-	{"x":1641 ,"y":1706},
-	{"x":1896 ,"y":1706},
-	{"x":1641 ,"y":1633},
-	{"x":1641 ,"y":1514},
-	{"x":2151 ,"y":1706},
-	{"x":2266 ,"y":1706},
-	{"x":2533 ,"y":1706},
-	{"x":2632 ,"y":1706},
-	{"x":3127 ,"y":1706},
-	{"x":2234 ,"y":3110},
-	{"x":2167 ,"y":3122},
-	{"x":2146 ,"y":3103},
-	{"x":2059 ,"y":2897},
-	{"x":1946 ,"y":2897},
-	{"x":2146 ,"y":2812},
-	{"x":2146 ,"y":2676},
-	{"x":2325 ,"y":2667},
-	{"x":2325 ,"y":2760},
-	{"x":2325 ,"y":2853},
-	{"x":2325 ,"y":2943},
-	{"x":2287 ,"y":2583},
-	{"x":2204 ,"y":2660},
-	{"x":2145 ,"y":2583},
-	{"x":2145 ,"y":2265},
-	{"x":2236 ,"y":2265},
-	{"x":2543 ,"y":2361},
-	{"x":2543 ,"y":2649},
-	{"x":2543 ,"y":2809},
-	{"x":2543 ,"y":3110},
-	{"x":2443 ,"y":3110},
-	{"x":2325 ,"y":3110},
-	{"x":2234 ,"y":3195},
-	{"x":2146 ,"y":2943},
-	{"x":2232 ,"y":1186}, //59
-	{"x":2543 ,"y":3240},
-	{"x":2300 ,"y":2268},
-	{"x":2596 ,"y":3373},
-	{"x":2596 ,"y":3573},
-	{"x":2443 ,"y":3178},
-	{"x":2415 ,"y":3394},
-	{"x":2143 ,"y":1186},
-	{"x":2024 ,"y":1218},
-	{"x":2391 ,"y":1218},
-	{"x":2875 ,"y":1218},
-	{"x":660  ,"y":2436},
-	{"x":570  ,"y":2493},
-	{"x":750  ,"y":2493},
-	{"x":570  ,"y":2872},
-	{"x":660  ,"y":2872},
-	{"x":750  ,"y":2872},
-	{"x":570  ,"y":2980},
-	{"x":660  ,"y":2980},
-	{"x":750  ,"y":2980},
-	{"x":570  ,"y":3070},
-	{"x":750  ,"y":3070},
-	{"x":665  ,"y":3135},
-	{"x":698  ,"y":3175},
-	{"x":687  ,"y":3225},
-	{"x":760  ,"y":3275},
-	{"x":869  ,"y":3166},
-	{"x":2617 ,"y":1186},
-	{"x":2916 ,"y":1186},
-	{"x":2400 ,"y":1032},
-	{"x":1366 ,"y":1385},
-	{"x":1582 ,"y":1514},
-	{"x":1746 ,"y":1331},
-	{"x":1746 ,"y":1514},
-	{"x":1746 ,"y":1633},
-	{"x":732  ,"y":761 },
-	{"x":1987 ,"y":2676},
-	{"x":2059 ,"y":2812},
-	{"x":1946 ,"y":2812},
-	{"x":2325 ,"y":2583},
-	{"x":2397 ,"y":2660},
-	{"x":2397 ,"y":2777},
-	{"x":2397 ,"y":2846},
-	{"x":2397 ,"y":2943},
-	{"x":2825 ,"y":3373},
-	{"x":2825 ,"y":3573},
-	{"x":1607 ,"y":3215},
-	{"x":2325 ,"y":3015},
-	{"x":760  ,"y":470 },
-	{"x":2027 ,"y":1706},
-	{"x":2394 ,"y":1706},
-	{"x":2884 ,"y":1706},
-	{"x":660  ,"y":2926},
-	{"x":660  ,"y":2493},
-	{"x":761  ,"y":540},
-	{"x":1093 ,"y":1245},
-	{"x":710  ,"y":3145},
-	{"x":1948 ,"y":2467},
-	{"x":2296 ,"y":3160},
-	{"x":1948 ,"y":2380},
-	{"x":2145 ,"y":2380},
-	{"x":1948 ,"y":2583},
-	{"x":1213 ,"y":1103}
-	]
-}
+
 // The adjacency matrix defining the graph.
 var _ = Infinity;
-var e = [];
+
 var matrixSize = coor.node.length;
 for (var i = 0; i < matrixSize; i++) {
 	e[i] = [];
@@ -1020,7 +1366,7 @@ var strt = document.getElementById("current").value;
 //destination value
 var dest = document.getElementById("destination").value;
 
-//the shortest path does not run in and then out of a room only when you start or end in said room
+//the shortest path does not run through a room unless you start or end in said room
 if(dest== 0 || strt== 0){
 	addConnection(0,25);
 	addConnection(0,28);
@@ -1054,12 +1400,16 @@ if(dest== 99 || strt== 99){
 	addConnection(53,101);
  }
 
-// Compute all shortest paths 
+//snaps to floor
+
+
+
+// Compute all shortest paths
 var shortestPathInfo = shortestPath(e, matrixSize, strt);
 
 //finds the closest bathroom to the starting node
 if(dest == "bathroom"){
-	var bathnodes = ["22", "48", "105", "106", "107", "108", "109", "110"];
+	var bathnodes = ["22", "105", "106", "107", "108", "109", "110", "116"];
 	var min = 99999999;
 	var minindex = -1;
 	for (var i = 0; i < 8; i++){
@@ -1071,6 +1421,7 @@ if(dest == "bathroom"){
 	}
 	dest = bathnodes[minindex];
 }
+
 // Get the shortest path from node strt to node dest.
 var finishedPath = constructPath(shortestPathInfo, dest);
 
@@ -1084,7 +1435,6 @@ var ctxp = clip.getContext("2d");
 var snum = document.getElementById("current").selectedIndex;
 var dnum = document.getElementById("destination").selectedIndex;
 
-	 
 if(!goStairs){
  	if(  (snum>19&&snum<32) &&  ((dnum>20&&dnum<33)||dnum==1) ){
  		grayOut(3, ctxp);
@@ -1112,15 +1462,15 @@ for (var i = 0; i < finishedPath.length; i++) {
 		ctx.strokeStyle = "#ff0000";
 		ctx.arc(coor.node[dest].x,coor.node[dest].y-73,10,0,2*Math.PI);
 		ctx.stroke();
-		
-		ctx.beginPath();// draw the path	
+
+		ctx.beginPath();// draw the path
 		ctx.moveTo(coor.node[dest].x,coor.node[dest].y);	// set the start point
 		ctx.lineTo(coor.node[dest].x-(50/2),coor.node[dest].y-50);	// set the end point
 		ctx.lineWidth = 16;
 		ctx.strokeStyle="#ff0000";
 		// ctx.stroke();
-		
-		// ctx.beginPath();// draw the path	
+
+		// ctx.beginPath();// draw the path
 		ctx.lineTo(coor.node[dest].x+(50/2),coor.node[dest].y-50);	// set the end point
 		ctx.closePath();
 		ctx.lineWidth = 10;
@@ -1128,23 +1478,13 @@ for (var i = 0; i < finishedPath.length; i++) {
 		ctx.stroke();
 		ctx.fillStyle = "#ff0000";
 		ctx.fill();
-		
+
 		ctx.beginPath();
-		ctx.lineWidth = 8;
+		ctx.lineWidth = 10;
 		ctx.strokeStyle="#59f442";
-		ctx.arc(coor.node[strt].x,coor.node[strt].y,10,0,2*Math.PI);
+		ctx.arc(coor.node[strt].x,coor.node[strt].y,5,0,2*Math.PI);
 		ctx.stroke();
-			ctx.beginPath();
-		ctx.lineWidth = 8;
-		ctx.strokeStyle="#59f442";
-		ctx.arc(coor.node[strt].x,coor.node[strt].y,25,0,2*Math.PI);
-		ctx.stroke();
-			ctx.beginPath();
-		ctx.lineWidth = 8;
-		ctx.strokeStyle="#59f442";
-		ctx.arc(coor.node[strt].x,coor.node[strt].y,40,0,2*Math.PI);
-		ctx.stroke();
-		
+
 		ctx.beginPath();
 		ctx.lineWidth = 10;
 		ctx.strokeStyle = "#ff0000";
@@ -1153,7 +1493,17 @@ for (var i = 0; i < finishedPath.length; i++) {
 	}
 	getPath(finishedPath[i],finishedPath[i+1]);
 }
+
+// drawArrow(123, 456, ctx, -1);
 }
+document.addEventListener("DOMContentLoaded", init, false);
+function init()
+{
+	var canvas = document.getElementById("map");
+	canvas.addEventListener("click", getCursorPosition, false);
+}
+
+
 
 </script>
 </body>
