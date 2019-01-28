@@ -6,16 +6,16 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<style type="text/css" media="screen">
 	canvas {
-		display:block; 
-		background: #fff url(map.jpg) no-repeat;
-		margin-bottom: 115px;
+    display:none; 
+    background: #fff url(map.jpg) no-repeat;
+    margin-bottom: 115px;
         margin-top: 75px;
-	} 
+  } 
 	body {
 		margin: 0;
-		background: #083C5D;
+    background-image: repeating-linear-gradient(#083C5D, #1d1e22);
+/*  background="ballformap.jpeg";*/
 	}
-
 	header {
 		text-align: center;
 		padding: 25px;
@@ -52,24 +52,26 @@
 		color: #FFFFFF;
 	} */
 
-	p2 {
+/*	p2 {
 		font-family: verdana;
 		font-size: 24px;
 		color: white;
 		margin-bottom: 30px
 		
 
-	}
+	}*/
 
 	nav {
         position: fixed;
 		backface-visibility: hidden;
 		bottom: 0px;
 		width: 100%;
+
 		padding: 35px;
 		text-align: center;
 		opacity: 1;
 		background-color: #708090;
+    z-index: 2;
 	}
 
 	ul {
@@ -102,6 +104,7 @@
 	height:100px;
 	}
 
+
 	img {
 		display: block;
 		margin: 0px auto;
@@ -127,12 +130,24 @@
 			font-size: 24px;
 			margin: 0 px auto;
 		} */
+
+    elevator{
+    position: relative;
+    display: inline-block;
+    padding-top: 35px;
+    padding-bottom: 30px;
+
+  
+
+  }
+
 		p2{
 			font-size: 35px;
-			/*margin: 15 px auto;*/
-			position: absolute;
-			left: 620px;
-			top: -30px;
+			position: relative;
+      display: inline-block;
+      font-family: verdana;
+      color: white;
+      margin-bottom: 10px
 		}
 
 		li {
@@ -146,16 +161,57 @@
 			display: block;
 			text-align: center;
 			font-family: verdana;
-			padding: 15px;
-		/*	background-color: white;*/
-			width: 750px;
+			padding: 25px;
+			width: 85%;
 			display: inline-block;
+      /*background-color: #1d1e22;*/
+  
 		}
-	}
-	elevator{
-		position: relative;
-		top: 50px;
-
+    CustNodeTxt1{
+  font-size: 30px;
+      color: white;
+      font-weight: normal;
+      display: block;
+      text-align: center;
+      font-family: verdana;
+      width: 300px;
+      display: inline-block;
+      padding-left: 40px;
+}
+CustNodeTxt2{
+  font-size: 30px;
+      color: white;
+      font-weight: normal;
+      display: block;
+      text-align: center;
+      font-family: verdana;
+      width: 100px;
+      display: inline-block;
+      padding-left: 65px;
+}
+or{
+  font-size: 38px;
+      color: white;
+      font-weight: normal;
+      display: block;
+      text-align: center;
+      font-family: verdana;
+      padding: 10px;
+      width: 100px;
+      display: inline-block;
+}
+this{
+  font-size: 30px;
+      color: white;
+      font-weight: normal;
+      display: block;
+      text-align: center;
+      font-family: verdana;
+      padding: 25px;
+      width: 85%;
+      display: inline-block;
+  /*    background-color: #6699cc*/
+}
 	}
 	input[type="button"]{
 		width: 300px;
@@ -166,11 +222,9 @@
 		border: 0px;
 		border-radius: 25px;
 		position: relative;
-		left: 0px;
-		top: 150px;
+    display: inline-block;
+    z-index: 1;	
 	}
-
-
 		
 /* The switch - the box around the slider */
 .switch {
@@ -178,8 +232,6 @@
   display: inline-block;
   width:100px;
   height: 60px;
-  bottom: -25px;
-
 }
 
 /* Hide default HTML checkbox */
@@ -253,27 +305,21 @@ input:checked + .slider:before {
   left: 70px;
 }
 
- /* Customize the label (the container) */
+ /* Current Location CheckBox */
 .CustomBox {
   display: block;
-  position: absolute;
-  padding-left: 35px;
-  padding-top: 30px;
-  padding-right: 30px
-  margin-bottom: 12px;
+  position: relative;
+  display: inline-block;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  left: 263px;
-  top: 490px;
   font-size: 40px;
   color: white;
   font-family: verdana;
-
+  left: -175px;
 }
-
 /* Hide the browser's default radio button */
 .CustomBox input {
   position: absolute;
@@ -282,7 +328,6 @@ input:checked + .slider:before {
   height: 0;
   width: 0;
 }
-
 /* Create a custom radio button */
 .checkmark {
   position: absolute;
@@ -293,24 +338,20 @@ input:checked + .slider:before {
   background-color: #eee;
   border-radius: 50%;
 }
-
 /* On mouse-over, add a grey background color */
 .CustomBox:hover input ~ .checkmark {
   background-color: #ccc;
 }
-
 /* When the radio button is checked, add a blue background */
 .CustomBox input:checked ~ .checkmark {
   background-color: #2196F3;
 }
-
 /* Create the indicator (the dot/circle - hidden when not checked) */
 .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
-
 /* Show the indicator (dot/circle) when checked */
 .CustomBox input:checked ~ .checkmark:after {
   display: block;
@@ -326,23 +367,21 @@ input:checked + .slider:before {
   background: white;
 }
 
-/* Customize the label (the container) */ /* Destination CheckBox  */
+ /* Destination CheckBox  */
 .CustomBox1 {
   display: block;
-  position: absolute;
-  padding-left: 35px;
-  padding-top: 30px;
-  margin-bottom: 12px;
+  position: relative;
+  display: inline-block;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  left: 730px;
-  top: 490px;
   font-size: 40px;
   color: white;
   font-family: verdana;
+  left: -45px;
+
 }
 
 /* Hide the browser's default radio button */
@@ -396,6 +435,8 @@ input:checked + .slider:before {
   border-radius: 50%;
   background: white;
 } 
+
+
 </style>
 
 </head>
@@ -407,8 +448,8 @@ input:checked + .slider:before {
 	<div class="header">
         <center>
 	<dropdown>
-		<p3> Select Your Current Location & Destination</p3> <br>
-       <select name="current" id="current" >
+		<p3> Select Your Current Location & Destination From Our Preset Locations</p3> <br>
+       <select name="current" id="current" onchange="dropchange()" >
             <option value="#">Current Location</option>
         <option disabled>-----Level 1-----</option>
             <option value="94">Berea Room</option>
@@ -441,10 +482,11 @@ input:checked + .slider:before {
             <option value="101">Thoroughbred Room 7</option>
             <option value="102">Thoroughbred Room 8</option>
             <option value="49">Ticket Office</option>
+            <option value="122">Custom</option>
 
 	</select>
 
-        <select name="destination" id="destination">
+        <select name="destination" id="destination" onchange="dropchange1()">
         <option value="#">Destination</option>
         <option value="bathroom">Closest Bathroom</option>
         <option disabled>-----Level 1-----</option>
@@ -478,24 +520,37 @@ input:checked + .slider:before {
             <option value="101">Thoroughbred Room 7</option>
             <option value="102">Thoroughbred Room 8</option>
             <option value="49">Ticket Office</option>
+            <option value="124">Custom </option>
     </select>
 </dropdown>
         </center>
 </div>
 	
-<elevator>
-	<center>
-	<p2> Use Elevator? </p2>
-	<br>
-    <label class="switch" id = "myButton" value = "-1" onchange="goElevator();">
-      <input type="checkbox">
-      <span class="slider round"></span>
-    </label>
-        <div id="button">
-    <input type="button" value="Draw Map" onclick="showMap()" /></div>
-    </center>
-</elevator>
+
+
     
+
+<center>
+<or> or </or>
+<br>
+
+<this>  Select Your Location and/or Destination on the Map </this>
+<br>
+
+
+<label class="CustomBox"> <CustNodeTxt1> Select Current Location </CustNodeTxt1>
+  <input type="radio" id="CustCurrent" name="radio" onchange="CurrClicked()">
+  <span class="checkmark"></span>
+</label>
+<label class="CustomBox1"> <CustNodeTxt2> Select Destination </CustNodeTxt2>
+  <input type="radio" id="CustDestination" name="radio" onchange="DestClicked()">
+  <span class="checkmark"></span>
+</label>
+</center>
+
+<!-- document.getElementById('CustDestination').checked = false;
+
+document.getElementById('CustCurrent').checked = false; -->
 
 <center>
     <nav>
@@ -505,44 +560,86 @@ input:checked + .slider:before {
     </nav>
 </center>
 
-<label class="CustomBox"> Current Location
-  <input type="checkbox" checked="checked">
-  <span class="checkmark"></span>
-</label>
+ <center>
+<elevator>
+ 
 
-<label class="CustomBox1"> Destination
-  <input type="checkbox">
-  <span class="checkmark"></span>
-</label>
+  <p2> Use Elevator? </p2>
+  <br>
+    <label class="switch" id = "myButton" value = "-1" onchange="goElevator()">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label>
+    
+</elevator>
+ <div id="button">
+    <input type="button" value="Draw Map" onclick="showMap()" /></div>
+ 
+</center>
+
+
+<canvas id='map' width='3714' height ='3714'></canvas>
+
+
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type = "text/javascript">
-function showMap() {
-    if (asdf){
-        var canvas = document.createElement('canvas');
-        canvas.id = "map";
-        canvas.width = 3714;
-        canvas.height = 3714;
-        document.getElementsByTagName("body")[0].append(canvas);
-    }
-    asdf = false;
-    main();
-}
-function segdist(x, y, x1, y1, x2, y2) {
+	
+var can = document.getElementById("map");
+var ctx = can.getContext("2d");
 
+function showMap() {
+	can.style.display = "block";
+	main();
+	
+}
+
+
+// When Current Location is Changed on DropBox
+function dropchange() {
+  document.getElementById('CustCurrent').checked = false;
+
+  if(document.getElementById('current').value == "122"){
+  document.getElementById('CustCurrent').checked = true;
+}
+ 
+}
+// When Destination is Changed on DropBox
+function dropchange1(){
+  document.getElementById('CustDestination').checked = false;
+
+  if(document.getElementById('destination').value == "124"){
+  document.getElementById('CustDestination').checked = true;
+}
+}
+
+
+// When "Current" Radio Button Selected
+function CurrClicked(){
+    document.getElementById('CustDestination').checked = false;
+       document.getElementById('current').value = "122";
+  
+}
+// When "Destination" Radio Button Selected
+function DestClicked(){
+  document.getElementById('CustCurrent').checked = false;
+  document.getElementById('destination').value = "124";
+  
+}
+	
+	
+function segdist(x, y, x1, y1, x2, y2, points) {
   var A = x - x1;
   var B = y - y1;
   var C = x2 - x1;
   var D = y2 - y1;
-
   var dot = A * C + B * D;
   var len_sq = C * C + D * D;
   var param = -1;
   if (len_sq != 0) //in case of 0 length line
       param = dot / len_sq;
-
   var xx, yy;
-
   if (param < 0) {
     xx = x1;
     yy = y1;
@@ -558,86 +655,88 @@ function segdist(x, y, x1, y1, x2, y2) {
 
   var dx = x - xx;
   var dy = y - yy;
+  if(points){
+    return [xx,yy];
+  }
+
+
+
   return dx * dx + dy * dy;
 }
-function segdist1(x, y, x1, y1, x2, y2) {
+// function segdist1(x, y, x1, y1, x2, y2) {
+//   var A = x - x1;
+//   var B = y - y1;
+//   var C = x2 - x1;
+//   var D = y2 - y1;
+//   var dot = A * C + B * D;
+//   var len_sq = C * C + D * D;
+//   var param = -1;
+//   if (len_sq != 0) //in case of 0 length line
+//       param = dot / len_sq;
 
-  var A = x - x1;
-  var B = y - y1;
-  var C = x2 - x1;
-  var D = y2 - y1;
+//   var xx, yy;
 
-  var dot = A * C + B * D;
-  var len_sq = C * C + D * D;
-  var param = -1;
-  if (len_sq != 0) //in case of 0 length line
-      param = dot / len_sq;
+//   if (param < 0) {
+//     xx = x1;
+//     yy = y1;
+//   }
+//   else if (param > 1) {
+//     xx = x2;
+//     yy = y2;
+//   }
+//   else {
+//     xx = x1 + param * C;
+//     yy = y1 + param * D;
+//   }
+// return [xx,yy];
+// }
+	
+function selectpoint(number){
+	can.style.display = "block";
+//	can.style.marginBottom = "0px";
+	can.style.marginTop = "-650px";
+	
+//	can.style.position = "absolute"
+//	var a = window.innerWidth;
+//	var b = window.innerHeight;
+//	if (a > b){a = b;}
+//	clear();
+//	can.style.display = "block";
+//	can.style.position = "absolute";
+//	can.style.bottom = "0";
+//	can.style.right = "0";
+//	can.style.width = "px";
+//	can.style.height ="px";
 
-  var xx, yy;
-
-  if (param < 0) {
-    xx = x1;
-    yy = y1;
-  }
-  else if (param > 1) {
-    xx = x2;
-    yy = y2;
-  }
-  else {
-    xx = x1 + param * C;
-    yy = y1 + param * D;
-  }
-return [xx,yy];
+	can.addEventListener("click", getCursorPosition, false);
 }
+	
+//function getRadioVal() {
+//    var val;
+//    // get list of radio buttons with specified name
+//    var radios = this.elements[radio];
+//    
+//    // loop through list of radio buttons
+//    for (var i=0, len=radios.length; i<len; i++) {
+//        if ( radios[i].checked ) { // radio checked?
+//            val = radios[i].value; // if so, hold its value in val
+//            break; // and break out of for loop
+//        }
+//    }
+//    return val; // return value of checked radio or undefined if none checked
+//}	
+	
 
+
+    
 var elevToggle = -1;
 var goStairs = false;
-var can = document.getElementById("map");
-var ctx = can.getContext("2d");
-var newNodeX = 0;
-var newNodeY = 0;
-var conNodeX = 0;
-var conNodeY = 0;
+var newNodeX = null;
+var newNodeY = null;
+var conNodeX = null;
+var conNodeY = null;
 var coor = {
  	"node":[
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  	{"x":1588 ,"y":1633},
  	{"x":1046 ,"y":585 },
  	{"x":737  ,"y":839 },
@@ -761,6 +860,8 @@ var coor = {
  	{"x":1948 ,"y":2583},
  	{"x":1213 ,"y":1103},
  	{"x": 0,"y": 0},
+ 	{"x": 0,"y": 0},
+	{"x": 0,"y": 0},
  	{"x": 0,"y": 0}
  	]
  }
@@ -768,12 +869,9 @@ var e = [];
 function asdf(){
 	coor.node[122].x = newNodeX
 	coor.node[122].y = newNodeY
-	coor.node[122].x = conNodeX
-	coor.node[122].y = conNodeY
+	coor.node[123].x = conNodeX
+	coor.node[123].y = conNodeY
 }
-
-
-//ensures code doesn't draw anything whenever current location or destination are selected
 
 function addConnection(a,b) {
 	var c = Math.hypot(coor.node[a].x-coor.node[b].x, coor.node[a].y-coor.node[b].y)
@@ -793,21 +891,18 @@ function addstairs(a,b,c){
 	e[b][a] = c;
 }
 
-function customNode(){
-	var custx = newNodeX;
-	var custy = newNodeY;
+function customNode(lkj){
 	var closeNode = [];//
 	var nodeLoc = [];
 	var closestPair = [[1,1],[2,2]];
-	var minDist = 9999999;
-	var angle = 180;
+	var minDist = 1000001;
 	var d;
 	var run = false;
 	var one;
 	var two;
 
 	for(var i=0; i<e.length; i++){
-		if(Math.hypot(coor.node[i].x-newNodeX, coor.node[i].y-newNodeY) <250){
+		if(Math.hypot(coor.node[i].x-newNodeX, coor.node[i].y-newNodeY) < 1000){
 			run = true;
 			closeNode.push(i);
 			nodeLoc.push([coor.node[i].x,coor.node[i].y]);
@@ -817,14 +912,19 @@ function customNode(){
 		for(var i=0; i<closeNode.length-1; i++){
 			for(var j=1; j<closeNode.length; j++){
 				if( e[closeNode[i]][closeNode[j]]!=Infinity && e[closeNode[i]][closeNode[j]]!=1000){
-					var d = segdist(newNodeX, newNodeY,nodeLoc[i][0], nodeLoc[i][1], nodeLoc[j][0], nodeLoc[j][1] )
+					var d = segdist(newNodeX, newNodeY,nodeLoc[i][0], nodeLoc[i][1], nodeLoc[j][0], nodeLoc[j][1], false )
 					if(d<minDist){
-						minDist = d;
-						one= i;
-						two= j;
-						var boi = segdist1(custx, custy,nodeLoc[i][0], nodeLoc[i][1], nodeLoc[j][0], nodeLoc[j][1])
-						conNodeX = boi[0];
-						conNodeY = boi[1];
+           if(!((newNodeY<1915&&nodeLoc[i][1]>1915)||(newNodeY>1841&&nodeLoc[i][1]<1841)||((newNodeY>1841)&&((newNodeX<1356&&nodeLoc[i][0]>1283)||(newNodeX>1283&&nodeLoc[i][0]<1283))))){
+                        minDist = d;
+                        one= i;
+                        two= j;
+                        var boi = segdist(newNodeX, newNodeY,nodeLoc[i][0], nodeLoc[i][1], nodeLoc[j][0], nodeLoc[j][1], true)
+                        conNodeX = boi[0];
+                        conNodeY = boi[1];
+                      }
+
+
+
 					}
  				}
  			}
@@ -833,23 +933,28 @@ function customNode(){
 		addConnection1(123,closestPair[0],closeNode[one]);
 		addConnection1(123,closestPair[1],closeNode[two])
 }
+coor.node[lkj].x = newNodeX
+coor.node[lkj].y = newNodeY
+coor.node[lkj+1].x = conNodeX
+coor.node[lkj+1].y = conNodeY
+	
 ctx.beginPath();
 ctx.moveTo(nodeLoc[one][0], nodeLoc[one][1]);
 ctx.lineTo(nodeLoc[two][0], nodeLoc[two][1]);
-ctx.strokeStyle = "#ffffff";
+ctx.strokeStyle = "#ffff00";
 ctx.lineWidth = 10;
 ctx.stroke();
 
 ctx.beginPath();
 ctx.moveTo(newNodeX, newNodeY);
 ctx.lineTo(nodeLoc[two][0], nodeLoc[two][1]);
-ctx.strokeStyle = "#ffffff";
+ctx.strokeStyle = "#ffff00";
 ctx.lineWidth = 10;
 ctx.stroke();
 ctx.beginPath();
 ctx.moveTo(nodeLoc[one][0], nodeLoc[one][1]);
 ctx.lineTo(newNodeX, newNodeY);
-ctx.strokeStyle = "#ffffff";
+ctx.strokeStyle = "#ffff00";
 ctx.lineWidth = 10;
 ctx.stroke();
 
@@ -864,27 +969,37 @@ ctx.lineWidth = 10;
 ctx.strokeStyle = "#ff0000";
 ctx.arc(conNodeX,conNodeY,5,0,2*Math.PI);
 ctx.stroke();
+
+ctx.beginPath();
+ctx.lineWidth = 10;
+ctx.strokeStyle = "#0000ff";
+ctx.arc(nodeLoc[two][0], nodeLoc[two][1],5,0,2*Math.PI);
+ctx.stroke();
+ctx.beginPath();
+ctx.lineWidth = 10;
+ctx.strokeStyle = "#ff00ff";
+ctx.arc(nodeLoc[one][0], nodeLoc[one][1],5,0,2*Math.PI);
+ctx.stroke();
+
+
 }
 
-
-
-function dorun(){
+ function dorun(){
 	clear();
-	ctx.clearRect(0,0,3714,3714);
 	if ((document.getElementById("current").value != "#") && (document.getElementById("destination").value != "#")){
 		main();
 	}
+}
 
-}
 function clear(){
-	var can = document.getElementById("map");
-	var ctx = can.getContext("2d");
- 		ctx.clearRect(0,0,3714,3714);
+	ctx.clearRect(0,0,3714,3714);
 }
+    
 function goElevator(){
 	elevToggle*= -1;
 	dorun();
 }
+    
 function drawArrow(fromx, fromy,ctx, direction){
                 //variables to be used when creating the arrow
                 var tox = fromx;
@@ -893,39 +1008,36 @@ function drawArrow(fromx, fromy,ctx, direction){
                 ctx.beginPath();
                 ctx.moveTo(fromx, fromy);
                 ctx.lineTo(tox, toy);
-                ctx.strokeStyle = "#FFFF00";
-                ctx.lineWidth = 8;
+                ctx.strokeStyle = "#FAED26";
+                ctx.lineWidth = 12;
                 ctx.stroke();
-
                 toy += direction * 10
                 //starting a new path from the head of the arrow to one of the sides of the point
                 ctx.beginPath();
                 ctx.moveTo(tox, toy);
                 ctx.lineTo(tox-20,toy-direction*20);
-
                 //path from the side point of the arrow, to the other side point
                 ctx.lineTo(tox+20,toy-direction*20);
-
                 //path from the side point back to the tip of the arrow, and then again to the opposite side point
                 ctx.lineTo(tox, toy);
-
                 //draws the paths created above
-                ctx.strokeStyle = "#ffff00";
-                ctx.lineWidth = 3;
+                ctx.strokeStyle = "#FAED26";
+                ctx.lineWidth = 8;
                 ctx.stroke();
-                ctx.fillStyle = "#ffff00";
+                ctx.fillStyle = "#FAED26";
                 ctx.fill();
                 ctx.beginPath();
                 ctx.moveTo(tox, toy);
-				ctx.lineWidth = 8;
+		ctx.lineWidth = 8;
                 ctx.stroke();
 }
+	
 function grayOut(n, ctxp){
 	ctxp.globalAlpha = .8;
 	ctxp.clearRect(0,0,3714,3714);
 	var clip = document.getElementById("map");
 	var ctxp = clip.getContext("2d");
-	if(n==3){
+	if(n==3){	
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
 		ctxp.fillRect(0,0,3713,1841);
@@ -934,8 +1046,8 @@ function grayOut(n, ctxp){
 	else if(n==2){
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
+		ctxp.fillRect(0,1915,1283,3713);
 		ctxp.fillRect(0,0,3713,1841);
-		ctxp.fillRect(1356,1915,3713,3713);
 	}
 	else if(n==1){
 		ctxp.beginPath();
@@ -946,43 +1058,34 @@ function grayOut(n, ctxp){
 	else if(n==21){
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
-		ctxp.fillRect(1356,1915,3713,3713);
+		ctxp.fillRect(0,0,3713,1841);
 	}
 	else if(n==23){
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
-		ctxp.fillRect(0,0,3713,1841);
+		ctxp.fillRect(1356,1915,3713,3713);
 	}
 }
 
 function getCursorPosition(event) {
-	canvas = document.getElementById("map");
-	ctx = canvas.getContext('2d');
+//	var nodenumber = document.getElementById("a").value
+//	if (nodenumber )
 
-	var rect = canvas.getBoundingClientRect();
-	newNodeX = event.clientX - rect.left;
-	newNodeY = event.clientY - rect.top;
-
-	newNodeX /=  rect.width;
-	newNodeY /=  rect.height;
-
-
-	newNodeX *= canvas.width;
-	newNodeY *= canvas.height;
-
-
+	var rect = can.getBoundingClientRect();
+	newNodeX = (event.clientX - rect.left)* can.width /rect.width;
+	newNodeY = (event.clientY - rect.top)* can.height/rect.height;
 
 	ctx.beginPath();
 		ctx.lineWidth = 8;
 		ctx.strokeStyle="#59f442";
 		ctx.arc(newNodeX,newNodeY,5,0,2*Math.PI);
 	ctx.stroke();
-	customNode();
-asdf();
+	
+	customNode(122);
+	asdf();
 }
-
-
- function main() {
+	
+function main() {
 
  	var goStairs = false;
 
@@ -1070,15 +1173,6 @@ asdf();
 		}
 	}
 
-//have defined a cood
-//takes custom node position & sends it to nearest path
-
-
-//connects two nodes
-
-//manually sets a distance between stairs so path length is unaffected by stairs.
-
-
 //line exception
 //don't draw connections between the stairs
 function lineExc(a,b) {
@@ -1122,41 +1216,7 @@ function lineExc(a,b) {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// from now on, we will refer to what Dijkstra calls vertices as nodes
+//vertices = nodes
 // node coods
 
 // The adjacency matrix defining the graph.
@@ -1425,9 +1485,6 @@ if(dest == "bathroom"){
 // Get the shortest path from node strt to node dest.
 var finishedPath = constructPath(shortestPathInfo, dest);
 
-var can = document.getElementById("map");
-var ctx = can.getContext("2d");
-
 ctx.clearRect(0,0,3714,3714)
 
 var clip = document.getElementById("map");
@@ -1471,6 +1528,7 @@ for (var i = 0; i < finishedPath.length; i++) {
 		// ctx.stroke();
 
 		// ctx.beginPath();// draw the path
+		// ctx.beginPath();// draw the path
 		ctx.lineTo(coor.node[dest].x+(50/2),coor.node[dest].y-50);	// set the end point
 		ctx.closePath();
 		ctx.lineWidth = 10;
@@ -1503,11 +1561,7 @@ function init()
 	canvas.addEventListener("click", getCursorPosition, false);
 }
 
-
-
 </script>
-</body>
+</body >
 </html>
-
-
 
