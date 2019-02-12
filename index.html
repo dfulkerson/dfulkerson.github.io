@@ -7,11 +7,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<style type="text/css" media="screen">
 	canvas {
-		display:none; 
+		display:none;
 		background: #fff url(map.jpg) no-repeat;
 		margin-bottom: 115px;
         margin-top: 75px;
-	} 
+/*		z-index: 999*/
+	}
 	body {
 		margin: 0;
 		background: #083C5D;
@@ -39,7 +40,7 @@
 			width: 180px;
 			size: 100px;
 }
-		
+
 	h1 {
 		font-family: verdana;
 		color: #FFFFFF;
@@ -55,11 +56,10 @@
 		color: white;
 	}
 	nav {
-        position: fixed;
 		backface-visibility: hidden;
 		bottom: 0px;
 		width: 100%;
-		padding: 35px;
+		padding: 15px;
 		text-align: center;
 		opacity: 1;
 		background-color: #708090;
@@ -77,7 +77,7 @@
 		font-weight: bold;
 		margin: 5px 80px;
 		font-size: 35px;
-		
+
 	}
 	select {
 	overflow-y: scroll;
@@ -98,7 +98,7 @@
 		padding: 20px;
 		text-align: center;
 	}
-  	
+
 	@media only screen and (max-width: 6000px) {
 		#map {
 			width: 100%;
@@ -134,16 +134,15 @@
 	elevator{
 		position: relative;
 		top: 50px;
+		z-index: -1
 	}
-	
-		
+
 .switch {
   position: relative;
   display: inline-block;
   width: 100px;
   height: 60px;
   top: -30px;
-
 }
 
 /* Hide default HTML checkbox */
@@ -217,6 +216,7 @@ input:checked + .slider:before {
   left: 70px;
 }
 
+
 CustNodeTxt1{
 font-size: 30px;
 			color: white;
@@ -226,7 +226,7 @@ font-size: 30px;
 		/*	background-color: white;*/
 			width: 300px;
 			display: inline-block;
-		
+
 }
 this{
 font-size: 30px;
@@ -237,7 +237,7 @@ font-size: 30px;
 			font-family: verdana;
 		/*	background-color: white;*/
 			width: 800
-			display: inline-block;
+		
 }
 CustNodeTxt2{
 font-size: 30px;
@@ -250,8 +250,8 @@ font-size: 30px;
 			display: inline-block;
 
 }
-or{ 
-	font-size: 30px;
+or{
+	font-size: 45px;
 			color: white;
 			font-weight: normal;
 			display: block;
@@ -260,6 +260,8 @@ or{
 		/*	background-color: white;*/
 			width: 800
 			display: inline-block;
+			padding-top: 20px;
+			padding-bottom: 20px;
 }
 
 
@@ -294,20 +296,26 @@ or{
 		border-radius: 25px
 	}
 
-	
+
 </style>
 
 </head>
 
 <body>
+	  <nav>
+        <a href="#">Home</a>
+        <a href="about.html">About</a>
+        <a href="https://goo.gl/forms/nF6PKPHSmJbqG1W13">Contact</a>
+    </nav>
 	<header>
 		<h1 id="testingid">Lexington Convention Center Interactive Map</h1>
 	</header>
+
 	<div class="header">
         <center>
 	<dropdown>
 		<p3> Select Your Start Location & Destination From Our List</p3> <br>
-       <select name="current" id="current" >
+       <select name="current" id="current" onchange="dropdownfunc()">
             <option value="#">Start Location</option>
    			<option hidden value="122">Custom Start Location</option>
         <option disabled>-----Level 1-----</option>
@@ -344,7 +352,7 @@ or{
 
 	</select>
 
-        <select name="destination" id="destination">
+        <select name="destination" id="destination" onchange="dropdownfunc()">
         <option value="#">Destination</option>
 		<option hidden value="124">Custom Destination</option>
         <option value="bathroom">Closest Bathroom</option>
@@ -382,7 +390,7 @@ or{
     </select>
 </dropdown>
         </center>
-		
+
 <or> or </or>
 <br>
 
@@ -395,58 +403,42 @@ or{
 	<div id="buttons">
     <button class="button1" value=" Current Location" onclick="selectpoint(1)">Start
 </button>
-  
 
-  
+
+
     <button class="button2" value=" Destination" onclick="selectpoint(2)">Destination
 </button>
- </div>
-
-    
+ </div> 
 
 </center>
 
-  
-			
-
-
-
 </div>
-	
+
 <elevator>
 	<center>
-	<!-- <p2> Use Elevator? </p2>
+	 <p2> Use Elevator? </p2>
     <label class="switch" id = "myButton" value = "-1" onchange="goElevator()">
       <input type="checkbox">
       <span class="slider round"></span>
-    </label> -->
-
+    </label>
 
      <div id="button">
-   <input type="button" value="Draw Map" onclick="showMap()"> </input>
-</div>
-	 
-    </center>
+<!--   <input type="button" value="Draw Map" onclick="showMap()"></input> -->
+	</center>
 	<canvas id='map' width='3714' height ='3714'></canvas>
 </elevator>
-    
 
-<center>
-    <nav>
-        <a href="#">Home</a>
-        <a href="about.html">About</a>
-        <a href="https://goo.gl/forms/nF6PKPHSmJbqG1W13">Contact</a>
-    </nav>
-</center>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type = "text/javascript">
-	var autoCurr=1;
-	var autoDest=1;
-	
+
+// var autoCurr=1;
+// var autoDest=1;
 var can = document.getElementById("map");
 var ctx = can.getContext("2d");
-	
+var e = [];
+
+
 function segdist(x, y, x1, y1, x2, y2, points) {
   var A = x - x1;
   var B = y - y1;
@@ -479,16 +471,27 @@ function segdist(x, y, x1, y1, x2, y2, points) {
   return dx * dx + dy * dy;
 }
 
+function dropdownfunc(){
+	if (document.getElementById("current").value != "#" && document.getElementById("destination").value != "#"){
+		can.style.display = "block";
+		main();}
+	
+
+}
 
 var offset;
 var selector = 0;
+var elevbutton = document.getElementById("myButton");
+	
 function selectpoint(number){
+	addconnections();
+	elevbutton.style.zIndex = "-1"
 	can.style.display = "block";
 	window.scrollTo(0,0);
 	offset = can.getBoundingClientRect().top;
 	can.style.marginTop = -1*offset+75+"px";
 	selector = number;
-
+	clear();
 	can.addEventListener("click", getCursorPosition);
 }
 
@@ -496,7 +499,7 @@ function showMap() {
 	can.style.display = "block";
 	main();
 }
-    
+
 var elevToggle = -1;
 var goStairs = false;
 var newNodeX = 0;
@@ -507,57 +510,10 @@ var onOne = false;
 var onTwo = false;
 var onThree = false;
 var g = 500;
+var custFloor = 0;
+var custFloors =[0,0];
 var coor = {
  	"node":[
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-					
  	{"x":1588 ,"y":1633},
  	{"x":1046 ,"y":585 },
  	{"x":737  ,"y":839 },
@@ -686,17 +642,17 @@ var coor = {
  	{"x": null,"y": null}
  	]
  }
-var e = [];
-var _ = Infinity;
-
-var matrixSize = coor.node.length;
-for (var i = 0; i < matrixSize; i++) {
-	e[i] = [];
-	for (var k = 0; k < matrixSize; k++) {
-		e[i][k] = _;
+  var matrixSize = coor.node.length;
+	var e = [];
+	var _ = Infinity;
+	for (var i = 0; i < matrixSize; i++) {
+		e[i] = [];
+		for (var k = 0; k < matrixSize; k++) {
+			e[i][k] = _;
+		}
 	}
-}
-addconnections()
+
+
 
 function addConnection(a,b) {
 	var c = Math.hypot(coor.node[a].x-coor.node[b].x, coor.node[a].y-coor.node[b].y)
@@ -705,16 +661,11 @@ function addConnection(a,b) {
 
 }
 
-function addConnection1(a,b,d){
-	var c = Math.hypot(coor.node[a].x-b[0], b[1]-coor.node[a].y)
-	e[a][d] = c;
-	e[d][a] = c;
-}
-
 function addstairs(a,b,c){
 	e[a][b] = c;
 	e[b][a] = c;
 }
+
 function drawStop(dest){
 	ctx.beginPath();
 	ctx.lineWidth = 55;
@@ -742,6 +693,7 @@ function drawStop(dest){
 	ctx.arc(coor.node[dest].x,coor.node[dest].y,5,0,2*Math.PI);
 	ctx.stroke();
 }
+
 function drawGo(strt){
 	ctx.beginPath();
 	ctx.lineWidth = 10;
@@ -749,6 +701,7 @@ function drawGo(strt){
 	ctx.arc(coor.node[strt].x,coor.node[strt].y,5,0,2*Math.PI);
 	ctx.stroke();
 }
+
 function customNode(number){
 	var closeNode = [];//
 	var nodeLoc = [];
@@ -758,6 +711,10 @@ function customNode(number){
 	var run = false;
 	var one;
 	var two;
+	if(number == 122)
+ 		custFloors[0] = custFloor;
+ 	else 
+ 		custFloors[1] = custFloor;
 
 	for(var i=0; i<e.length; i++){
 		if(Math.hypot(coor.node[i].x-newNodeX, coor.node[i].y-newNodeY) < g){
@@ -769,12 +726,12 @@ function customNode(number){
 	if(run){
 		for(var i=0; i<closeNode.length-1; i++){
 			for(var j=1; j<closeNode.length; j++){
-				
+
 				if( e[closeNode[i]][closeNode[j]]!=Infinity && e[closeNode[i]][closeNode[j]]!=1000){
 					if(!((newNodeY<1915&&nodeLoc[i][1]>1915)||(newNodeY>1841&&nodeLoc[i][1]<1841)||((newNodeY>1841)&&((newNodeX<1356&&nodeLoc[i][0]>1283)||(newNodeX>1283&&nodeLoc[i][0]<1283))))){
 						var d = segdist(newNodeX, newNodeY,nodeLoc[i][0], nodeLoc[i][1], nodeLoc[j][0], nodeLoc[j][1], false)
 						if(d<minDist){
-						
+
 							minDist = d;
 							one= i;
 							two= j;
@@ -790,11 +747,11 @@ function customNode(number){
 		coor.node[number].y = newNodeY
 		coor.node[number+1].x = conNodeX
 		coor.node[number+1].y = conNodeY
-
+		breakCustConnections(number+1);
 		addConnection(number,number+1);
 		addConnection(number+1,closeNode[one])
 		addConnection(number+1,closeNode[two])
-		
+
 		if (number == 122){
 			document.getElementById("current").options[1].hidden = false;
 			document.getElementById("current").value = "122"
@@ -807,26 +764,19 @@ function customNode(number){
 			clear();
 			drawStop(124);
 		}
-				
-	}
-}
 
- function dorun(){
-//	if ((document.getElementById("current").value != "#") && (document.getElementById("destination").value != "#")){
-//		main();
-//	}
-	 main();
+	}
 }
 
 function clear(){
 	ctx.clearRect(0,0,3714,3714);
 }
-    
+
 function goElevator(){
 	elevToggle*= -1;
-	dorun();
+	dropdownfunc();
 }
-    
+
 function drawArrow(fromx, fromy,ctx, direction){
                 //variables to be used when creating the arrow
                 var tox = fromx;
@@ -858,13 +808,13 @@ function drawArrow(fromx, fromy,ctx, direction){
 		ctx.lineWidth = 8;
                 ctx.stroke();
 }
-	
+
 function grayOut(n, ctxp){
 	ctxp.globalAlpha = .8;
 	ctxp.clearRect(0,0,3714,3714);
 	var clip = document.getElementById("map");
 	var ctxp = clip.getContext("2d");
-	if(n==3){	
+	if(n==3){
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
 		ctxp.fillRect(0,0,3713,1841);
@@ -873,7 +823,7 @@ function grayOut(n, ctxp){
 	else if(n==2){
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
-		ctxp.fillRect(0,1915,1283,3713);
+		ctxp.fillRect(1356,1915,3713,3713);
 		ctxp.fillRect(0,0,3713,1841);
 	}
 	else if(n==1){
@@ -892,50 +842,70 @@ function grayOut(n, ctxp){
 		ctxp.fillStyle= "#999999";
 		ctxp.fillRect(1356,1915,3713,3713);
 	}
+
 }
+
 
 function getCursorPosition(event) {
 	var rect = can.getBoundingClientRect();
 	newNodeX = (event.clientX - rect.left)* can.width /rect.width;
 	newNodeY = (event.clientY - rect.top)* can.height/rect.height;
+
 	g= 500;
+	
 	if(newNodeY<1841){
+		custFloor = 1;
 		onOne = true;
 	}
 	else if(newNodeX<1283&&newNodeY>1915){
+		custFloor = 2;
 		onTwo = true;
 	}
 	else if(newNodeX>1356&&newNodeY>1915){
+		custFloor = 3;
 		onThree = true;
 		g = 1000
 	}
-
 
 	ctx.beginPath();
 		ctx.lineWidth = 8;
 		ctx.strokeStyle="#59f442";
 		ctx.arc(newNodeX,newNodeY,5,0,2*Math.PI);
 	ctx.stroke();
-	
+
 	if (selector == 1){
 		customNode(122);
 		strt = 122
-		
 	}
 	else{
 		customNode(124)
 		dest = 124
 	}
+	
 	selector = 0;
 	removelistener();
+	elevbutton.style.zIndex = "1"
 	can.style.marginTop = 75+'px';
+	dropdownfunc();
 }
-	
+
 function removelistener(){
 	can.removeEventListener("click", getCursorPosition);
-}	
-	
+}
+
+function breakCustConnections(number) {
+		for (var j = 0; j<126;j++){
+				e[j][number] = _;
+				e[number][j] = _;
+		}
+}
+
 function addconnections(){
+for (var i = 0; i < matrixSize-4; i++) {
+	for (var k = 0; k < matrixSize-4; k++) {
+		e[i][k] = _;
+	}
+}
 //first floor
 addConnection(1,2);
 addConnection(1,6);
@@ -1113,7 +1083,7 @@ addConnection(63,104);
 addConnection(116,118);
 addConnection(116,120);
 addConnection(118,119)
- 	
+
 // stairs
 if(elevToggle < 0){
 	addstairs(6 ,74,1000);
@@ -1135,10 +1105,11 @@ var dest = document.getElementById("destination").value;
 
 
 }
-	
+
 function main() {
 	clear();
  	goStairs = false;
+	addconnections();
 
  	//Dijkstra's Algorithm
  	function shortestPath(edges, numVertices, startVertex) {
@@ -1223,7 +1194,6 @@ function main() {
 		}
 	}
 
-
 	function lineExc(a,b) {
 	if (b < a) {
 		var c = b;
@@ -1264,10 +1234,6 @@ function main() {
 	return true;
 
 }
-
-
-
-// The adjacency matrix defining the graph.
 
 ////first floor
 //addConnection(1,2);
@@ -1446,7 +1412,7 @@ function main() {
 //addConnection(116,118);
 //addConnection(116,120);
 //addConnection(118,119)
-// 	
+//
 //// stairs
 //if(elevToggle < 0){
 //	addstairs(6 ,74,1000);
@@ -1460,7 +1426,7 @@ function main() {
 //	addstairs(114,115,1000);
 //	addstairs(115,117,1000);
 //}
-//
+
 //start node value
 var strt = document.getElementById("current").value;
 //destination value
@@ -1522,62 +1488,63 @@ if(dest == "bathroom"){
 var finishedPath = constructPath(shortestPathInfo, dest);
 ctx.clearRect(0,0,3714,3714)
 
-var clip = document.getElementById("map");
-var ctxp = clip.getContext("2d");
+var ctxp = ctx;
 var snum = document.getElementById("current").selectedIndex;
 var dnum = document.getElementById("destination").selectedIndex;
-
-if(!goStairs){
- 	if(  (snum>19&&snum<32) &&  ((dnum>20&&dnum<33)||dnum==1) ){
- 		grayOut(3, ctxp);
- 	}
- 	else if(((snum==17)||(snum==18)) && ((dnum==18)||(dnum==19)) ){
- 		grayOut(2, ctxp);
- 	}
- 	else if( ((snum>1)&&(snum<16)) && ((dnum>0&&dnum<17)||dnum==1) ){
- 		grayOut(1, ctxp);
- 	}
- }
- if((((strt==111)||(strt==112)) ^ ((dest=="bathroom")||((dest==111)||(dest==112))))){
- 	if((snum>19&&snum<32) || ((dnum>20&&dnum<33)||dnum==1) ){
- 		grayOut(23, ctxp);
- 	}
- 	else if(((snum>1)&&(snum<16)) && (dnum>0&&dnum<17)){
- 		grayOut(21, ctxp);
- 	}
- }
+if(strt!=122){
+		var x = coor.node[strt].x 
+		var y = coor.node[strt].y 
+		if(y<1841)
+			custFloors[0]=1;
+		else if(x<1283&&y>1915)
+			custFloors[0]=2;
+		else if(x<3156&&y>1915)
+			custFloors[0]=3;
+	}
+	if(dest!=124){
+		var x = coor.node[dest].x 
+		var y = coor.node[dest].y 
+		if(y<1841)
+			custFloors[1]=1;
+		else if(x<1283&&y>1915)
+			custFloors[1]=2;
+		else if(x<3156&&y>1915)
+			custFloors[1]=3;
+	}
+	
+	ctxp.clearRect(0,0,3714,3714);
+	var str = ""+custFloors
+//	 alert(str)
+	if(str.localeCompare("3,3")==0)
+		grayOut(3,ctxp);
+	else if(str.localeCompare("2,2")==0)
+		grayOut(2, ctxp);
+	else if(str.localeCompare("1,1")==0)
+		grayOut(1, ctxp);
+	else if(str.localeCompare("1,2")==0||str.localeCompare("2,1")==0)
+		grayOut(23, ctxp);
+	else if(str.localeCompare("2,3")==0||str.localeCompare("3,2")==0)
+		grayOut(21, ctxp);
 
 for (var i = 0; i < finishedPath.length; i++) {
 	if (i == finishedPath.length - 1 ){
 		drawStop(dest);
 		drawGo(strt);
-//		ctx.beginPath();
-//		ctx.lineWidth = 55;
-//		ctx.strokeStyle = "#ff0000";
-//		ctx.arc(coor.node[dest].x,coor.node[dest].y-73,10,0,2*Math.PI);
-//		ctx.stroke();
-//
-//		ctx.beginPath();// draw the path
-//		ctx.moveTo(coor.node[dest].x,coor.node[dest].y);	// set the start point
-//		ctx.lineTo(coor.node[dest].x-(50/2),coor.node[dest].y-50);	// set the end point
-//		ctx.lineWidth = 16;
-//		ctx.strokeStyle="#ff0000";
-//		// ctx.stroke();
-//
-//		// ctx.beginPath();// draw the path
-//		// ctx.beginPath();// draw the path
-//		ctx.lineTo(coor.node[dest].x+(50/2),coor.node[dest].y-50);	// set the end point
-//		ctx.closePath();
-//		ctx.lineWidth = 10;
-//		ctx.strokeStyle="#ff0000";
-//		ctx.stroke();
-//		ctx.fillStyle = "#ff0000";
-//		ctx.fill();
 
 		ctx.beginPath();
 		ctx.lineWidth = 10;
 		ctx.strokeStyle="#59f442";
 		ctx.arc(coor.node[strt].x,coor.node[strt].y,5,0,2*Math.PI);
+		ctx.stroke();
+			ctx.beginPath();
+		ctx.lineWidth = 10;
+		ctx.strokeStyle="#59f442";
+		ctx.arc(coor.node[strt].x,coor.node[strt].y,25,0,2*Math.PI);
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.lineWidth = 10;
+		ctx.strokeStyle="#59f442";
+		ctx.arc(coor.node[strt].x,coor.node[strt].y,50,0,2*Math.PI);
 		ctx.stroke();
 
 		ctx.beginPath();
@@ -1589,16 +1556,11 @@ for (var i = 0; i < finishedPath.length; i++) {
 	getPath(finishedPath[i],finishedPath[i+1]);
 }
 
-// drawArrow(123, 456, ctx, -1);
 }
-	
-	
+
+
 //document.addEventListener("DOMContentLoaded", addconnections(), false);
-//function init()
-//{
-//	var canvas = document.getElementById("map");
-//	canvas.addEventListener("click", getCursorPosition);
-//}
+
 
 </script>
 </body>
