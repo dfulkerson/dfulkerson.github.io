@@ -34,13 +34,13 @@
 			display: none;
 			position: absolute;
 			background-color: #0033A0;
-			min-width: 160px;
+			min-width: 10px;
 			box-shadow: 0px 16px 16px 0px rgba(0,0,0,0.2);
 			padding: 12px 16px;
 			width: 180px;
 			size: 100px;
-}
-
+		}
+	
 	h1 {
 		font-family: verdana;
 		color: #FFFFFF;
@@ -75,9 +75,8 @@
 		color: white;
 		font-family: verdana;
 		font-weight: bold;
-		margin: 5px 80px;
-		font-size: 35px;
-
+		margin: 5px 85px;
+		font-size: 25px;
 	}
 	select {
 	overflow-y: scroll;
@@ -90,6 +89,15 @@
 	width: 450px;
 	height:100px;
 	}
+	@media only screen and (max-width: 1250px){
+		select{
+			font-size: 35px;
+			width: 49%;
+		}
+		a{
+			margin: 5px 20px;
+		}
+	}
 	img {
 		display: block;
 		margin: 0px auto;
@@ -98,7 +106,6 @@
 		padding: 20px;
 		text-align: center;
 	}
-
 	@media only screen and (max-width: 6000px) {
 		#map {
 			width: 100%;
@@ -127,7 +134,7 @@
 			font-family: verdana;
 			padding: 15px;
 		/*	background-color: white;*/
-			width: 750px;
+			width: 100%;
 			display: inline-block;
 		}
 	}
@@ -136,7 +143,6 @@
 		top: 50px;
 		z-index: -1
 	}
-
 .switch {
   position: relative;
   display: inline-block;
@@ -144,14 +150,12 @@
   height: 60px;
   top: -30px;
 }
-
 /* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-
 /* The slider */
 .slider {
   position: absolute;
@@ -164,7 +168,6 @@
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 .slider:before {
   position: absolute;
   content: "";
@@ -176,26 +179,21 @@
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 input:checked + .slider {
   background-color: #2196F3;
 }
-
 input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
 }
-
 input:checked + .slider:before {
   -webkit-transform: translateX(40px);
   -ms-transform: translateX(40px);
   transform: translateX(px);
 }
-
 /* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
-
 .slider.round:before {
   border-radius: 50%;
 }
@@ -215,8 +213,6 @@ input:checked + .slider:before {
   top: 30px;
   left: 70px;
 }
-
-
 CustNodeTxt1{
 font-size: 30px;
 			color: white;
@@ -226,7 +222,6 @@ font-size: 30px;
 		/*	background-color: white;*/
 			width: 300px;
 			display: inline-block;
-
 }
 this{
 font-size: 30px;
@@ -248,7 +243,6 @@ font-size: 30px;
 		/*	background-color: white;*/
 			width: 100px;
 			display: inline-block;
-
 }
 or{
 	font-size: 45px;
@@ -263,13 +257,10 @@ or{
 			padding-top: 20px;
 			padding-bottom: 20px;
 }
-
-
 /* Select Your Current Loc*/
-
 /* Draw Map*/
 	input[type="button"]{
-		width: 300px;
+		width: 25;
 		height: 100px;
 		background-color: #ffffff;
 		font-size: 40px;
@@ -295,8 +286,14 @@ or{
 		border: 0px;
 		border-radius: 25px
 	}
-
-
+	@media only screen and (max-width: 1250px){
+		.button1{
+			width:40%;
+		}
+		.button2{
+			width:40%;
+		}
+	}
 </style>
 
 </head>
@@ -431,14 +428,11 @@ or{
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type = "text/javascript">
-
 // var autoCurr=1;
 // var autoDest=1;
 var can = document.getElementById("map");
 var ctx = can.getContext("2d");
 var e = [];
-
-
 function segdist(x, y, x1, y1, x2, y2, points) {
   var A = x - x1;
   var B = y - y1;
@@ -462,7 +456,6 @@ function segdist(x, y, x1, y1, x2, y2, points) {
 	xx = x1 + param * C;
 	yy = y1 + param * D;
   }
-
   var dx = x - xx;
   var dy = y - yy;
   if(points){
@@ -470,15 +463,12 @@ function segdist(x, y, x1, y1, x2, y2, points) {
   }
   return dx * dx + dy * dy;
 }
-
 function dropdownfunc(){
 	if (document.getElementById("current").value != "#" && document.getElementById("destination").value != "#"){
 		can.style.display = "block";
 		main();}
 	
-
 }
-
 var offset;
 var selector = 0;
 var elevbutton = document.getElementById("myButton");
@@ -494,12 +484,10 @@ function selectpoint(number){
 	clear();
 	can.addEventListener("click", getCursorPosition);
 }
-
 function showMap() {
 	can.style.display = "block";
 	main();
 }
-
 var elevToggle = -1;
 var goStairs = false;
 var newNodeX = 0;
@@ -651,21 +639,15 @@ var coor = {
 			e[i][k] = _;
 		}
 	}
-
-
-
 function addConnection(a,b) {
 	var c = Math.hypot(coor.node[a].x-coor.node[b].x, coor.node[a].y-coor.node[b].y)
 	e[a][b] = c;
 	e[b][a] = c;
-
 }
-
 function addstairs(a,b,c){
 	e[a][b] = c;
 	e[b][a] = c;
 }
-
 function drawStop(dest){
 	ctx.beginPath();
 	ctx.lineWidth = 55;
@@ -693,7 +675,6 @@ function drawStop(dest){
 	ctx.arc(coor.node[dest].x,coor.node[dest].y,5,0,2*Math.PI);
 	ctx.stroke();
 }
-
 function drawGo(strt){
 	ctx.beginPath();
 	ctx.lineWidth = 10;
@@ -701,7 +682,6 @@ function drawGo(strt){
 	ctx.arc(coor.node[strt].x,coor.node[strt].y,5,0,2*Math.PI);
 	ctx.stroke();
 }
-
 function customNode(number){
 	var closeNode = [];//
 	var nodeLoc = [];
@@ -715,7 +695,6 @@ function customNode(number){
  		custFloors[0] = custFloor;
  	else 
  		custFloors[1] = custFloor;
-
 	for(var i=0; i<e.length; i++){
 		if(Math.hypot(coor.node[i].x-newNodeX, coor.node[i].y-newNodeY) < g){
 			run = true;
@@ -726,12 +705,10 @@ function customNode(number){
 	if(run){
 		for(var i=0; i<closeNode.length-1; i++){
 			for(var j=1; j<closeNode.length; j++){
-
 				if( e[closeNode[i]][closeNode[j]]!=Infinity && e[closeNode[i]][closeNode[j]]!=1000){
 					if(!((newNodeY<1915&&nodeLoc[i][1]>1915)||(newNodeY>1841&&nodeLoc[i][1]<1841)||((newNodeY>1841)&&((newNodeX<1356&&nodeLoc[i][0]>1283)||(newNodeX>1283&&nodeLoc[i][0]<1283))))){
 						var d = segdist(newNodeX, newNodeY,nodeLoc[i][0], nodeLoc[i][1], nodeLoc[j][0], nodeLoc[j][1], false)
 						if(d<minDist){
-
 							minDist = d;
 							one= i;
 							two= j;
@@ -751,7 +728,6 @@ function customNode(number){
 		addConnection(number,number+1);
 		addConnection(number+1,closeNode[one])
 		addConnection(number+1,closeNode[two])
-
 		if (number == 122){
 			document.getElementById("current").options[1].hidden = false;
 			document.getElementById("current").value = "122"
@@ -764,19 +740,15 @@ function customNode(number){
 			clear();
 			drawStop(124);
 		}
-
 	}
 }
-
 function clear(){
 	ctx.clearRect(0,0,3714,3714);
 }
-
 function goElevator(){
 	elevToggle*= -1;
 	dropdownfunc();
 }
-
 function drawArrow(fromx, fromy,ctx, direction){
                 //variables to be used when creating the arrow
                 var tox = fromx;
@@ -808,7 +780,6 @@ function drawArrow(fromx, fromy,ctx, direction){
 		ctx.lineWidth = 8;
                 ctx.stroke();
 }
-
 function grayOut(n, ctxp){
 	ctxp.globalAlpha = .8;
 	ctxp.clearRect(0,0,3714,3714);
@@ -842,15 +813,11 @@ function grayOut(n, ctxp){
 		ctxp.fillStyle= "#999999";
 		ctxp.fillRect(1356,1915,3713,3713);
 	}
-
 }
-
-
 function getCursorPosition(event) {
 	var rect = can.getBoundingClientRect();
 	newNodeX = (event.clientX - rect.left)* can.width /rect.width;
 	newNodeY = (event.clientY - rect.top)* can.height/rect.height;
-
 	g= 500;
 	
 	if(newNodeY<1841){
@@ -866,13 +833,11 @@ function getCursorPosition(event) {
 		onThree = true;
 		g = 1000
 	}
-
 	ctx.beginPath();
 		ctx.lineWidth = 8;
 		ctx.strokeStyle="#59f442";
 		ctx.arc(newNodeX,newNodeY,5,0,2*Math.PI);
 	ctx.stroke();
-
 	if (selector == 1){
 		customNode(122);
 		strt = 122
@@ -888,18 +853,15 @@ function getCursorPosition(event) {
 	can.style.marginTop = 75+'px';
 	dropdownfunc();
 }
-
 function removelistener(){
 	can.removeEventListener("click", getCursorPosition);
 }
-
 function breakCustConnections(number) {
 		for (var j = 0; j<126;j++){
 				e[j][number] = _;
 				e[number][j] = _;
 		}
 }
-
 function addconnections(){
 for (var i = 0; i < matrixSize-4; i++) {
 	for (var k = 0; k < matrixSize-4; k++) {
@@ -1083,7 +1045,6 @@ addConnection(63,104);
 addConnection(116,118);
 addConnection(116,120);
 addConnection(118,119)
-
 // stairs
 if(elevToggle < 0){
 	addstairs(6 ,74,1000);
@@ -1097,20 +1058,15 @@ else{
 	addstairs(114,115,1000);
 	addstairs(115,117,1000);
 }
-
 //start node value
 var strt = document.getElementById("current").value;
 //destination value
 var dest = document.getElementById("destination").value;
-
-
 }
-
 function main() {
 	clear();
  	goStairs = false;
 	addconnections();
-
  	//Dijkstra's Algorithm
  	function shortestPath(edges, numVertices, startVertex) {
  		var done = new Array(numVertices);
@@ -1151,7 +1107,6 @@ function main() {
  		"pathLengths": pathLengths,
  		"predecessors": predecessors };
  	}
-
  	function constructPath(shortestPathInfo, endVertex) {
  		var path = [];
  		while (endVertex != shortestPathInfo.startVertex) {
@@ -1161,7 +1116,6 @@ function main() {
  		path.unshift(strt);
  		return path;
  	}
-
  	function getPath(cur,dest) {
  		ctx.globalAlpha = 1.0;
 		// get return value
@@ -1177,7 +1131,6 @@ function main() {
 			ctx.lineWidth = 8;
 			ctx.strokeStyle="#ffff00";
 			ctx.stroke();	// draw the line
-
 			ctx.beginPath();
 			ctx.lineWidth = 4;
 			ctx.strokeStyle = "#ffff00";
@@ -1193,7 +1146,6 @@ function main() {
 			drawArrow(des_x,des_y-83*direc, ctx,direc);
 		}
 	}
-
 	function lineExc(a,b) {
 	if (b < a) {
 		var c = b;
@@ -1232,200 +1184,7 @@ function main() {
 		return false;
 	}
 	return true;
-
 }
-
-////first floor
-//addConnection(1,2);
-//addConnection(1,6);
-//addConnection(1,7);
-//addConnection(2,6);
-//addConnection(2,7);
-//addConnection(3,4);
-//addConnection(3,113);
-//addConnection(3,107);
-//addConnection(4,6);
-//addConnection(4,8);
-//addConnection(4,94);
-//addConnection(6,7);
-//addConnection(7,9);
-//addConnection(8,10);
-//addConnection(9,10);
-//addConnection(9,14);
-//addConnection(9,121);
-//addConnection(11,12);
-//addConnection(11,114);
-//addConnection(11,121);
-//addConnection(12,114);
-//addConnection(13,14);
-//addConnection(13,16);
-//addConnection(14,16);
-//addConnection(14,121);
-//addConnection(89,17);
-//addConnection(16,89);
-//addConnection(17,22);
-//addConnection(18,19);
-//addConnection(18,89);
-//addConnection(19,20);
-//addConnection(20,21);
-//addConnection(21,25);
-//addConnection(22,23);
-//addConnection(23,24);
-//addConnection(23,29);
-//addConnection(24,91);
-//addConnection(25,26);
-//addConnection(26,27);
-//addConnection(26,28);
-//addConnection(27,108);
-//addConnection(27,67);
-//addConnection(28,29);
-//addConnection(28,93);
-//addConnection(29,92);
-//addConnection(30,31);
-//addConnection(30,66);
-//addConnection(30,67);
-//addConnection(30,108);
-//addConnection(31,109);
-//addConnection(31,68);
-//addConnection(32,33);
-//addConnection(32,68);
-//addConnection(32,109);
-//addConnection(33,110);
-//addConnection(33,69);
-//addConnection(34,69);
-//addConnection(34,110);
-//addConnection(66,67);
-//addConnection(66,88);
-//addConnection(67,68);
-//addConnection(68,69);
-//addConnection(68,86);
-//addConnection(69,86);
-//addConnection(69,87);
-//addConnection(59,88);
-//addConnection(86,88);
-//addConnection(87,88);
-////floor 1 if elevator
-//if(elevToggle < 0){
-//	addConnection(10,11);
-//	addConnection(10,13);
-//	addConnection(11,13);
-//}
-////second floor
-//addConnection(70,71);
-//addConnection(70,72);
-//addConnection(70,112);
-//addConnection(71,72);
-//addConnection(71,73);
-//addConnection(71,112);
-//addConnection(72,75);
-//addConnection(72,112);
-//addConnection(73,74);
-//addConnection(73,76);
-//addConnection(73,77);
-//addConnection(73,78);
-//addConnection(73,111);
-//addConnection(74,75);
-//addConnection(74,76);
-//addConnection(74,77);
-//addConnection(74,78);
-//addConnection(74,111);
-//addConnection(75,76);
-//addConnection(75,77);
-//addConnection(75,111);
-//addConnection(77,78);
-//addConnection(76,77);
-//addConnection(76,79);
-//addConnection(76,111);
-//addConnection(77,111);
-//addConnection(78,80);
-//addConnection(78,111);
-//addConnection(79,80);
-//addConnection(79,81);
-//addConnection(80,81);
-//addConnection(80,115);
-//addConnection(81,82);
-//addConnection(81,115);
-//addConnection(82,83);
-//addConnection(83,84);
-//addConnection(84,85);
-////third floor
-//addConnection(35,36);
-//addConnection(35,56);
-//addConnection(35,57);
-//addConnection(35,117);
-//addConnection(36,37);
-//addConnection(36,57);
-//addConnection(36,117);
-//addConnection(37,38);
-//addConnection(37,39);
-//addConnection(37,58);
-//addConnection(38,39);
-//addConnection(38,58);
-//addConnection(39,58);
-//addConnection(39,97);
-//addConnection(40,41);
-//addConnection(40,58);
-//addConnection(41,47);
-//addConnection(41,95);
-//addConnection(42,43);
-//addConnection(42,47);
-//addConnection(42,46);
-//addConnection(42,44);
-//addConnection(42,98);
-//addConnection(42,99);
-//addConnection(43,44);
-//addConnection(43,100);
-//addConnection(44,45);
-//addConnection(44,101);
-//addConnection(45,58);
-//addConnection(45,102);
-//addConnection(45,106);
-//addConnection(46,48);
-//addConnection(46,98);
-//addConnection(47,48);
-//addConnection(48,49);
-//addConnection(48,119);
-//addConnection(48,120);
-//addConnection(49,50);
-//addConnection(49,119);
-//addConnection(50,51);
-//addConnection(51,52);
-//addConnection(52,53);
-//addConnection(53,54);
-//addConnection(54,55);
-//addConnection(54,60);
-//addConnection(55,56);
-//addConnection(56,106);
-//addConnection(56,117);
-//addConnection(57,61);
-//addConnection(57,65);
-//addConnection(57,117);
-//addConnection(60,62)
-//addConnection(60,65);
-//addConnection(60,105);
-//addConnection(62,63);
-//addConnection(62,65);
-//addConnection(62,103);
-//addConnection(62,105);
-//addConnection(63,65);
-//addConnection(63,104);
-//addConnection(116,118);
-//addConnection(116,120);
-//addConnection(118,119)
-//
-//// stairs
-//if(elevToggle < 0){
-//	addstairs(6 ,74,1000);
-//	addstairs(35,77,1000);
-//	addstairs(50,70,1000);
-//	addstairs(64,85,1000);
-//}
-////elevators
-//else{
-//	addstairs(113,116,1000);
-//	addstairs(114,115,1000);
-//	addstairs(115,117,1000);
-//}
 
 //start node value
 var strt = document.getElementById("current").value;
@@ -1487,7 +1246,6 @@ if(dest == "bathroom"){
 // Get the shortest path from node strt to node dest.
 var finishedPath = constructPath(shortestPathInfo, dest);
 ctx.clearRect(0,0,3714,3714)
-
 var ctxp = ctx;
 var snum = document.getElementById("current").selectedIndex;
 var dnum = document.getElementById("destination").selectedIndex;
@@ -1525,12 +1283,10 @@ if(strt!=122){
 		grayOut(23, ctxp);
 	else if(str.localeCompare("2,3")==0||str.localeCompare("3,2")==0)
 		grayOut(21, ctxp);
-
 for (var i = 0; i < finishedPath.length; i++) {
 	if (i == finishedPath.length - 1 ){
 		drawStop(dest);
 		drawGo(strt);
-
 		ctx.beginPath();
 		ctx.lineWidth = 10;
 		ctx.strokeStyle="#59f442";
@@ -1546,7 +1302,6 @@ for (var i = 0; i < finishedPath.length; i++) {
 		ctx.strokeStyle="#59f442";
 		ctx.arc(coor.node[strt].x,coor.node[strt].y,50,0,2*Math.PI);
 		ctx.stroke();
-
 		ctx.beginPath();
 		ctx.lineWidth = 10;
 		ctx.strokeStyle = "#ff0000";
@@ -1555,18 +1310,8 @@ for (var i = 0; i < finishedPath.length; i++) {
 	}
 	getPath(finishedPath[i],finishedPath[i+1]);
 }
-
 }
-
-
 //document.addEventListener("DOMContentLoaded", addconnections(), false);
-
-
 </script>
 </body>
 </html>
-
-
-
-
-
