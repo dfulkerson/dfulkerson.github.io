@@ -11,7 +11,6 @@
 		background: #fff url(map.jpg) no-repeat;
 		margin-bottom: 115px;
         margin-top: 75px;
-/*		z-index: 999*/
 	}
 	body {
 		margin: 0;
@@ -46,10 +45,6 @@
 		color: #FFFFFF;
 		margin-top: 0px;
 	}
-/* 	p1 {
-		font-family: verdana;
-		color: #FFFFFF;
-	} */
 	p2 {
 		font-family: verdana;
 		font-size: 24px;
@@ -89,7 +84,7 @@
 	width: 450px;
 	height:100px;
 	}
-	@media only screen and (max-width: 1250px){
+	@media only screen and (max-width: 1080px){
 		select{
 			font-size: 35px;
 			width: 49%;
@@ -114,10 +109,6 @@
 		h1 {
 			font-size: 50px;
 		}
-/* 		p1 {
-			font-size: 24px;
-			margin: 0 px auto;
-		} */
 		p2{
 			font-size: 35px;
 			margin: 15 px auto;
@@ -219,7 +210,6 @@ font-size: 30px;
 			font-weight: normal;
 			display: block;
 			font-family: verdana;
-		/*	background-color: white;*/
 			width: 300px;
 			display: inline-block;
 }
@@ -230,7 +220,6 @@ font-size: 30px;
 			display: block;
 			text-align: center;
 			font-family: verdana;
-		/*	background-color: white;*/
 			width: 800
 		
 }
@@ -240,7 +229,6 @@ font-size: 30px;
 			font-weight: normal;
 			display: block;
 			font-family: verdana;
-		/*	background-color: white;*/
 			width: 100px;
 			display: inline-block;
 }
@@ -251,7 +239,6 @@ or{
 			display: block;
 			text-align: center;
 			font-family: verdana;
-		/*	background-color: white;*/
 			width: 800
 			display: inline-block;
 			padding-top: 20px;
@@ -286,12 +273,24 @@ or{
 		border: 0px;
 		border-radius: 25px
 	}
-	@media only screen and (max-width: 1250px){
+	@media only screen and (max-width: 1080px){
 		.button1{
 			width:40%;
+			height: 100px;
+			background-color: #ffffff;
+			font-size: 30px;
+			font-weight: bold;
+			border: 0px;
+			border-radius: 25px
 		}
 		.button2{
 			width:40%;
+			font-size: 30px;
+			height: 100px;
+			background-color: #ffffff;
+			font-weight: bold;
+			border: 0px;
+			border-radius: 25px
 		}
 	}
 </style>
@@ -432,6 +431,8 @@ or{
 // var autoDest=1;
 var can = document.getElementById("map");
 var ctx = can.getContext("2d");
+var clip = document.getElementById("map");
+var ctxp = clip.getContext("2d");
 var e = [];
 function segdist(x, y, x1, y1, x2, y2, points) {
   var A = x - x1;
@@ -741,6 +742,10 @@ function customNode(number){
 			drawStop(124);
 		}
 	}
+	else{
+		ctxp.clearRect(0,0,3714,3714);
+		alert("Select a valid map location.")
+	}
 }
 function clear(){
 	ctx.clearRect(0,0,3714,3714);
@@ -783,8 +788,7 @@ function drawArrow(fromx, fromy,ctx, direction){
 function grayOut(n, ctxp){
 	ctxp.globalAlpha = .8;
 	ctxp.clearRect(0,0,3714,3714);
-	var clip = document.getElementById("map");
-	var ctxp = clip.getContext("2d");
+	
 	if(n==3){
 		ctxp.beginPath();
 		ctxp.fillStyle= "#999999";
