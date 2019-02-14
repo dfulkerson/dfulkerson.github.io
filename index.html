@@ -678,10 +678,25 @@ function drawStop(dest){
 }
 function drawGo(strt){
 	ctx.beginPath();
-	ctx.lineWidth = 10;
-	ctx.strokeStyle="#59f442";
-	ctx.arc(coor.node[strt].x,coor.node[strt].y,5,0,2*Math.PI);
-	ctx.stroke();
+		ctx.lineWidth = 10;
+		ctx.strokeStyle="#59f442";
+		ctx.arc(coor.node[strt].x,coor.node[strt].y,5,0,2*Math.PI);
+		ctx.stroke();
+			ctx.beginPath();
+		ctx.lineWidth = 10;
+		ctx.strokeStyle="#59f442";
+		ctx.arc(coor.node[strt].x,coor.node[strt].y,25,0,2*Math.PI);
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.lineWidth = 10;
+		ctx.strokeStyle="#59f442";
+		ctx.arc(coor.node[strt].x,coor.node[strt].y,50,0,2*Math.PI);
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = "#ff0000";
+		ctx.arc(coor.node[dest].x,coor.node[dest].y,5,0,2*Math.PI);
+		ctx.stroke();
 }
 function customNode(number){
 	var closeNode = [];//
@@ -762,8 +777,8 @@ function drawArrow(fromx, fromy,ctx, direction){
                 ctx.beginPath();
                 ctx.moveTo(fromx, fromy);
                 ctx.lineTo(tox, toy);
-                ctx.strokeStyle = "#FAED26";
-                ctx.lineWidth = 12;
+                ctx.strokeStyle = "#ffff00";
+                ctx.lineWidth = 15;
                 ctx.stroke();
                 toy += direction * 10
                 //starting a new path from the head of the arrow to one of the sides of the point
@@ -775,15 +790,21 @@ function drawArrow(fromx, fromy,ctx, direction){
                 //path from the side point back to the tip of the arrow, and then again to the opposite side point
                 ctx.lineTo(tox, toy);
                 //draws the paths created above
-                ctx.strokeStyle = "#FAED26";
-                ctx.lineWidth = 8;
+                ctx.strokeStyle = "#ffff00";
+                ctx.lineWidth = 15;
                 ctx.stroke();
-                ctx.fillStyle = "#FAED26";
+                ctx.fillStyle = "#ffff00";
                 ctx.fill();
                 ctx.beginPath();
                 ctx.moveTo(tox, toy);
-		ctx.lineWidth = 8;
+				ctx.lineWidth = 15;
                 ctx.stroke();
+
+                ctx.beginPath();
+				ctx.lineWidth = 7.5;
+				ctx.strokeStyle = "#ffff00";
+				ctx.arc(tox,toy,3.75,0,2*Math.PI);
+				ctx.stroke();
 }
 function grayOut(n, ctxp){
 	ctxp.globalAlpha = .8;
@@ -1132,13 +1153,13 @@ function main() {
 			ctx.beginPath();// draw the path
 			ctx.moveTo(cur_x,cur_y);	// set the start point
 			ctx.lineTo(des_x,des_y);	// set the end point
-			ctx.lineWidth = 8;
+			ctx.lineWidth = 15;
 			ctx.strokeStyle="#ffff00";
 			ctx.stroke();	// draw the line
 			ctx.beginPath();
-			ctx.lineWidth = 4;
+			ctx.lineWidth = 7.5;
 			ctx.strokeStyle = "#ffff00";
-			ctx.arc(coor.node[dest].x,coor.node[dest].y,2,0,2*Math.PI);
+			ctx.arc(coor.node[dest].x,coor.node[dest].y,3.75,0,2*Math.PI);
 			ctx.stroke();
 		}
 		else {
@@ -1291,26 +1312,6 @@ for (var i = 0; i < finishedPath.length; i++) {
 	if (i == finishedPath.length - 1 ){
 		drawStop(dest);
 		drawGo(strt);
-		ctx.beginPath();
-		ctx.lineWidth = 10;
-		ctx.strokeStyle="#59f442";
-		ctx.arc(coor.node[strt].x,coor.node[strt].y,5,0,2*Math.PI);
-		ctx.stroke();
-			ctx.beginPath();
-		ctx.lineWidth = 10;
-		ctx.strokeStyle="#59f442";
-		ctx.arc(coor.node[strt].x,coor.node[strt].y,25,0,2*Math.PI);
-		ctx.stroke();
-		ctx.beginPath();
-		ctx.lineWidth = 10;
-		ctx.strokeStyle="#59f442";
-		ctx.arc(coor.node[strt].x,coor.node[strt].y,50,0,2*Math.PI);
-		ctx.stroke();
-		ctx.beginPath();
-		ctx.lineWidth = 10;
-		ctx.strokeStyle = "#ff0000";
-		ctx.arc(coor.node[dest].x,coor.node[dest].y,5,0,2*Math.PI);
-		ctx.stroke();
 	}
 	getPath(finishedPath[i],finishedPath[i+1]);
 }
