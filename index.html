@@ -18,14 +18,14 @@
 	}
 	header {
 		text-align: center;
-		padding: 25px;
+		padding: 0px;
 	}
 	dropdown {
 		position: relative;
 		backface-visibility: hidden;
 		bottom: 0px;
 		width: 100%;
-		padding: 15px;
+		padding: 0px;
 		text-align: center;
 		opacity: 1;
 	}
@@ -86,11 +86,11 @@
 	}
 	@media only screen and (max-width: 1080px){
 		select{
-			font-size: 35px;
+			font-size: 25px;
 			width: 49%;
 		}
 		a{
-			margin: 5px 20px;
+			margin: 15px;
 		}
 	}
 	img {
@@ -309,8 +309,10 @@ or{
 
 	<div class="header">
         <center>
+        	<p3> Select Location From List</p3> <br>
+
 	<dropdown>
-		<p3> Select Location From List</p3> <br>
+		
        <select name="current" id="current" onchange="dropdownfunc()">
             <option value="#">Start Location</option>
    			<option hidden value="122">Custom Start Location</option>
