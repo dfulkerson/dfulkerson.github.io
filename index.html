@@ -18,14 +18,14 @@
 	}
 	header {
 		text-align: center;
-		padding: 0px;
+		padding: 25px;
 	}
 	dropdown {
 		position: relative;
 		backface-visibility: hidden;
 		bottom: 0px;
 		width: 100%;
-		padding: 0px;
+		padding: 15px;
 		text-align: center;
 		opacity: 1;
 	}
@@ -52,12 +52,12 @@
 	}
 	nav {
 		backface-visibility: hidden;
+		bottom: 0px;
 		width: 100%;
+		padding: 15px 0px 15px;
 		text-align: center;
 		opacity: 1;
 		background-color: #708090;
-		padding-top: 10px;
-		padding-bottom: 10px;
 	}
 	ul {
 		list-style: none;
@@ -86,11 +86,11 @@
 	}
 	@media only screen and (max-width: 1080px){
 		select{
-			font-size: 25px;
+			font-size: 35px;
 			width: 49%;
 		}
 		a{
-			margin: 15px;
+			margin: 5px 20px;
 		}
 	}
 	img {
@@ -273,25 +273,24 @@ or{
 		border: 0px;
 		border-radius: 25px
 	}
-	@media only screen and (max-width: 500px){
+	@media only screen and (max-width: 1080px){
 		.button1{
 			width:40%;
 			height: 100px;
 			background-color: #ffffff;
-			font-size: 20px;
+			font-size: 30px;
 			font-weight: bold;
 			border: 0px;
 			border-radius: 25px
 		}
 		.button2{
 			width:40%;
-			font-size: 20px;
+			font-size: 30px;
 			height: 100px;
 			background-color: #ffffff;
 			font-weight: bold;
 			border: 0px;
 			border-radius: 25px
-			font-size: 10px;
 		}
 	}
 </style>
@@ -299,23 +298,21 @@ or{
 </head>
 
 <body>
-	<center>
+	
 	  <nav>
-        <a href="#">Home</a>
+        <a href="javascript.history.go(0)">Home</a>
         <a href="about.html">About</a>
         <a href="https://goo.gl/forms/nF6PKPHSmJbqG1W13">Contact</a>
     </nav>
-</center>
+    <div id = "everything">
 	<header>
 		<h1 id="testingid">Lexington Convention Center Interactive Map</h1>
 	</header>
 
 	<div class="header">
         <center>
-        	<p3> Select Location From List</p3> <br>
-
 	<dropdown>
-		
+		<p3> Select Location From List</p3> <br>
        <select name="current" id="current" onchange="dropdownfunc()">
             <option value="#">Start Location</option>
    			<option hidden value="122">Custom Start Location</option>
@@ -395,7 +392,7 @@ or{
 <or> or </or>
 <br>
 
-<this>  Select Location From Map </this>
+<this>  Click Location On Map </this>
 <br>
 
 
@@ -424,8 +421,10 @@ or{
     </label>
 
      <div id="button">
+     
 <!--   <input type="button" value="Draw Map" onclick="showMap()"></input> -->
 	</center>
+	</div>
 	<canvas id='map' width='3714' height ='3714'></canvas>
 </elevator>
 
@@ -485,10 +484,20 @@ function selectpoint(number){
 	can.style.display = "block";
 	window.scrollTo(0,0);
 	offset = can.getBoundingClientRect().top;
-	can.style.marginTop = -1*offset+75+"px";
+	can.style.marginTop = "0px"//-1*offset+75+"px";
 	selector = number;
 	clear();
 	can.addEventListener("click", getCursorPosition);
+	hideElems();
+  
+}
+function hideElems(){
+var x = document.getElementById("everything");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
 }
 function showMap() {
 	can.style.display = "block";
@@ -569,7 +578,7 @@ var coor = {
  	{"x":2146 ,"y":2943},
  	{"x":2232 ,"y":1186}, //59
  	{"x":2543 ,"y":3240},
- 	{"x":2300 ,"y":2268},
+ 	{"x":null ,"y":null},
  	{"x":2596 ,"y":3373},
  	{"x":2596 ,"y":3573},
  	{"x":2443 ,"y":3178},
@@ -697,11 +706,6 @@ function drawGo(strt){
 		ctx.strokeStyle="#59f442";
 		ctx.arc(coor.node[strt].x,coor.node[strt].y,50,0,2*Math.PI);
 		ctx.stroke();
-		ctx.beginPath();
-		ctx.lineWidth = 10;
-		ctx.strokeStyle = "#ff0000";
-		ctx.arc(coor.node[dest].x,coor.node[dest].y,5,0,2*Math.PI);
-		ctx.stroke();
 }
 function customNode(number){
 	var closeNode = [];//
@@ -766,6 +770,7 @@ function customNode(number){
 		ctxp.clearRect(0,0,3714,3714);
 		alert("Select a valid map location.")
 	}
+	hideElems();
 }
 function clear(){
 	ctx.clearRect(0,0,3714,3714);
