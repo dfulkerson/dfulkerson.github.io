@@ -18,14 +18,14 @@
 	}
 	header {
 		text-align: center;
-		padding: 0px;
+		padding-bottom: 25px;
 	}
 	dropdown {
 		position: relative;
 		backface-visibility: hidden;
 		bottom: 0px;
 		width: 100%;
-		padding: 0px;
+		padding: 15px;
 		text-align: center;
 		opacity: 1;
 	}
@@ -52,12 +52,12 @@
 	}
 	nav {
 		backface-visibility: hidden;
+		bottom: 0px;
 		width: 100%;
+		padding: 15px 0px 15px;
 		text-align: center;
 		opacity: 1;
 		background-color: #708090;
-		padding-top: 10px;
-		padding-bottom: 10px;
 	}
 	ul {
 		list-style: none;
@@ -70,7 +70,7 @@
 		color: white;
 		font-family: verdana;
 		font-weight: bold;
-		margin: 15px;
+		margin: 5px 85px;
 		font-size: 25px;
 	}
 	select {
@@ -81,16 +81,16 @@
 	color: black;
 	opacity: .9;
 	border-radius: 20px;
-	width: 35%;
+	width: 450px;
 	height:100px;
 	}
-	@media only screen and (max-width: 700px){
+	@media only screen and (max-width: 750px){
 		select{
-			font-size: 25px;
+			font-size: 35px;
 			width: 49%;
 		}
 		a{
-			margin: 15px;
+			margin: 5px 20px;
 		}
 	}
 	img {
@@ -121,9 +121,9 @@
 			color: white;
 			font-weight: normal;
 			display: block;
-			text-align: center;
+			/*text-align: center;*/
 			font-family: verdana;
-			padding: 15px;
+			padding: 15px 0px;
 		/*	background-color: white;*/
 			width: 100%;
 			display: inline-block;
@@ -273,25 +273,24 @@ or{
 		border: 0px;
 		border-radius: 25px
 	}
-	@media only screen and (max-width: 700px){
+	@media only screen and (max-width: 750px){
 		.button1{
-			width:45%;
+			width:40%;
 			height: 100px;
 			background-color: #ffffff;
-			font-size: 27px;
+			font-size: 30px;
 			font-weight: bold;
 			border: 0px;
 			border-radius: 25px
 		}
 		.button2{
-			width:45%;
-			font-size: 27px;
+			width:40%;
+			font-size: 30px;
 			height: 100px;
 			background-color: #ffffff;
 			font-weight: bold;
 			border: 0px;
 			border-radius: 25px
-			font-size: 10px;
 		}
 	}
 </style>
@@ -313,6 +312,7 @@ or{
 	<div class="header">
         <center>
 	<dropdown>
+		<center>
 		<p3> Select Location From List</p3> <br>
        <select name="current" id="current" onchange="dropdownfunc()">
             <option value="#">Start Location</option>
@@ -387,6 +387,7 @@ or{
             <option value="102">Thoroughbred Room 8</option>
             <option value="49">Ticket Office</option>
     </select>
+</center>
 </dropdown>
         </center>
 
@@ -485,7 +486,7 @@ function selectpoint(number){
 	can.style.display = "block";
 	window.scrollTo(0,0);
 	offset = can.getBoundingClientRect().top;
-	can.style.marginTop = "0px"//-1*offset+75+"px";
+	can.style.marginTop = "0px";
 	selector = number;
 	clear();
 	can.addEventListener("click", getCursorPosition);
