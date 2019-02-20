@@ -312,6 +312,32 @@ or{
 		border: 0px;
 		border-radius: 25px
 	}
+	p2{
+		font-size: 5vw;
+	}
+	.switch {
+	  position: relative;
+	  display: inline-block;
+	  width: 20vw;
+	  height: 12vw;
+	  top: -30px;
+	}
+	.slider:before {
+	  position: absolute;
+	  content: "";
+	  height: 10vw;
+	  width: 10vw;
+	  left: 1vw;
+	  bottom: 1vw;
+	  background-color: white;
+	  -webkit-transition: .4s;
+	  transition: .4s;
+	}
+	input:checked + .slider:before {
+	  -webkit-transform: translateX(7vw);
+	  -ms-transform: translateX(7vw);
+	  transform: translateX(px);
+	}
 }
 </style>
 
