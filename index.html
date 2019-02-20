@@ -293,6 +293,26 @@ or{
 			border-radius: 25px
 		}
 	}
+	@media only screen and (max-width: 700px){
+	.button1{
+		width:40%;
+		height: 100px;
+		background-color: #ffffff;
+		font-size: 6.5vw;
+		font-weight: bold;
+		border: 0px;
+		border-radius: 25px
+	}
+	.button2{
+		width:40%;
+		font-size: 6.5vw;
+		height: 100px;
+		background-color: #ffffff;
+		font-weight: bold;
+		border: 0px;
+		border-radius: 25px
+	}
+}
 </style>
 
 </head>
@@ -300,7 +320,7 @@ or{
 <body>
 	
 	  <nav>
-        <a href="#">Home</a>
+        <a href="javascript.history.go(0)">Home</a>
         <a href="about.html">About</a>
         <a href="https://goo.gl/forms/nF6PKPHSmJbqG1W13">Contact</a>
     </nav>
@@ -406,7 +426,7 @@ or{
 
 
 
-    <button class="button2" value=" Destination" onclick="selectpoint(2)">Destination
+    <button class="button2" value=" Destination" onclick="selectpoint(2)"><center>Destination</center>
 </button>
  </div> 
 
@@ -430,22 +450,6 @@ or{
 	<canvas id='map' width='3714' height ='3714'></canvas>
 </elevator>
 
-<div class="hidden">
-	<script type="text/javascript">
-		<!--//--><![CDATA[//><!--
-			var images = new Array()
-			function preload() {
-				for (i = 0; i < preload.arguments.length; i++) {
-					images[i] = new Image()
-					images[i].src = preload.arguments[i]
-				}
-			}
-			preload(
-				"map.jpg"
-			)
-		//--><!]]>
-	</script>
-</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type = "text/javascript">
