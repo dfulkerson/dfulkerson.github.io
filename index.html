@@ -430,6 +430,22 @@ or{
 	<canvas id='map' width='3714' height ='3714'></canvas>
 </elevator>
 
+<div class="hidden">
+	<script type="text/javascript">
+		<!--//--><![CDATA[//><!--
+			var images = new Array()
+			function preload() {
+				for (i = 0; i < preload.arguments.length; i++) {
+					images[i] = new Image()
+					images[i].src = preload.arguments[i]
+				}
+			}
+			preload(
+				"map.jpg"
+			)
+		//--><!]]>
+	</script>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type = "text/javascript">
