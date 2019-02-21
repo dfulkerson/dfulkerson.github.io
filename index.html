@@ -360,7 +360,7 @@ or{
 	<dropdown>
 		<center>
 		<p3> Select Location From List</p3> <br>
-       <select name="current" id="current" onchange="dropdownfunc()">
+       <select name="current" id="current" onchange="dropdownfunc(1)">
             <option value="#">Start Location</option>
    			<option hidden value="122">Custom Start Location</option>
         <option disabled>-----Level 1-----</option>
@@ -397,7 +397,7 @@ or{
 
 	</select>
 
-        <select name="destination" id="destination" onchange="dropdownfunc()">
+        <select name="destination" id="destination" onchange="dropdownfunc(2)">
         <option value="#">Destination</option>
 		<option hidden value="124">Custom Destination</option>
         <option value="bathroom">Closest Bathroom</option>
@@ -470,7 +470,6 @@ or{
 
      <div id="button">
      
-<!--   <input type="button" value="Draw Map" onclick="showMap()"></input> -->
 	</center>
 	</div>
 	<canvas id='map' width='3714' height ='3714'></canvas>
@@ -530,7 +529,14 @@ function segdist(x, y, x1, y1, x2, y2, points) {
   }
   return dx * dx + dy * dy;
 }
-function dropdownfunc(){
+function dropdownfunc(reset){
+	if (reset != 0){
+		if (reset == 1){
+			document.getElementById("current").options[1].hidden = true;}
+		else{
+			document.getElementById("destination").options[1].hidden = true;
+		}
+	}
 	if (document.getElementById("current").value != "#" && document.getElementById("destination").value != "#"){
 		can.style.display = "block";
 		main();}
@@ -561,10 +567,7 @@ var x = document.getElementById("everything");
     x.style.display = "none";
   }
 }
-function showMap() {
-	can.style.display = "block";
-	main();
-}
+
 var elevToggle = -1;
 var goStairs = false;
 var newNodeX = 0;
@@ -839,7 +842,7 @@ function clear(){
 }
 function goElevator(){
 	elevToggle*= -1;
-	dropdownfunc();
+	dropdownfunc(0);
 }
 function drawArrow(fromx, fromy,ctx, direction){
                 //variables to be used when creating the arrow
