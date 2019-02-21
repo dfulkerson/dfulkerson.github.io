@@ -314,13 +314,14 @@ or{
 		}
 		select {
 			overflow-y: scroll;
-			font-size:30px;
+			font-size:35px;
 			font-weight: bold;
 			background-color: white;
 			color: black;
 			opacity: .9;
 			border-radius: 20px;
-			width: 47.5vw;
+			min-width: 47.5vw
+			max-width: 450px;
 			height:100px;
 		}
 	}
@@ -378,7 +379,7 @@ or{
 	}
 	select {
 			overflow-y: scroll;
-			font-size:30px;
+			font-size:5vw;
 			font-weight: bold;
 			background-color: white;
 			color: black;
@@ -496,12 +497,12 @@ or{
 <center>
 
 	<div id="buttons">
-    <button class="button1" value=" Current Location" onclick="selectpoint(1)">Start
+    <button class="button1" value=" Current Location" onclick="selectpoint(1)">From?
 </button>
 
 
 
-    <button class="button2" value=" Destination" onclick="selectpoint(2)"><center>Destination</center>
+    <button class="button2" value=" Destination" onclick="selectpoint(2)">To?
 </button>
  </div> 
 
