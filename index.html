@@ -9,8 +9,6 @@
 	canvas {
 		display:none;
 		background: #fff url(map.jpg) no-repeat;
-		margin-bottom: 115px;
-        margin-top: 75px;
 	}
 	body {
 		margin: 0;
@@ -401,7 +399,9 @@ or{
 	<header>
 		<h1 id="testingid">Lexington Convention Center Interactive Map</h1>
 	</header>
-
+	</div>
+<canvas id='map' width='3714' height ='3714'></canvas>
+	<div id = "everything">
 	<div class="header">
         <center>
 	<dropdown>
@@ -537,10 +537,7 @@ or{
 	</script>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type = "text/javascript">
-// var autoCurr=1;
-// var autoDest=1;
 var can = document.getElementById("map");
 var ctx = can.getContext("2d");
 var clip = document.getElementById("map");
@@ -589,22 +586,18 @@ function dropdownfunc(reset){
 		main();}
 	
 }
-var offset;
 var selector = 0;
 var elevbutton = document.getElementById("myButton");
 	
 function selectpoint(number){
 	addconnections();
-	elevbutton.style.zIndex = "-1"
 	can.style.display = "block";
 	window.scrollTo(0,0);
-	offset = can.getBoundingClientRect().top;
 	can.style.marginTop = "0px";
 	selector = number;
 	clear();
 	can.addEventListener("click", getCursorPosition);
 	hideElems();
-  
 }
 function hideElems(){
 var x = document.getElementById("everything");
@@ -996,9 +989,8 @@ function getCursorPosition(event) {
 	
 	selector = 0;
 	removelistener();
-	elevbutton.style.zIndex = "1"
-	can.style.marginTop = 75+'px';
-	dropdownfunc();
+	can.style.marginTop = '0px';
+	dropdownfunc(0);
 }
 function removelistener(){
 	can.removeEventListener("click", getCursorPosition);
