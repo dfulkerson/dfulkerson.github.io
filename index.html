@@ -880,8 +880,10 @@ function customNode(number){
 	else{
 		ctxp.clearRect(0,0,3714,3714);
 		alert("Select a valid map location.")
+		return false;
 	}
 	hideElems();
+	return true;
 }
 function clear(){
 	ctx.clearRect(0,0,3714,3714);
@@ -984,19 +986,21 @@ function getCursorPosition(event) {
 		ctx.strokeStyle="#59f442";
 		ctx.arc(newNodeX,newNodeY,5,0,2*Math.PI);
 	ctx.stroke();
+	var valid = null;
 	if (selector == 1){
-		customNode(122);
+		valid = customNode(122);
 		strt = 122
 	}
 	else{
-		customNode(124)
+		valid = customNode(124)
 		dest = 124
 	}
-	
-	selector = 0;
-	removelistener();
-	can.style.marginTop = '0px';
-	dropdownfunc(0);
+	if (valid){
+		selector = 0;
+		removelistener();
+		can.style.marginTop = '0px';
+		dropdownfunc(0);
+	}
 }
 function removelistener(){
 	can.removeEventListener("click", getCursorPosition);
