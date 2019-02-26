@@ -404,7 +404,7 @@ or{
 	</header>
 	</div>
 <canvas id='map' width='3714' height ='3714'></canvas>
-	<div id = "everything">
+	<div id = "othereverything">
 	<div class="header">
         <center>
 	<dropdown>
@@ -605,12 +605,18 @@ function selectpoint(number){
 	hideElems();
 }
 function hideElems(){
-var x = document.getElementById("everything");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
+	var y = document.getElementById("othereverything");
+	var x = document.getElementById("everything");
+	if (x.style.display === "none") {
+		x.style.display = "block";
+	} else {
+		x.style.display = "none";
+	}
+	if (y.style.display === "none") {
+		y.style.display = "block";
+	} else {
+		y.style.display = "none";
+	}
 }
 
 var elevToggle = -1;
