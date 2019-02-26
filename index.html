@@ -876,14 +876,13 @@ function customNode(number){
 			clear();
 			drawStop(124);
 		}
+		hideElems();
 	}
 	else{
 		ctxp.clearRect(0,0,3714,3714);
 		alert("Select a valid map location.")
-		return false;
+		getCursorPosition();
 	}
-	hideElems();
-	return true;
 }
 function clear(){
 	ctx.clearRect(0,0,3714,3714);
@@ -963,6 +962,8 @@ function grayOut(n, ctxp){
 	}
 }
 function getCursorPosition(event) {
+	newNodeX = 0;
+	newNodeY = 0;
 	var rect = can.getBoundingClientRect();
 	newNodeX = (event.clientX - rect.left)* can.width /rect.width;
 	newNodeY = (event.clientY - rect.top)* can.height/rect.height;
