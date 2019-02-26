@@ -398,13 +398,13 @@ or{
         <a href="about.html">About</a>
         <a href="https://goo.gl/forms/nF6PKPHSmJbqG1W13">Contact</a>
     </nav>
-    <div id = "everything">
+    <div id = "title1">
 	<header>
 		<h1 id="testingid">Lexington Convention Center Interactive Map</h1>
 	</header>
 	</div>
 <canvas id='map' width='3714' height ='3714'></canvas>
-	<div id = "othereverything">
+	<div id = "everything">
 	<div class="header">
         <center>
 	<dropdown>
@@ -522,11 +522,10 @@ or{
      <div id="button">
      
 	</center>
-	</div>
 </elevator>
 		<br><center>
 		<p2> Use Elevator? </p2></center>
-	    
+	    </div>
 <div class="hidden">
 	<script type="text/javascript">
 		<!--//--><![CDATA[//><!--
@@ -543,6 +542,8 @@ or{
 </div>
 
 <script type = "text/javascript">
+// var autoCurr=1;
+// var autoDest=1;
 var can = document.getElementById("map");
 var ctx = can.getContext("2d");
 var clip = document.getElementById("map");
@@ -578,47 +579,47 @@ function segdist(x, y, x1, y1, x2, y2, points) {
   }
   return dx * dx + dy * dy;
 }
-function dropdownfunc(reset){
-	if (reset != 0){
-		if (reset == 1){
-			document.getElementById("current").options[1].disabled = true;}
-		else{
-			document.getElementById("destination").options[1].disabled = true;
-		}
-	}
+function dropdownfunc(){
 	if (document.getElementById("current").value != "#" && document.getElementById("destination").value != "#"){
 		can.style.display = "block";
 		main();}
 	
 }
+var offset;
 var selector = 0;
 var elevbutton = document.getElementById("myButton");
 	
 function selectpoint(number){
 	addconnections();
+	elevbutton.style.zIndex = "-1"
 	can.style.display = "block";
 	window.scrollTo(0,0);
+	offset = can.getBoundingClientRect().top;
 	can.style.marginTop = "0px";
 	selector = number;
 	clear();
 	can.addEventListener("click", getCursorPosition);
 	hideElems();
+  
 }
 function hideElems(){
-	var y = document.getElementById("othereverything");
-	var x = document.getElementById("everything");
-	if (x.style.display === "none") {
-		x.style.display = "block";
-	} else {
-		x.style.display = "none";
-	}
-	if (y.style.display === "none") {
-		y.style.display = "block";
-	} else {
-		y.style.display = "none";
-	}
+var x = document.getElementById("everything");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+  x = document.getElementById("title1");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
 }
-
+function showMap() {
+	can.style.display = "block";
+	main();
+}
 var elevToggle = -1;
 var goStairs = false;
 var newNodeX = 0;
@@ -870,13 +871,13 @@ function customNode(number){
 		addConnection(number+1,closeNode[one])
 		addConnection(number+1,closeNode[two])
 		if (number == 122){
-			document.getElementById("current").options[1].disabled = false;
+			document.getElementById("current").options[1].hidden = false;
 			document.getElementById("current").value = "122"
 			clear();
 			drawGo(122);
 		}
 		else{
-			document.getElementById("destination").options[1].disabled = false;
+			document.getElementById("destination").options[1].hidden = false;
 			document.getElementById("destination").value = "124"
 			clear();
 			drawStop(124);
@@ -888,13 +889,14 @@ function customNode(number){
 		alert("Select a valid map location.")
 		getCursorPosition();
 	}
+	
 }
 function clear(){
 	ctx.clearRect(0,0,3714,3714);
 }
 function goElevator(){
 	elevToggle*= -1;
-	dropdownfunc(0);
+	dropdownfunc();
 }
 function drawArrow(fromx, fromy,ctx, direction){
                 //variables to be used when creating the arrow
@@ -1000,11 +1002,12 @@ function getCursorPosition(event) {
 		customNode(124)
 		dest = 124
 	}
+	
 	selector = 0;
 	removelistener();
-	can.style.marginTop = '0px';
-	dropdownfunc(0);
-	
+	elevbutton.style.zIndex = "1"
+	can.style.marginTop = 75+'px';
+	dropdownfunc();
 }
 function removelistener(){
 	can.removeEventListener("click", getCursorPosition);
