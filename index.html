@@ -523,7 +523,6 @@ or{
      
 	</center>
 	</div>
-	<canvas id='map' width='3714' height ='3714'></canvas>
 </elevator>
 		<br><center>
 		<p2> Use Elevator? </p2></center>
@@ -987,21 +986,19 @@ function getCursorPosition(event) {
 		ctx.strokeStyle="#59f442";
 		ctx.arc(newNodeX,newNodeY,5,0,2*Math.PI);
 	ctx.stroke();
-	var valid = null;
 	if (selector == 1){
-		valid = customNode(122);
+		customNode(122);
 		strt = 122
 	}
 	else{
-		valid = customNode(124)
+		customNode(124)
 		dest = 124
 	}
-	if (valid){
-		selector = 0;
-		removelistener();
-		can.style.marginTop = '0px';
-		dropdownfunc(0);
-	}
+	selector = 0;
+	removelistener();
+	can.style.marginTop = '0px';
+	dropdownfunc(0);
+	
 }
 function removelistener(){
 	can.removeEventListener("click", getCursorPosition);
