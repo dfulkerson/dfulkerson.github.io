@@ -390,6 +390,14 @@ or{
 			height:15vw;
 		}
 }
+		clickTxt{
+	font-size: 30px;
+			color: white;
+			font-weight: normal;
+			display: none;
+			text-align: center;
+			font-family: verdana;
+}
 </style>
 
 </head>
@@ -407,6 +415,7 @@ or{
 	</header>
 	</div>
 <canvas id='map' width='3714' height ='3714'></canvas>
+	<clickTxt id ="nothing"> Click Your Start or End Location on the Map! </clickTxt>
 	<div id = "everything">
 	<div class="header">
         <center>
@@ -607,16 +616,21 @@ function selectpoint(number){
 }
 function hideElems(){
 var x = document.getElementById("everything");
+var y = document.getElementById("nothing");
   if (x.style.display === "none") {
     x.style.display = "block";
+    y.style.display = "none";
   } else {
     x.style.display = "none";
+    y.style.display = "block";
   }
   x = document.getElementById("title1");
   if (x.style.display === "none") {
     x.style.display = "block";
+    y.style.display = "none";
   } else {
     x.style.display = "none";
+    y.style.display = "block";
   }
 }
 function showMap() {
