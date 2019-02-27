@@ -16,7 +16,7 @@
 	font-family: verdana;
         color: #FFCC00;
         font-size: 23px;
-        margin: 25px;
+        margin: 0px;
         text-align: center;
         font-weight: bold;	
     }
@@ -65,51 +65,46 @@
 	 }
 
 		nav {
-	 	/*background-image: linear-gradient(black);*/
-		  position: fixed;
 		backface-visibility: hidden;
 		bottom: 0px;
 		width: 100%;
-		padding: 35px;
+		padding: 5px 0px;
 		text-align: center;
 		opacity: 1;
 		background-color: #708090;
-		left: 0px;
 	}
 
-	#navi {
-		color: white;
-		font-family: verdana;
-		font-weight: bold;
-		margin: 5px 80px;
-		font-size: 35px;
-
-	.bottom {
-		color: #44005C;
-	}
 
 	a {
 		color: white;
 		font-family: verdana;
 		font-weight: bold;
-		margin: 5px 80px;
-		font-size: 35px;
-		text-align: center;
-
+		margin: 5px 85px;
+		font-size: 25px;
 	}
 
-	a:visited {
-		color: #44005C; 
-	}
 
 	img {
 		display: block;
 		margin: 0px auto;
 	}
+	@media only screen and (max-width: 700px){
+		a {
+			color: white;
+			font-family: verdana;
+			font-weight: bold;
+			margin: 2.5vw 5vw;
+			font-size: 5vw;
+	}
+}
 
 	</style>
 
-
+<nav>
+            <a href="index.html" id="navi">Home</a>
+            <a href="#" id="navi">About</a>
+            <a href="https://goo.gl/forms/ylTKy57q1un2QIst1" id="navi">Contact</a>
+        </nav>
 
 </head>
 
@@ -117,11 +112,7 @@
 <body>
     <header>
          <h1>About the Creators</h1>
-        <nav>
-            <a href="home.html" id="navi">Home</a>
-            <a href="#" id="navi">About</a>
-            <a href="https://goo.gl/forms/ylTKy57q1un2QIst1" id="navi">Contact</a>
-        </nav>
+        
     </header>
 
    <!--  <h3>About the creators:</h3> -->
@@ -168,4 +159,6 @@
 
 
 </html>
+
+
 
