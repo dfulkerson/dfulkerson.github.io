@@ -9,7 +9,7 @@
 	canvas {
 		display:none;
 		background: #fff url(map.jpg) no-repeat;
-		margin-top: 15px;
+		margin-top: 0px;
 	}
 	body {
 		margin: 0;
@@ -34,7 +34,7 @@
 			background-color: #0033A0;
 			min-width: 10px;
 			box-shadow: 0px 16px 16px 0px rgba(0,0,0,0.2);
-			padding: 12px 16px;
+			/*padding: 0px 16px;*/
 			width: 180px;
 			size: 100px;
 		}
@@ -221,7 +221,7 @@ font-size: 30px;
 			display: block;
 			text-align: center;
 			font-family: verdana;
-			width: 800
+		
 		
 }
 CustNodeTxt2{
@@ -234,7 +234,7 @@ font-size: 30px;
 			display: inline-block;
 }
 or{
-	font-size: 45px;
+	font-size: 65px;
 			color: white;
 			font-weight: normal;
 			display: block;
@@ -247,6 +247,7 @@ or{
 			padding: 0px 0px;
 			margin-bottom: 15px;
 			margin-top: 15px;
+		
 }
 /* Select Your Current Loc*/
 /* Draw Map*/
@@ -326,7 +327,7 @@ or{
 			font-size: 5vw;
 		}
 	}
-	@media only screen and (max-width: 700px){
+	@media only screen and (max-width: 1000px){
 	.button1{
 		width:40%;
 		height: 15vw;
@@ -371,7 +372,6 @@ or{
 	  -ms-transform: translateX(7vw);
 	  transform: translateX(px);
 	}
-	}
 	a {
 			color: white;
 			font-family: verdana;
@@ -391,7 +391,15 @@ or{
 			height:15vw;
 		}
 }
-		clickTxt{
+clickTxt{
+	font-size: 30px;
+			color: white;
+			font-weight: normal;
+			display: none;
+			text-align: center;
+			font-family: verdana;
+}
+clickTxt1{
 	font-size: 30px;
 			color: white;
 			font-weight: normal;
@@ -417,6 +425,7 @@ or{
 	</div>
 <canvas id='map' width='3714' height ='3714'></canvas>
 	<clickTxt id ="nothing"> Click Your Start or End Location on the Map! </clickTxt>
+	<clickTxt1 id ="nothing1"> Click Your End Location on the Map! </clickTxt1>
 	<div id = "everything">
 	<div class="header">
         <center>
@@ -618,12 +627,18 @@ function selectpoint(number){
 function hideElems(){
 var x = document.getElementById("everything");
 var y = document.getElementById("nothing");
+var z = document.getElementById("nothing1");
   if (x.style.display === "none") {
     x.style.display = "block";
     y.style.display = "none";
   } else {
     x.style.display = "none";
+    if (selector == 1){
     y.style.display = "block";
+}
+else{
+	z.style.display = "block";
+}
   }
   x = document.getElementById("title1");
   if (x.style.display === "none") {
@@ -631,7 +646,12 @@ var y = document.getElementById("nothing");
     y.style.display = "none";
   } else {
     x.style.display = "none";
+    if (selector == 1){
     y.style.display = "block";
+}
+else{
+	z.style.display = "block";
+}
   }
 }
 function showMap() {
