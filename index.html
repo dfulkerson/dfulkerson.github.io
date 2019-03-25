@@ -15,7 +15,7 @@
 			font-family: verdana;
 }
 clickTxt1{
-	font-size: 45px;
+	font-size: 60px;
 			color: white;
 			font-weight: normal;
 			display: none;
@@ -54,6 +54,31 @@ clickTxt1{
 			width: 180px;
 			size: 100px;
 		}
+		
+		il {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 15px;
+  background-color: #f1f1f1;
+}
+
+lii b {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+lii b.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+lii b:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
 	
 	h1 {
 		font-family: verdana;
@@ -62,10 +87,19 @@ clickTxt1{
 	}
 	p2 {
 		font-family: verdana;
-		font-size: 24px;
+		font-size: 3vw;
 		color: white;
 	}
 	nav {
+		backface-visibility: hidden;
+		bottom: 0px;
+		width: 100%;
+		padding: 5px 0px;
+		text-align: center;
+		opacity: 1;
+		background-color: #708090;
+	}
+	nav1 {
 		backface-visibility: hidden;
 		bottom: 0px;
 		width: 100%;
@@ -96,24 +130,16 @@ clickTxt1{
 	color: black;
 	opacity: .9;
 	border-radius: 20px;
-	width: 450px;
-	height:100px;
+	width: 21vw;
+	height:5vw;
 	}
-	@media only screen and (max-width: 1080px){
-		select{
-			font-size: 35px;
-			width: 49%;
-		}
-		a{
-			margin: 5px 20px;
-		}
-	}
+
 	img {
 		display: block;
 		margin: 0px auto;
 	}
 	.selection {
-		padding: 20px;
+		/*padding: 20px;*/
 		text-align: center;
 	}
 	@media only screen and (max-width: 6000px) {
@@ -121,33 +147,33 @@ clickTxt1{
 			width: 100%;
 			background-size: 100% 100%;
 		}
+
 		h1 {
 			font-size: 50px;
 		}
 		p2{
-			font-size: 35px;
-			margin: 15px auto;
+			font-size: 2vw;
+		
 		}
 		li {
 			display: block;
 		}
 			p3{
-			font-size: 30px;
+			font-size: 1.6vw;
 			color: white;
 			font-weight: normal;
 			display: block;
-			/*text-align: center;*/
 			font-family: verdana;
-			padding: 15px 0px;
-		/*	background-color: white;*/
 			width: 100%;
 			display: inline-block;
+			margin-top: 1vw;
+			margin-bottom: .5vw;
 		}
 	
 	}
 	elevator{
 		position: relative;
-		top: 50px;
+		margin-top: 25px;
 		z-index: -1
 	}
 .switch {
@@ -155,7 +181,7 @@ clickTxt1{
   display: inline-block;
   width: 100px;
   height: 60px;
-  top: -30px;
+ 
 
 }
 /* Hide default HTML checkbox */
@@ -222,7 +248,7 @@ input:checked + .slider:before {
   left: 70px;
 }
 CustNodeTxt1{
-font-size: 30px;
+font-size: 1.6vw;
 			color: white;
 			font-weight: normal;
 			display: block;
@@ -231,17 +257,20 @@ font-size: 30px;
 			display: inline-block;
 }
 this{
-font-size: 30px;
+			font-size: 1.6vw;
 			color: white;
+			text-align: center;
 			font-weight: normal;
 			display: block;
-			text-align: center;
 			font-family: verdana;
+			width: 100%;
+			display: inline-block;
+			margin-bottom: .5vw;
 		
 		
 }
 CustNodeTxt2{
-font-size: 30px;
+font-size: 1.6vw;
 			color: white;
 			font-weight: normal;
 			display: block;
@@ -250,26 +279,43 @@ font-size: 30px;
 			display: inline-block;
 }
 or{
-	font-size: 65px;
+			font-size: 3vw;
 			color: white;
-			font-weight: normal;
 			display: block;
 			text-align: center;
 			font-family: verdana;
 			width: 100%;
-			display: inline-block;
 			background-color: #708090;
 			opacity: .8;
-			padding-top: 0px;
-			padding-bottom: 15px;
-			margin-bottom: 15px;
-			margin-top: 20px;
-		
+			padding-top: .2vw;
+			padding-bottom: .6vw;
+			margin-top:2vw;
+			margin-bottom: .9vw;
+			
+
 }
+
+options{
+			font-size: 1.6vw;
+			color: white;
+			display: block;
+			text-align: center;
+			font-family: verdana;
+			width: 100%;
+			background-color: #708090;
+			opacity: .8;
+			padding-bottom: .5vw;
+			padding-top: .5vw;
+			margin-top: 2vw;
+			margin-bottom: 2vw;
+
+
+}
+
 /* Select Your Current Loc*/
 /* Draw Map*/
 	input[type="button"]{
-		width: 25;
+		width: 25vw;
 		height: 100px;
 		background-color: #ffffff;
 		font-size: 40px;
@@ -278,22 +324,22 @@ or{
 		border-radius: 25px
 	}
 	.button1{
-		width: 300px;
-		height: 100px;
+		width: 15vw;
+		height: 5vw;
 		background-color: #ffffff;
 		font-size: 40px;
 		font-weight: bold;
 		border: 0px;
-		border-radius: 25px
+		border-radius: 25px;
 	}
 	.button2{
-		width: 300px;
-		height: 100px;
+		width: 15vw;
+		height: 5vw;
 		background-color: #ffffff;
 		font-size: 40px;
 		font-weight: bold;
 		border: 0px;
-		border-radius: 25px
+		border-radius: 25px;
 	}
 	@media only screen and (max-width: 1080px){
 		.button1{
@@ -331,14 +377,21 @@ or{
 		}
 		p2 {
 			font-family: verdana;
-			font-size: 5vw;
+			font-size: 4vw;
 			color: white;
 		}
 		or{
 			font-size: 7.5vw;
 			margin-bottom: 5%;
 			margin-top: 5%;
-			padding-bottom: 2%;
+		
+		}
+		options{
+			font-size: 5vw;
+				margin-bottom: 5vw;
+			margin-top: 5vw;
+			
+
 		}
 		p3{
 			font-size: 5vw;
@@ -348,6 +401,30 @@ or{
 		}
 	}
 	@media only screen and (max-width: 700px){
+			il {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: .2vw;
+  background-color: white;
+}
+
+lii b {
+  display: block;
+  color: #000;
+  padding: 1vw; 
+  text-decoration: none;
+}
+
+lii b.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+lii b:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
 		clickTxt1{
 	font-size: 30px;
 }
@@ -372,15 +449,35 @@ or{
 		border: 0px;
 		border-radius: 25px
 	}
+	or{
+		margin-top: 5vw;
+		margin-bottom:0vw;
+		padding-top: .3vw;
+		padding-bottom: 1vw;
+	}
+	this{
+		margin-bottom: 1vw;
+		margin-top: 0vw;
+	}
+
 	p2{
-		font-size: 5vw;
+		font-size: 4vw;
+		margin-top: 2vw;
+		margin-bottom: 1vw;
+
+	}
+	p3{
+		margin-bottom: 1vw;
+		margin-top: 0vw;
 	}
 	.switch {
+		margin-bottom: 0vw;
 	  position: relative;
 	  display: inline-block;
 	  width: 15vw;
 	  height: 8vw;
 	  /*top: -30px;*/
+
 	}
 	.slider:before {
 	  position: absolute;
@@ -402,8 +499,34 @@ or{
 			color: white;
 			font-family: verdana;
 			font-weight: bold;
-			margin: 2.5vw 5vw;
+			margin: 2.5vw 2.5vw;
 			font-size: 5vw;
+	}
+		nav{
+			margin-bottom: 2vw;
+		}
+		b{
+			color: white;
+			font-family: verdana;
+			font-weight: bold;
+			margin: 2.5vw 2.5vw;
+			font-size: 5vw;
+			text-align: center;
+		}
+		nav1{
+			margin-bottom: 2vw;
+			background: blue;
+			width: 100%;
+
+
+		}
+
+	options{
+		padding-top: 1vw; 
+		padding-bottom: 1vw;
+		margin-bottom: 3vw;
+		margin-top: 3vw;
+
 	}
 	select {
 			overflow-y: scroll;
@@ -425,14 +548,20 @@ or{
 <body>
 	
 	  <nav>
-        <a href="">Home</a>
-        <a href="about.html">About</a>
-        <a href="https://goo.gl/forms/nF6PKPHSmJbqG1W13">Contact</a>
-    </nav>
+        <a>Lexington Convention Center Map</a>
+        </nav>
+        	 <il>
+  <lii><b class="active"
+   href="#home">Home</b></lii>
+  <lii><b href="about.html">About</b></lii>
+  <lii><b href="https://goo.gl/forms/nF6PKPHSmJbqG1W13">Contact</b></lii>
+</il>
+    
+   
     <div id = "title1">
-	<header>
+	<!-- <header>
 		<h1 id="testingid">Lexington Convention Center Interactive Map</h1>
-	</header>
+	</header> -->
 	</div>
 
 <canvas id='map' width='3714' height ='3714'></canvas>
@@ -523,11 +652,10 @@ or{
 </dropdown>
         </center>
 
-<or> or </or>
+<or>or</or>
 <br>
 
-<this>  Tap Location On Map </this>
-<br>
+<this>Tap Location On Map</this><br>
 
 
 <center>
@@ -545,7 +673,7 @@ or{
 </center>
 
 </div>
-<or> options </or>
+<options> options </options>
 <elevator>
 	<center>
 	 
@@ -555,13 +683,22 @@ or{
     </label>
 		
 
-     <div id="button">
+ 
      
+     <br>
+     <center>
+		<p2> Use Elevator? </p2>
+	</center>
+
 	</center>
 </elevator>
-		<br><center>
-		<p2> Use Elevator? </p2></center>
-	    </div>
+</div>
+
+
+
+  
+	
+
 <div class="hidden">
 	<script type="text/javascript">
 		<!--//--><![CDATA[//><!--
@@ -575,7 +712,7 @@ or{
 			preload("map.jpg")
 		//--><!]]>
 	</script>
-</div>
+
 
 <script type = "text/javascript">
 // var autoCurr=1;
