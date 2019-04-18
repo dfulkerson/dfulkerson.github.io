@@ -598,12 +598,14 @@
 
 
 	<script type="text/javascript">
-		var preimage = new Image()
-
-		function preload() {
-			preimage.src = preload.arguments
-		}
-		preload("map.png")
+		var images = new Array()
+			function preload() {
+				for (i = 0; i < preload.arguments.length; i++) {
+					images[i] = new Image()
+					images[i].src = preload.arguments[i]
+				}
+			}
+			preload("map.png")
 
 		var can = document.getElementById("map");
 		var ctx = can.getContext("2d");
