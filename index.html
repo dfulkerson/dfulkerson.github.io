@@ -2,12 +2,9 @@
 <html>
 
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script>
-		$(function(){
-			$("#current").load("/currentdropdown.html");
-			$("#destination").load("/destdropdown.html"); });
-					</script>
+
+	<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="thumbnail.png" />
 	<title>Lexington Convention Center Interactive Map</title>
@@ -24,7 +21,7 @@
 
 		canvas {
 			display: none;
-			background: #fff url(map.jpg) no-repeat;
+			background: #fff url(map.png) no-repeat;
 			margin-top: 0px;
 		}
 
@@ -465,10 +462,105 @@
 			<dropdown>
 
 				<p3> Select Location From List</p3> <br>
-				<select name="current" id="current" onchange="dropdownfunc(1)">
+				<select name="current" id="current" onchange="dropdownfunc()">
+					<option value="#">Start Location</option>
+					<option disabled value="185">Custom Start</option>
+					<option disabled>-----Level 1-----</option>
+					<option value="11">Berea Room</option>
+					<option value="3">Food Court</option>
+					<option value="25">Elkhorn A</option>
+					<option value="26">Elkhorn B</option>
+					<option value="27">Elkhorn C</option>
+					<option value="28">Elkhorn D</option>
+					<option value="31">Heritage Ballroom 1</option>
+					<option value="32">Heritage Ballroom 2</option>
+					<option value="33">Heritage Ballroom 3</option>
+					<option value="35">Bus Site A</option>
+					<option value="68">UL Podcast</option>
+					<option value="69">KY Travel</option>
+					<option value="70">RCX Pit Area </option>
+					<option value="72">STLP HQ</option>
+					<option value="75">Wall of Winners</option>
+					<option value="77"> Live Production Team</option>
+					<option value="79">Proven Learning Quick Tech Recall</option>
+					<option value="81">Newton's Attic</option>
+					<option value="83">Racing to the Future</option>
+					<option value="85">Lafayette Digital Lab</option>
+					<option value="87">Shattered Glass</option>
+					<option value="88">Bench Challenge</option>
+					<option value="89"> RCX Competition Area</option>
+					<option value="92"> FCPS STEM Bus</option>
+					<option value="94"> Extreme Networks Challenge</option>
+					<option value="96"> Breakout EDU </option>
+					<option value="103"> Welcome/Info Desk</option>
+					<option value="172"> Help Desk Support Challenge</option>
+					<option value="173"> Bench Challenge Team</option>
+					<option value="174"> Awesome Inc.</option>
+					<option value="175"> Georgetown College Robotics</option>
+					<option value="176"> Main Stage</option>
+					<option value="183"> NKU APP Challenege</option>
+					<option value="184"> Concession Stand</option>
+
+					<option disabled>-----Level 3-----</option>
+					<option value="159">Bluegrass Ballroom</option>
+					<option value="165">Thoroughbred Room 1-3</option>
+					<option value="165">Thoroughbred Room 4</option>
+					<option value="166">Thoroughbred Room 5</option>
+					<option value="167">Thoroughbred Room 6</option>
+					<option value="168">Thoroughbred Room 7</option>
+					<option value="169">Thoroughbred Room 8</option>
+
 				</select>
 
-				<select name="destination" id="destination" onchange="dropdownfunc(2)">
+				<select name="destination" id="destination" onchange="dropdownfunc()">
+					<option value="#">Destination</option>
+					<option disabled value="187">Custom Destination</option>
+					<option value="bathroom">Closest Bathroom</option>
+					<option disabled>-----Level 1-----</option>
+					<option value="11">Berea Room</option>
+					<option value="3">Food Court</option>
+					<option value="25">Elkhorn A</option>
+					<option value="26">Elkhorn B</option>
+					<option value="27">Elkhorn C</option>
+					<option value="28">Elkhorn D</option>
+					<option value="31">Heritage Ballroom 1</option>
+					<option value="32">Heritage Ballroom 2</option>
+					<option value="33">Heritage Ballroom 3</option>
+					<option value="35">Bus Site A</option>
+					<option value="68">UL Podcast</option>
+					<option value="69">KY Travel</option>
+					<option value="70">RCX Pit Area </option>
+					<option value="72">STLP HQ</option>
+					<option value="75">Wall of Winners</option>
+					<option value="77"> Live Production Team</option>
+					<option value="79">Proven Learning Quick Tech Recall</option>
+					<option value="81">Newton's Attic</option>
+					<option value="83">Racing to the Future</option>
+					<option value="85">Lafayette Digital Lab</option>
+					<option value="87">Shattered Glass</option>
+					<option value="88">Bench Challenge</option>
+					<option value="89"> RCX Competition Area</option>
+					<option value="92"> FCPS STEM Bus</option>
+					<option value="94"> Extreme Networks Challenge</option>
+					<option value="96"> Breakout EDU </option>
+					<option value="103"> Welcome/Info Desk</option>
+					<option value="172"> Help Desk Support Challenge</option>
+					<option value="173"> Bench Challenge Team</option>
+					<option value="174"> Awesome Inc.</option>
+					<option value="175"> Georgetown College Robotics</option>
+					<option value="176"> Main Stage</option>
+					<option value="183"> NKU APP Challenege</option>
+					<option value="184"> Concession Stand</option>
+
+					<option disabled>-----Level 3-----</option>
+					<option value="159">Bluegrass Ballroom</option>
+					<option value="165">Thoroughbred Room 1-3</option>
+					<option value="165">Thoroughbred Room 4</option>
+					<option value="166">Thoroughbred Room 5</option>
+					<option value="167">Thoroughbred Room 6</option>
+					<option value="168">Thoroughbred Room 7</option>
+					<option value="169">Thoroughbred Room 8</option>
+
 				</select>
 
 			</dropdown>
@@ -480,11 +572,9 @@
 			<br>
 
 			<div id="buttons">
-				<button class="button" value=" Current Location" onclick="selectpoint(1)">From?
-				</button>
-
-				<button class="button" value=" Destination" onclick="selectpoint(2)">To?
-				</button>
+				<button class="button" value="Current Location" onclick="selectpoint(1)">From?</button>
+				<button class="button" value="Destination" onclick="selectpoint(2)">To?</button>
+				
 			</div>
 
 
@@ -509,10 +599,11 @@
 
 	<script type="text/javascript">
 		var preimage = new Image()
+
 		function preload() {
 			preimage.src = preload.arguments
 		}
-		preload("map.jpg")
+		preload("map.png")
 
 		var can = document.getElementById("map");
 		var ctx = can.getContext("2d");
@@ -569,7 +660,7 @@
 			can.style.marginTop = "0px";
 			selector = number;
 			clear();
-			can.addEventListener("click", getCursorPosition);
+			can.addEventListener("click", getCursorPosition)
 			hideElems();
 
 		}
@@ -609,7 +700,7 @@
 			can.style.display = "block";
 			main();
 		}
-		
+
 		var elevToggle = -1;
 		var goStairs = false;
 		var newNodeX = 0;
@@ -623,493 +714,754 @@
 		var custFloor = 0;
 		var custFloors = [0, 0];
 		var coor = {
-			"node": [{
-					"x": 1588,
-					"y": 1633
-				},
-				{
-					"x": 1046,
-					"y": 585
-				},
-				{
-					"x": 737,
-					"y": 839
-				},
-				{
-					"x": 770,
-					"y": 647
-				},
-				{
-					"x": 792,
-					"y": 761
-				},
-				{
-					"x": 1427,
-					"y": 1507
-				},
-				{
-					"x": 1038,
-					"y": 760
-				},
-				{
-					"x": 1115,
-					"y": 760
-				},
-				{
-					"x": 884,
-					"y": 884
-				},
-				{
-					"x": 1115,
-					"y": 1020
-				},
-				{
-					"x": 1075,
-					"y": 1062
-				},
-				{
-					"x": 1045,
-					"y": 1180
-				},
-				{
-					"x": 1012,
-					"y": 1262
-				},
-				{
-					"x": 1281,
-					"y": 1223
-				},
-				{
-					"x": 1310,
-					"y": 1186
-				},
-				{
-					"x": 1422,
-					"y": 1570
-				},
-				{
-					"x": 1366,
-					"y": 1294
-				},
-				{
-					"x": 1427,
-					"y": 1385
-				},
-				{
-					"x": 1366,
-					"y": 1507
-				},
-				{
-					"x": 1366,
-					"y": 1570
-				},
-				{
-					"x": 1366,
-					"y": 1681
-				},
-				{
-					"x": 1422,
-					"y": 1706
-				},
-				{
-					"x": 1582,
-					"y": 1385
-				},
-				{
-					"x": 1641,
-					"y": 1385
-				},
-				{
-					"x": 1641,
-					"y": 1331
-				},
-				{
-					"x": 1588,
-					"y": 1706
-				},
-				{
-					"x": 1641,
-					"y": 1706
-				},
-				{
-					"x": 1896,
-					"y": 1706
-				},
-				{
-					"x": 1641,
-					"y": 1633
-				},
-				{
-					"x": 1641,
-					"y": 1514
-				},
-				{
-					"x": 2151,
-					"y": 1706
-				},
-				{
-					"x": 2266,
-					"y": 1706
-				},
-				{
-					"x": 2533,
-					"y": 1706
-				},
-				{
-					"x": 2632,
-					"y": 1706
-				},
-				{
-					"x": 3127,
-					"y": 1706
-				},
-				{
-					"x": 2234,
-					"y": 3110
-				},
-				{
-					"x": 2167,
-					"y": 3122
-				},
-				{
-					"x": 2146,
-					"y": 3103
-				},
-				{
-					"x": 2059,
-					"y": 2897
-				},
-				{
-					"x": 1946,
-					"y": 2897
-				},
-				{
-					"x": 2146,
-					"y": 2812
-				},
-				{
-					"x": 2146,
-					"y": 2676
-				},
-				{
-					"x": 2325,
-					"y": 2667
-				},
-				{
-					"x": 2325,
-					"y": 2760
-				},
-				{
-					"x": 2325,
-					"y": 2853
-				},
-				{
-					"x": 2325,
-					"y": 2943
-				},
-				{
-					"x": 2287,
-					"y": 2583
-				},
-				{
-					"x": 2204,
-					"y": 2660
-				},
-				{
-					"x": 2145,
-					"y": 2583
-				},
-				{
-					"x": 2145,
-					"y": 2265
-				},
-				{
-					"x": 2236,
-					"y": 2265
-				},
-				{
-					"x": 2543,
-					"y": 2361
-				},
-				{
-					"x": 2543,
-					"y": 2649
-				},
-				{
-					"x": 2543,
-					"y": 2809
-				},
-				{
-					"x": 2543,
-					"y": 3110
-				},
-				{
-					"x": 2443,
-					"y": 3110
-				},
-				{
-					"x": 2325,
-					"y": 3110
-				},
-				{
-					"x": 2234,
-					"y": 3195
-				},
-				{
-					"x": 2146,
-					"y": 2943
-				},
-				{
-					"x": 2232,
-					"y": 1186
-				}, //59
-				{
-					"x": 2543,
-					"y": 3240
-				},
+			"node": [
+
+
+
+
+
+
+
+
 				{
 					"x": null,
 					"y": null
 				},
 				{
-					"x": 2596,
-					"y": 3373
-				},
-				{
-					"x": 2596,
-					"y": 3573
-				},
-				{
-					"x": 2443,
-					"y": 3178
-				},
-				{
-					"x": 2415,
-					"y": 3394
-				},
-				{
-					"x": 2143,
-					"y": 1186
-				},
-				{
-					"x": 2024,
-					"y": 1218
-				},
-				{
-					"x": 2391,
-					"y": 1218
-				},
-				{
-					"x": 2875,
-					"y": 1218
-				},
-				{
-					"x": 660,
-					"y": 2436
-				},
-				{
-					"x": 570,
-					"y": 2493
-				},
-				{
-					"x": 750,
-					"y": 2493
-				},
-				{
-					"x": 570,
-					"y": 2872
-				},
-				{
-					"x": 660,
-					"y": 2872
-				},
-				{
-					"x": 750,
-					"y": 2872
-				},
-				{
-					"x": 570,
-					"y": 2980
-				},
-				{
-					"x": 660,
-					"y": 2980
-				},
-				{
-					"x": 750,
-					"y": 2980
-				},
-				{
-					"x": 570,
-					"y": 3070
-				},
-				{
-					"x": 750,
-					"y": 3070
-				},
-				{
-					"x": 665,
-					"y": 3135
-				},
-				{
-					"x": 698,
-					"y": 3175
-				},
-				{
-					"x": 687,
-					"y": 3225
-				},
-				{
-					"x": 760,
-					"y": 3275
-				},
-				{
-					"x": 869,
-					"y": 3166
-				},
-				{
-					"x": 2617,
-					"y": 1186
-				},
-				{
-					"x": 2916,
-					"y": 1186
-				},
-				{
-					"x": 2400,
-					"y": 1032
-				},
-				{
-					"x": 1366,
-					"y": 1385
-				},
-				{
-					"x": 1582,
-					"y": 1514
-				},
-				{
-					"x": 1746,
-					"y": 1331
-				},
-				{
-					"x": 1746,
-					"y": 1514
-				},
-				{
-					"x": 1746,
-					"y": 1633
-				},
-				{
-					"x": 732,
-					"y": 761
-				},
-				{
-					"x": 1987,
-					"y": 2676
-				},
-				{
-					"x": 2059,
-					"y": 2812
-				},
-				{
-					"x": 1946,
-					"y": 2812
-				},
-				{
-					"x": 2325,
-					"y": 2583
-				},
-				{
-					"x": 2397,
-					"y": 2660
-				},
-				{
-					"x": 2397,
-					"y": 2777
-				},
-				{
-					"x": 2397,
-					"y": 2846
-				},
-				{
-					"x": 2397,
-					"y": 2943
-				},
-				{
-					"x": 2825,
-					"y": 3373
-				},
-				{
-					"x": 2825,
-					"y": 3573
-				},
-				{
-					"x": 2607,
-					"y": 3215
-				},
-				{
-					"x": 2325,
-					"y": 3015
-				},
-				{
-					"x": 760,
-					"y": 470
-				},
-				{
-					"x": 2027,
-					"y": 1706
-				},
-				{
-					"x": 2394,
-					"y": 1706
-				},
-				{
-					"x": 2884,
-					"y": 1706
-				},
-				{
-					"x": 660,
-					"y": 2926
-				},
-				{
-					"x": 660,
-					"y": 2493
-				},
-				{
-					"x": 761,
+					"x": 738,
 					"y": 540
 				},
 				{
-					"x": 1093,
-					"y": 1245
+					"x": 928,
+					"y": 544
 				},
 				{
-					"x": 710,
-					"y": 3145
+					"x": 926,
+					"y": 680
 				},
 				{
-					"x": 1948,
-					"y": 2467
+					"x": 997,
+					"y": 811
 				},
 				{
-					"x": 2296,
+					"x": 1079,
+					"y": 811
+				},
+				{
+					"x": 1079,
+					"y": 1051
+				},
+				{
+					"x": 1150,
+					"y": 1125
+				},
+				{
+					"x": 892,
+					"y": 994
+				},
+				{
+					"x": 715,
+					"y": 893
+				},
+				{
+					"x": 750,
+					"y": 827
+				},
+				{
+					"x": 697,
+					"y": 820
+				},
+				{
+					"x": 1287,
+					"y": 1241
+				},
+				{
+					"x": 1287,
+					"y": 1412
+				},
+				{
+					"x": 1351,
+					"y": 1412
+				},
+				{
+					"x": 1436,
+					"y": 1412
+				},
+				{
+					"x": 1495,
+					"y": 1412
+				},
+				{
+					"x": 1550,
+					"y": 1412
+				},
+				{
+					"x": 1550,
+					"y": 1352
+				},
+				{
+					"x": 1287,
+					"y": 1517
+				},
+				{
+					"x": 1287,
+					"y": 1582
+				},
+				{
+					"x": 1287,
+					"y": 1685
+				},
+				{
+					"x": 1353,
+					"y": 1717
+				},
+				{
+					"x": 1505,
+					"y": 1717
+				},
+				{
+					"x": 1546,
+					"y": 1717
+				},
+				{
+					"x": 1364,
+					"y": 1520
+				},
+				{
+					"x": 1494,
+					"y": 1523
+				},
+				{
+					"x": 1500,
+					"y": 1637
+				},
+				{
+					"x": 1346,
+					"y": 1575
+				},
+				{
+					"x": 1548,
+					"y": 1524
+				},
+				{
+					"x": 1548,
+					"y": 1637
+				},
+				{
+					"x": 1640,
+					"y": 1352
+				},
+				{
+					"x": 1640,
+					"y": 1525
+				},
+				{
+					"x": 1640,
+					"y": 1637
+				},
+				{
+					"x": 1781,
+					"y": 1717
+				},
+				{
+					"x": 2012,
+					"y": 1717
+				},
+				{
+					"x": 2124,
+					"y": 1717
+				},
+				{
+					"x": 2366,
+					"y": 1717
+				},
+				{
+					"x": 2366,
+					"y": 1608
+				},
+				{
+					"x": 2124,
+					"y": 1608
+				},
+				{
+					"x": 2012,
+					"y": 1608
+				},
+				{
+					"x": 1781,
+					"y": 1608
+				},
+				{
+					"x": 1781,
+					"y": 1405
+				},
+				{
+					"x": 1881,
+					"y": 1287
+				},
+				{
+					"x": 2250,
+					"y": 1287
+				},
+				{
+					"x": 2407,
+					"y": 1347
+				},
+				{
+					"x": 1881,
+					"y": 1101
+				},
+				{
+					"x": 1804,
+					"y": 1046
+				},
+				{
+					"x": 1908,
+					"y": 958
+				},
+				{
+					"x": 1731,
+					"y": 791
+				},
+				{
+					"x": 1558,
+					"y": 609
+				},
+				{
+					"x": 1377,
+					"y": 407
+				},
+				{
+					"x": 1551,
+					"y": 232
+				},
+				{
+					"x": 1750,
+					"y": 422
+				},
+				{
+					"x": 1920,
+					"y": 595
+				},
+				{
+					"x": 1859,
+					"y": 658
+				},
+				{
+					"x": 2031,
+					"y": 829
+				},
+				{
+					"x": 2146,
+					"y": 714
+				},
+				{
+					"x": 2300,
+					"y": 714
+				},
+				{
+					"x": 2300,
+					"y": 557
+				},
+				{
+					"x": 2106,
+					"y": 557
+				},
+				{
+					"x": 2007,
+					"y": 457
+				},
+				{
+					"x": 1954,
+					"y": 2041
+				},
+				{
+					"x": 1752,
+					"y": 36
+				},
+				{
+					"x": 1832,
+					"y": 20
+				},
+				{
+					"x": 2300,
+					"y": 20
+				},
+				{
+					"x": 2300,
+					"y": 185
+				},
+				{
+					"x": 2300,
+					"y": 333
+				},
+				{
+					"x": 2400,
+					"y": 333
+				},
+				{
+					"x": 2400,
+					"y": 185
+				},
+				{
+					"x": 2400,
+					"y": 479
+				},
+				{
+					"x": 2300,
+					"y": 479
+				},
+				{
+					"x": 2400,
+					"y": 645
+				},
+				{
+					"x": 2300,
+					"y": 645
+				},
+				{
+					"x": 1764,
+					"y": 840
+				},
+				{
+					"x": 1704,
+					"y": 891
+				},
+				{
+					"x": 1639,
+					"y": 708
+				},
+				{
+					"x": 1590,
+					"y": 770
+				},
+				{
+					"x": 1515,
+					"y": 578
+				},
+				{
+					"x": 1439,
+					"y": 624
+				},
+				{
+					"x": 1408,
+					"y": 466
+				},
+				{
+					"x": 1340,
+					"y": 520
+				},
+				{
+					"x": 1481,
+					"y": 304
+				},
+				{
+					"x": 1421,
+					"y": 234
+				},
+				{
+					"x": 1611,
+					"y": 303
+				},
+				{
+					"x": 1518,
+					"y": 378
+				},
+				{
+					"x": 1695,
+					"y": 388
+				},
+				{
+					"x": 1609,
+					"y": 464
+				},
+				{
+					"x": 1757,
+					"y": 325
+				},
+				{
+					"x": 2017,
+					"y": 677
+				},
+				{
+					"x": 1941,
+					"y": 747
+				},
+				{
+					"x": 1982,
+					"y": 887
+				},
+				{
+					"x": 2035,
+					"y": 944
+				},
+				{
+					"x": 2113,
+					"y": 752
+				},
+				{
+					"x": 2156,
+					"y": 804
+				},
+				{
+					"x": 2213,
+					"y": 555
+				},
+				{
+					"x": 2211,
+					"y": 478
+				},
+				{
+					"x": 1465,
+					"y": 1383
+				},
+				{
+					"x": 1903,
+					"y": 1683
+				},
+				{
+					"x": 2236,
+					"y": 1683
+				},
+				{
+					"x": 753,
+					"y": 517
+				},
+				{
+					"x": 747,
+					"y": 606
+				},
+				{
+					"x": 1038,
+					"y": 1270
+				},
+				{
+					"x": 1170,
+					"y": 1338
+				},
+				{
+					"x": 1080,
+					"y": 1192
+				},
+				{
+					"x": 740,
+					"y": 2526
+				},
+				{
+					"x": 832,
+					"y": 2566
+				},
+				{
+					"x": 646,
+					"y": 2566
+				},
+				{
+					"x": 646,
+					"y": 2964
+				},
+				{
+					"x": 740,
+					"y": 2964
+				},
+				{
+					"x": 832,
+					"y": 2964
+				},
+				{
+					"x": 740,
+					"y": 3054
+				},
+				{
+					"x": 832,
+					"y": 3054
+				},
+				{
+					"x": 646,
+					"y": 3054
+				},
+				{
+					"x": 646,
+					"y": 3156
+				},
+				{
+					"x": 832,
+					"y": 3156
+				},
+				{
+					"x": 788,
+					"y": 3220
+				},
+				{
+					"x": 3336,
+					"y": 2924
+				},
+				{
+					"x": 3022,
+					"y": 2972
+				},
+				{
+					"x": 2874,
+					"y": 3094
+				},
+				{
+					"x": 2874,
+					"y": 2930
+				},
+				{
+					"x": 2874,
+					"y": 2770
+				},
+				{
+					"x": 2874,
+					"y": 2600
+				},
+				{
+					"x": 2790,
+					"y": 2600
+				},
+				{
+					"x": 2790,
+					"y": 2770
+				},
+				{
+					"x": 2790,
+					"y": 2930
+				},
+				{
+					"x": 2790,
+					"y": 3094
+				},
+				{
+					"x": 2722,
+					"y": 3114
+				},
+				{
+					"x": 2662,
+					"y": 3114
+				},
+				{
+					"x": 2520,
+					"y": 3114
+				},
+				{
+					"x": 2520,
+					"y": 2958
+				},
+				{
+					"x": 2520,
+					"y": 2870
+				},
+				{
+					"x": 2520,
+					"y": 2786
+				},
+				{
+					"x": 2520,
+					"y": 2696
+				},
+				{
+					"x": 2662,
+					"y": 2854
+				},
+				{
+					"x": 2662,
+					"y": 2686
+				},
+				{
+					"x": 2662,
+					"y": 2526
+				},
+				{
+					"x": 2724,
+					"y": 2976
+				},
+				{
+					"x": 2724,
+					"y": 2852
+				},
+				{
+					"x": 2724,
+					"y": 2686
+				},
+				{
+					"x": 2724,
+					"y": 2286
+				},
+				{
+					"x": 2794,
+					"y": 2286
+				},
+				{
+					"x": 2420,
+					"y": 2286
+				},
+				{
+					"x": 2332,
+					"y": 2286
+				},
+				{
+					"x": 2332,
+					"y": 2628
+				},
+				{
+					"x": 2398,
+					"y": 2628
+				},
+				{
+					"x": 2484,
+					"y": 2628
+				},
+				{
+					"x": 2484,
+					"y": 2696
+				},
+				{
+					"x": 2398,
+					"y": 2696
+				},
+				{
+					"x": 2332,
+					"y": 2696
+				},
+				{
+					"x": 2332,
+					"y": 2834
+				},
+				{
+					"x": 2332,
+					"y": 2958
+				},
+				{
+					"x": 2270,
+					"y": 2958
+				},
+				{
+					"x": 2166,
+					"y": 2958
+				},
+				{
+					"x": 2334,
+					"y": 3114
+				},
+				{
+					"x": 2398,
+					"y": 3170
+				},
+				{
+					"x": 2568,
+					"y": 3330
+				},
+				{
+					"x": 2716,
+					"y": 3392
+				},
+				{
+					"x": 2716,
+					"y": 3520
+				},
+				{
+					"x": 2992,
+					"y": 3520
+				},
+				{
+					"x": 2800,
+					"y": 3214
+				},
+				{
+					"x": 2778,
 					"y": 3160
 				},
 				{
-					"x": 1948,
-					"y": 2380
+					"x": 2778,
+					"y": 3248
 				},
 				{
-					"x": 2145,
-					"y": 2380
+					"x": 2532,
+					"y": 3028
 				},
 				{
-					"x": 1948,
-					"y": 2583
+					"x": 2274,
+					"y": 2836
 				},
 				{
-					"x": 1213,
-					"y": 1103
+					"x": 2594,
+					"y": 2620
+				},
+				{
+					"x": 2594,
+					"y": 2696
+				},
+				{
+					"x": 2594,
+					"y": 2786
+				},
+				{
+					"x": 2594,
+					"y": 2870
+				},
+				{
+					"x": 2594,
+					"y": 2958
+				},
+				{
+					"x": 2500,
+					"y": 3174
+				},
+				{
+					"x": 2437,
+					"y": 3100
+				},
+				{
+					"x": 1792,
+					"y": 182
+				},
+				{
+					"x": 1934,
+					"y": 106
+				},
+				{
+					"x": 1860,
+					"y": 786
+				},
+				{
+					"x": 1940,
+					"y": 854
+				},
+				{
+					"x": 1740,
+					"y": 610
+				},
+				{
+					"x": 2172,
+					"y": 2628
+				},
+				{
+					"x": 2172,
+					"y": 2505
+				},
+				{
+					"x": 2172,
+					"y": 2426
+				},
+				{
+					"x": 2332,
+					"y": 2426
+				},
+				{
+					"x": 2300,
+					"y": 2540
+				},
+				{
+					"x": 2752,
+					"y": 3254
+				},
+				{
+					"x": 2630,
+					"y": 3456
+				},
+				{
+					"x": 3148,
+					"y": 3054
 				},
 				{
 					"x": null,
@@ -1139,15 +1491,15 @@
 			}
 		}
 
-		function addConnection(a, b) {
+		function addconnection(a, b) {
 			var c = Math.hypot(coor.node[a].x - coor.node[b].x, coor.node[a].y - coor.node[b].y)
 			e[a][b] = c;
 			e[b][a] = c;
 		}
 
-		function addstairs(a, b, c) {
-			e[a][b] = c;
-			e[b][a] = c;
+		function addstairs(a, b) {
+			e[a][b] = 1000;
+			e[b][a] = 1000;
 		}
 
 		function drawStop(dest) {
@@ -1208,7 +1560,7 @@
 			var run = false;
 			var one;
 			var two;
-			if (number == 122)
+			if (number == 185)
 				custFloors[0] = custFloor;
 			else
 				custFloors[1] = custFloor;
@@ -1242,19 +1594,19 @@
 				coor.node[number + 1].x = conNodeX
 				coor.node[number + 1].y = conNodeY
 				breakCustConnections(number + 1);
-				addConnection(number, number + 1);
-				addConnection(number + 1, closeNode[one])
-				addConnection(number + 1, closeNode[two])
-				if (number == 122) {
+				addconnection(number, number + 1);
+				addconnection(number + 1, closeNode[one])
+				addconnection(number + 1, closeNode[two])
+				if (number == 185) {
 					document.getElementById("current").options[1].hidden = false;
-					document.getElementById("current").value = "122"
+					document.getElementById("current").value = "185"
 					clear();
-					drawGo(122);
+					drawGo(185);
 				} else {
 					document.getElementById("destination").options[1].hidden = false;
-					document.getElementById("destination").value = "124"
+					document.getElementById("destination").value = "187"
 					clear();
-					drawStop(124);
+					drawStop(187);
 				}
 				hideElems();
 			} else {
@@ -1349,7 +1701,6 @@
 			newNodeX = (event.clientX - rect.left) * can.width / rect.width;
 			newNodeY = (event.clientY - rect.top) * can.height / rect.height;
 			g = 500;
-
 			if (newNodeY < 1841) {
 				custFloor = 1;
 				onOne = true;
@@ -1366,12 +1717,14 @@
 			ctx.strokeStyle = "#59f442";
 			ctx.arc(newNodeX, newNodeY, 5, 0, 2 * Math.PI);
 			ctx.stroke();
+			
+		
 			if (selector == 1) {
-				customNode(122);
-				strt = 122
+				customNode(185);
+				strt = 185
 			} else {
-				customNode(124)
-				dest = 124
+				customNode(187)
+				dest = 187
 			}
 
 			selector = 0;
@@ -1399,195 +1752,266 @@
 				}
 			}
 			//first floor
-			addConnection(1, 2);
-			addConnection(1, 6);
-			addConnection(1, 7);
-			addConnection(2, 6);
-			addConnection(2, 7);
-			addConnection(3, 4);
-			addConnection(3, 113);
-			addConnection(3, 107);
-			addConnection(4, 6);
-			addConnection(4, 8);
-			addConnection(4, 94);
-			addConnection(6, 7);
-			addConnection(7, 9);
-			addConnection(8, 10);
-			addConnection(9, 10);
-			addConnection(9, 14);
-			addConnection(9, 121);
-			addConnection(11, 12);
-			addConnection(11, 114);
-			addConnection(11, 121);
-			addConnection(12, 114);
-			addConnection(13, 14);
-			addConnection(13, 16);
-			addConnection(14, 16);
-			addConnection(14, 121);
-			addConnection(89, 17);
-			addConnection(16, 89);
-			addConnection(17, 22);
-			addConnection(18, 19);
-			addConnection(18, 89);
-			addConnection(19, 20);
-			addConnection(20, 21);
-			addConnection(21, 25);
-			addConnection(22, 23);
-			addConnection(23, 24);
-			addConnection(23, 29);
-			addConnection(24, 91);
-			addConnection(25, 26);
-			addConnection(26, 27);
-			addConnection(26, 28);
-			addConnection(27, 108);
-			addConnection(27, 67);
-			addConnection(28, 29);
-			addConnection(28, 93);
-			addConnection(29, 92);
-			addConnection(30, 31);
-			addConnection(30, 66);
-			addConnection(30, 67);
-			addConnection(30, 108);
-			addConnection(31, 109);
-			addConnection(31, 68);
-			addConnection(32, 33);
-			addConnection(32, 68);
-			addConnection(32, 109);
-			addConnection(33, 110);
-			addConnection(33, 69);
-			addConnection(34, 69);
-			addConnection(34, 110);
-			addConnection(66, 67);
-			addConnection(66, 88);
-			addConnection(67, 68);
-			addConnection(68, 69);
-			addConnection(68, 86);
-			addConnection(69, 86);
-			addConnection(69, 87);
-			addConnection(59, 88);
-			addConnection(86, 88);
-			addConnection(87, 88);
+			addconnection(1, 100)
+			addconnection(1, 2)
+			addconnection(1, 101)
+			addconnection(2, 3)
+			addconnection(3, 4)
+			addconnection(4, 10)
+			addconnection(10, 11)
+			addconnection(11, 9)
+			addconnection(9, 8)
+			addconnection(4, 5)
+			addconnection(5, 6)
+			addconnection(6, 7)
+			addconnection(7, 12)
+			addconnection(6, 8)
+			addconnection(12, 103)
+			addconnection(12, 13)
+			addconnection(13, 14)
+			addconnection(13, 19)
+			addconnection(19, 20)
+			addconnection(20, 21)
+			addconnection(19, 25)
+			addconnection(20, 28)
+			addconnection(21, 22)
+			addconnection(22, 28)
+			addconnection(22, 23)
+			addconnection(23, 27)
+			addconnection(23, 24)
+			addconnection(24, 30)
+			addconnection(30, 29)
+			addconnection(29, 17)
+			addconnection(17, 18)
+			addconnection(18, 31)
+			addconnection(16, 17)
+			addconnection(15, 16)
+			addconnection(15, 97)
+			addconnection(15, 14)
+			addconnection(29, 32)
+			addconnection(30, 33)
+			addconnection(24, 34)
+			addconnection(34, 35)
+			addconnection(35, 36)
+			addconnection(36, 37)
+			addconnection(34, 41)
+			addconnection(41, 42)
+			addconnection(41, 40)
+			addconnection(35, 40)
+			addconnection(36, 39)
+			addconnection(37, 38)
+			addconnection(39, 38)
+			addconnection(39, 44)
+			addconnection(38, 44)
+			addconnection(42, 43)
+			addconnection(40, 43)
+			addconnection(43, 46)
+			addconnection(46, 47)
+			addconnection(47, 48)
+			addconnection(48, 74)
+			addconnection(74, 49)
+			addconnection(49, 76)
+			addconnection(76, 50)
+			addconnection(50, 78)
+			addconnection(78, 80)
+			addconnection(80, 51)
+			addconnection(51, 52)
+			addconnection(52, 84)
+			addconnection(84, 86)
+			addconnection(86, 53)
+			addconnection(53, 50)
+			addconnection(53, 54)
+			addconnection(54, 55)
+			addconnection(55, 49)
+			addconnection(55, 90)
+			addconnection(90, 56)
+			addconnection(56, 91)
+			addconnection(91, 48)
+			addconnection(91, 92)
+			addconnection(74, 75)
+			addconnection(76, 77)
+			addconnection(78, 79)
+			addconnection(80, 81)
+			addconnection(52, 83)
+			addconnection(86, 88)
+			addconnection(54, 89)
+			addconnection(90, 89)
+			addconnection(56, 93)
+			addconnection(93, 94)
+			addconnection(93, 57)
+			addconnection(57, 58)
+			addconnection(58, 73)
+			addconnection(73, 72)
+			addconnection(73, 59)
+			addconnection(59, 95)
+			addconnection(95, 60)
+			addconnection(95, 96)
+			addconnection(60, 61)
+			addconnection(59, 71)
+			addconnection(71, 70)
+			addconnection(71, 67)
+			addconnection(67, 68)
+			addconnection(67, 66)
+			addconnection(66, 69)
+			addconnection(66, 65)
+			addconnection(65, 64)
+			addconnection(64, 63)
+			addconnection(63, 62)
+			addconnection(62, 61)
+			addconnection(63, 52)
+			addconnection(88, 86)
+			addconnection(63, 64)
+			addconnection(64, 173)
+			addconnection(64, 65)
+			addconnection(173, 62)
+			addconnection(172, 63)
+			addconnection(172, 62)
+			addconnection(174, 90)
+			addconnection(174, 74)
+			addconnection(175, 91)
+			addconnection(176, 53)
+			addconnection(54, 176)
+			addconnection(176, 50)
+			addconnection(176, 55)
+			addconnection(176, 76)
+			addconnection(176, 49)
+			addconnection(103, 13)
+			addconnection(38, 45)
+			addconnection(44, 45)
+			addconnection(85, 80)
+			addconnection(87, 86)
+			addconnection(87, 78)
+			addconnection(10, 8)
+			addconnection(25,14)
+			addconnection(26,16)
+			addconnection(26,29)
 			//floor 1 if elevator
 			if (elevToggle < 0) {
-				addConnection(10, 11);
-				addConnection(10, 13);
-				addConnection(11, 13);
+				addconnection(7, 104)
+				addconnection(104, 102)
 			}
 			//second floor
-			addConnection(70, 71);
-			addConnection(70, 72);
-			addConnection(70, 112);
-			addConnection(71, 72);
-			addConnection(71, 73);
-			addConnection(71, 112);
-			addConnection(72, 75);
-			addConnection(72, 112);
-			addConnection(73, 74);
-			addConnection(73, 76);
-			addConnection(73, 77);
-			addConnection(73, 78);
-			addConnection(73, 111);
-			addConnection(74, 75);
-			addConnection(74, 76);
-			addConnection(74, 77);
-			addConnection(74, 78);
-			addConnection(74, 111);
-			addConnection(75, 76);
-			addConnection(75, 77);
-			addConnection(75, 111);
-			addConnection(77, 78);
-			addConnection(76, 77);
-			addConnection(76, 79);
-			addConnection(76, 111);
-			addConnection(77, 111);
-			addConnection(78, 80);
-			addConnection(78, 111);
-			addConnection(79, 80);
-			addConnection(79, 81);
-			addConnection(80, 81);
-			addConnection(80, 115);
-			addConnection(81, 82);
-			addConnection(81, 115);
-			addConnection(82, 83);
-			addConnection(83, 84);
-			addConnection(84, 85);
+			addconnection(105, 107)
+			addconnection(105, 106)
+			addconnection(107, 108)
+			addconnection(108, 109)
+			addconnection(109, 110)
+			addconnection(110, 106)
+			addconnection(108, 113)
+			addconnection(113, 111)
+			addconnection(111, 122)
+			addconnection(112, 110)
+			addconnection(108, 112)
+			addconnection(109, 111)
+			addconnection(113, 110)
+			addconnection(113, 114)
+			addconnection(112, 115)
+			addconnection(115, 116)
+			addconnection(114, 116)
 			//third floor
-			addConnection(35, 36);
-			addConnection(35, 56);
-			addConnection(35, 57);
-			addConnection(35, 117);
-			addConnection(36, 37);
-			addConnection(36, 57);
-			addConnection(36, 117);
-			addConnection(37, 38);
-			addConnection(37, 39);
-			addConnection(37, 58);
-			addConnection(38, 39);
-			addConnection(38, 58);
-			addConnection(39, 58);
-			addConnection(39, 97);
-			addConnection(40, 41);
-			addConnection(40, 58);
-			addConnection(41, 47);
-			addConnection(41, 95);
-			addConnection(42, 43);
-			addConnection(42, 47);
-			addConnection(42, 46);
-			addConnection(42, 44);
-			addConnection(42, 98);
-			addConnection(42, 99);
-			addConnection(43, 44);
-			addConnection(43, 100);
-			addConnection(44, 45);
-			addConnection(44, 101);
-			addConnection(45, 58);
-			addConnection(45, 102);
-			addConnection(45, 106);
-			addConnection(46, 48);
-			addConnection(46, 98);
-			addConnection(47, 48);
-			addConnection(48, 49);
-			addConnection(48, 119);
-			addConnection(48, 120);
-			addConnection(49, 50);
-			addConnection(49, 119);
-			addConnection(50, 51);
-			addConnection(51, 52);
-			addConnection(52, 53);
-			addConnection(53, 54);
-			addConnection(54, 55);
-			addConnection(54, 60);
-			addConnection(55, 56);
-			addConnection(56, 106);
-			addConnection(56, 117);
-			addConnection(57, 61);
-			addConnection(57, 65);
-			addConnection(57, 117);
-			addConnection(60, 62)
-			addConnection(60, 65);
-			addConnection(60, 105);
-			addConnection(62, 63);
-			addConnection(62, 65);
-			addConnection(62, 103);
-			addConnection(62, 105);
-			addConnection(63, 65);
-			addConnection(63, 104);
-			addConnection(116, 118);
-			addConnection(116, 120);
-			addConnection(118, 119)
+			addconnection(117, 118)
+			addconnection(118, 119)
+			addconnection(118, 120)
+			addconnection(121, 118)
+			addconnection(120, 121)
+			addconnection(122, 123)
+			addconnection(121, 124)
+			addconnection(120, 125)
+			addconnection(119, 126)
+			addconnection(126, 137)
+			addconnection(137, 125)
+			addconnection(125, 138)
+			addconnection(138, 137)
+			addconnection(124, 138)
+			addconnection(139, 124)
+			addconnection(138, 139)
+			addconnection(123, 139)
+			addconnection(139, 136)
+			addconnection(139, 134)
+			addconnection(138, 135)
+			addconnection(137, 135)
+			addconnection(138, 134)
+			addconnection(122, 140)
+			addconnection(141, 140)
+			addconnection(136, 141)
+			addconnection(141, 142)
+			addconnection(142, 136)
+			addconnection(142, 143)
+			addconnection(143, 180)
+			addconnection(180, 179)
+			addconnection(179, 178)
+			addconnection(178, 177)
+			addconnection(177, 144)
+			addconnection(144, 180)
+			addconnection(180, 181)
+			addconnection(181, 144)
+			addconnection(144, 145)
+			addconnection(145, 146)
+			addconnection(146, 147)
+			addconnection(147, 148)
+			addconnection(148, 145)
+			addconnection(148, 149)
+			addconnection(149, 150)
+			addconnection(146, 165)
+			addconnection(147, 133)
+			addconnection(133, 166)
+			addconnection(133, 132)
+			addconnection(133, 167)
+			addconnection(132, 131)
+			addconnection(131, 168)
+			addconnection(131, 130)
+			addconnection(130, 169)
+			addconnection(130, 163)
+			addconnection(129, 163)
+			addconnection(129, 128)
+			addconnection(128, 126)
+			addconnection(128, 127)
+			addconnection(127, 126)
+			addconnection(127, 157)
+			addconnection(157, 162)
+			addconnection(162, 160)
+			addconnection(157, 158)
+			addconnection(182, 162)
+			addconnection(157, 182)
+			addconnection(182, 127)
+			addconnection(157, 156)
+			addconnection(156, 155)
+			addconnection(171, 155)
+			addconnection(171, 129)
+			addconnection(170, 129)
+			addconnection(170, 155)
+			addconnection(170, 171)
+			addconnection(154, 171)
+			addconnection(154, 155)
+			addconnection(152, 154)
+			addconnection(164, 152)
+			addconnection(151, 152)
+			addconnection(150, 151)
+			addconnection(130, 151)
+			addconnection(164, 150)
+			addconnection(158, 183)
+			addconnection(183, 156)
+			addconnection(183, 157)
+			addconnection(158, 159)
+			addconnection(184, 118)
+			addconnection(184, 117)
+			addconnection(184, 119)
+
+
 			// stairs
 			if (elevToggle < 0) {
-				addstairs(6, 74, 1000);
-				addstairs(35, 77, 1000);
-				addstairs(50, 70, 1000);
-				addstairs(64, 85, 1000);
+				addstairs(109, 4)
+				addstairs(105, 142)
+				addstairs(111, 171)
+				addstairs(117, 47)
 			}
 			//elevators
 			else {
-				addstairs(113, 116, 1000);
-				addstairs(114, 115, 1000);
-				addstairs(115, 117, 1000);
+				addstairs(102, 116)
+				addstairs(116, 170)
+				addstairs(101, 178)
 			}
+
 			//start node value
 			var strt = document.getElementById("current").value;
 			//destination value
@@ -1601,26 +2025,20 @@
 				b = a;
 				a = c;
 			}
-			// index no. of stairs
-			if (a === 6 && b === 74) {
+
+			if (a == 4 && b == 109) {
 				return false;
-			} else if (a === 35 && b === 77) {
+			} else if (a == 105 && b == 142) {
 				return false;
-			} else if (a === 50 && b === 70) {
+			} else if (a == 111 && b == 171) {
 				return false;
-			} else if (a === 5 && b === 17) {
+			} else if (a == 47 && b == 117) {
 				return false;
-			} else if (a === 5 && b === 18) {
+			} else if (a == 102 && b == 116) {
 				return false;
-			} else if (a === 5 && b === 18) {
+			} else if (a == 116 && b === 170) {
 				return false;
-			} else if (a === 64 && b === 85) {
-				return false;
-			} else if (a == 113 && b == 116) {
-				return false;
-			} else if (a == 114 && b == 115) {
-				return false;
-			} else if (a == 115 && b == 117) {
+			} else if (a === 101 && b === 178) {
 				return false;
 			}
 			return true;
@@ -1700,14 +2118,15 @@
 					ctx.strokeStyle = "#ffff00";
 					ctx.arc(coor.node[dest].x, coor.node[dest].y, 3.75, 0, 2 * Math.PI);
 					ctx.stroke();
-				} else {
-					goStairs = true;
-					var stairnode = [6, 70, 74, 77, 85, 64, 35, 50];
-					var dir = [1, -1, -1, 1, 0, 0, -1, 1];
-					var direc = dir[stairnode.indexOf(cur)]
-					drawArrow(cur_x, cur_y, ctx, dir[stairnode.indexOf(cur)]);
-					drawArrow(des_x, des_y - 83 * direc, ctx, direc);
-				}
+				} 
+//				else {
+//					goStairs = true;
+//					var stairnode = [109, 4, 105, 142, 111, 171, 117, 47];
+//					var dir = [1, -1, 1, -1, -1, 1, 0, 0];
+//					var direc = dir[stairnode.indexOf(cur)]
+//					drawArrow(cur_x, cur_y, ctx, direc);
+//					drawArrow(des_x, des_y - 83 * direc, ctx, -direc);
+//				}
 			}
 
 
@@ -1718,52 +2137,51 @@
 			//start node value
 
 			var strt = document.getElementById("current").value;
-			console.log(strt + 'strt')
 
 			///resume here
 			//destination value
 			var dest = document.getElementById("destination").value;
 
 			//the shortest path does not run through a room unless you start or end in said room
-			if (dest == 0 || strt == 0) {
-				addConnection(0, 25);
-				addConnection(0, 28);
-			}
-			if (dest == 5 || strt == 5) {
-				addConnection(5, 17);
-				addConnection(5, 18);
-			}
-			if (dest == 15 || strt == 15) {
-				addConnection(15, 19);
-				addConnection(15, 21);
-			}
-			if (dest == 90 || strt == 90) {
-				addConnection(22, 90);
-				addConnection(29, 90);
-			}
-			if (dest == 96 || strt == 96) {
-				addConnection(38, 96);
-				addConnection(40, 96);
-			}
-			if (dest == 99 || strt == 99) {
-				addConnection(42, 99);
-				addConnection(52, 99);
-			}
-			if (dest == 100 || strt == 100) {
-				addConnection(43, 100);
-				addConnection(53, 100);
-			}
-			if (dest == 101 || strt == 101) {
-				addConnection(44, 101);
-				addConnection(53, 101);
-			}
+			//			if (dest == 0 || strt == 0) {
+			//				addconnection(0, 25);
+			//				addconnection(0, 28);
+			//			}
+			//			if (dest == 5 || strt == 5) {
+			//				addconnection(5, 17);
+			//				addconnection(5, 18);
+			//			}
+			//			if (dest == 15 || strt == 15) {
+			//				addconnection(15, 19);
+			//				addconnection(15, 21);
+			//			}
+			//			if (dest == 90 || strt == 90) {
+			//				addconnection(22, 90);
+			//				addconnection(29, 90);
+			//			}
+			//			if (dest == 96 || strt == 96) {
+			//				addconnection(38, 96);
+			//				addconnection(40, 96);
+			//			}
+			//			if (dest == 99 || strt == 99) {
+			//				addconnection(42, 99);
+			//				addconnection(52, 99);
+			//			}
+			//			if (dest == 100 || strt == 100) {
+			//				addconnection(43, 100);
+			//				addconnection(53, 100);
+			//			}
+			//			if (dest == 101 || strt == 101) {
+			//				addconnection(44, 101);
+			//				addconnection(53, 101);
+			//			}
 
 			// Compute all shortest paths
 			var shortestPathInfo = shortestPath(e, matrixSize, strt);
 
 			//finds the closest bathroom to the starting node
 			if (dest == "bathroom") {
-				var bathnodes = ["22", "105", "106", "107", "108", "109", "110", "116"];
+				var bathnodes = ["60", "97", "98", "99", "100", "181", "160", "163"];
 				var min = 99999999;
 				var minindex = -1;
 				for (var i = 0; i < 8; i++) {
@@ -1782,7 +2200,7 @@
 			var ctxp = ctx;
 			var snum = document.getElementById("current").selectedIndex;
 			var dnum = document.getElementById("destination").selectedIndex;
-			if (strt != 122) {
+			if (strt != 185) {
 				var x = coor.node[strt].x
 				var y = coor.node[strt].y
 				if (y < 1841)
@@ -1792,7 +2210,7 @@
 				else if (x < 3156 && y > 1915)
 					custFloors[0] = 3;
 			}
-			if (dest != 124) {
+			if (dest != 189) {
 				var x = coor.node[dest].x
 				var y = coor.node[dest].y
 				if (y < 1841)
